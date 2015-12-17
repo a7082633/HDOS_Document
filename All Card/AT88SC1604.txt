@@ -1,0 +1,1357 @@
+/*********************************************
+  江南计算技术研究所 齐传兵 qcb56@126.com
+  邮编214083 江苏无锡33信箱342号
+*********************************************/
+
+#define  OS_LINUX    1
+
+#if OS_LINUX
+
+#include <stdio.h>
+#include <unistd.h>
+#include <memory.h>
+#include <sys/io.h>
+
+#else
+
+#include <dos.h>
+#include <mem.h>
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define inw(x)     inpw(x)
+#define outw(x, y) outpw(y, x)
+#define usleep(x)  delay(x/1000)
+
+#endif
+
+
+#define POWERUP    1
+#define POWERDOWN  0
+#define HIGH       1
+#define LOW        0
+
+#define STATUSW    0x350   //根据自己的硬件定义
+
+#define TCLK       8       //3.3
+#define TRH        1       //0.1
+#define TDVR       4       //2 max
+#define TCH        1       //0.2
+#define TCL        1       //0.2
+#define TDV        4       //2 max
+#define TOH        1       //0
+#define TSC        1       //0
+#define THC        1       //0.2
+#define TCHP       3000    //2000
+#define TDS        1       //0.2
+#define TDH        1       //0
+#define TSPR       5       //2.2
+#define THPR       1       //0.2
+#define TCHP1604   5000    //5000
+
+
+/*IC卡操作底层函数说明：
+IC卡座的引脚定义示意图如下：
+VCC     [C1] [C5]   GND 
+RESET   [C2] [C6]   No Use 
+CLK     [C3] [C7]   I/O
+FUS     [C4] [C8]   PGM
+*/
+
+void _CardSetPower(int level)
+{
+/*
+功能：将IC卡读写器Vcc段上电或下电。插入或者拨出IC卡前请先下电。
+输入：Level
+      当Level=POWERUP，给IC卡读写器上电。
+      当Level=POWERDOWN，给IC卡读写器下电。
+输出：无
+*/
+
+/*根据自己的硬件编写处理过程*/
+
+    usleep(2000);
+}
+
+
+void _CardDataDir(int level)
+{
+/*
+功能：设置MEMORY卡数据传输方向。
+输入：Level
+      当Level=1，读MEMORY卡。
+      当Level=0，写MEMORY卡。
+输出：无
+*/
+/*根据自己的硬件编写处理过程*/
+
+}
+
+void _CardSetReset(int level)
+{
+/*
+功能：置IC卡读写器Reset高或低。
+输入：Level
+      当Level=1，给IC卡读写器Reset端置高。
+      当Level=0，给IC卡读写器Reset端置低。
+输出：无
+*/
+/*根据自己的硬件编写处理过程*/
+
+}
+
+
+void _CardSetPGM(int level)
+{
+/*
+功能：置IC卡读写器PGM高或低。
+输入：Level
+      当Level=1，给IC卡读写器PGM置高。
+      当Level=0，给IC卡读写器PGM置低。
+输出：无
+*/
+/*根据自己的硬件编写处理过程*/
+
+}
+
+void _CardSetClock(int level)
+{
+/*
+功能：置IC卡读写器Clock高或低。
+输入：Level
+      当Level=1，给IC卡读写器Clock置高。
+      当Level=0，给IC卡读写器Clock置低。
+输出：无
+*/
+/*根据自己的硬件编写处理过程*/
+}
+
+
+int _CardPutIO(int IOData)
+{
+/*
+功能：将数据由IC卡读写器IO端输出。
+输入：IOData输出数据，值是0或1。
+输出： 0 = 正确
+      -1 = 卡不在位
+*/
+    unsigned int status;
+
+    if(_CardReady() == 0)
+        return -1;
+
+    _CardDataDir(LOW);
+
+/*根据自己的硬件编写处理过程*/
+
+    return 0;
+
+}
+
+int _CardReady()
+{
+/*
+功能：查询卡座内是否有卡
+输入：无
+输出：1--卡座内有卡; 0--座内无卡
+*/
+    unsigned int status;
+
+/*根据自己的硬件编写处理过程*/
+
+    if(status == 0)
+        return 1;
+    else
+        return 0;
+
+}
+
+
+int _CardReadIO()
+{
+/*
+功能：读取IC卡读写器IO端数据
+输入：无
+输出：-1 = 卡不在位
+      0  = IC卡输出的数据。
+      1  = IC卡输出的数据。
+*/
+    unsigned int status;
+
+    if(_CardReady() == 0)
+        return -1;
+
+    _CardDataDir(HIGH);
+
+/*根据自己的硬件编写处理过程*/
+
+    if(status != 0)
+        return 1;
+    else
+        return 0;
+
+}
+
+
+
+void _CardDelay(int usecond)
+{
+/*
+功能：延时。执行usecond个基本延时单位，每个基本延时单位指系统执行一次inw所需的时间(约为1.5us)。。
+输入：usecond
+输出：无
+*/
+    int i;
+
+    for(i=0; i<usecond; i++)
+        inw(STATUSW);
+
+}
+
+////////////////////////////////////////////////////////////////////////////
+/////////ATMEL AT88SC102/AT88SC1604不等分区IC卡基本函数/////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+int _C102Reset()
+{
+/*
+功能：如果卡在位，上电并对AT88SC102型MEMORY卡复位。
+输入：无
+输出：-1 = 卡不在位；0 = 正常
+*/
+    if(_CardReady() == 0)
+        return -1;
+
+    _CardSetType(MEMORYCARD);
+    
+    
+    _CardSetPower(POWERUP);
+    _CardSetPGM(LOW);
+    _CardSetReset(HIGH);
+
+    _CardSetClock(LOW);
+
+    _CardDelay(TRH);   //需延时0.1微秒Trh
+
+    _CardSetReset(LOW);
+
+    _CardDelay(TDVR);  //2微秒后地址0数据有效 Tdvr
+
+    return 0;
+
+}
+
+void _C102AddsInc(int count)
+{
+/*
+功能：给出count个时钟脉冲，使AT88SC102型IC卡内部地址计数器增加count次。
+输入：count
+输出：无
+*/
+    int i;
+
+    for(i=0; i<count; i++)
+    {
+        _CardSetClock(HIGH);
+        _CardDelay(TCH);  // Tch=0.2微秒
+
+        _CardSetClock(LOW);
+        _CardDelay(TCL);  //Tcl=0.2微秒
+
+        _CardDelay(TDV);  //Tdv=2微秒
+    }
+
+}
+
+int _C102Addressing(int address)
+{
+/*
+功能：如果卡在位，上电，复位，并使AT88SC102型IC卡内部地址计数器为address。
+输入：address
+输出：-1 = 卡不在位；0 = 正常
+*/
+    if (_C102Reset() < 0)
+        return -1;
+
+    _C102AddsInc(address);
+
+    return 0;
+}
+
+int _C102Read(int address, int bitlen, unsigned char *retmsg)
+{
+/*
+功能：从IC卡地址address开始读取bitlen个比特数据。如果address不小于0，先执行上电和复位操作。
+输入：address：起始比特地址。 如果小于0, 从当前地址开始； 如果等于-2,读后地址不加并且bitlen应为1
+      bitlen   要读的比特长度，应该是8的倍数，否则，最后的比特将放在低字节位(B7--B0)
+输出：retmsg： 返回的内容，已经组成字节
+      返回值： -1 = 卡不在位；
+                0 = 正确
+*/
+
+    int i, k;
+    int ch;
+
+    if(address >= 0)
+    {
+        if( _C102Addressing(address) < 0)
+            return -1;
+    }
+
+    for(i=0, k=0; i<bitlen; )
+    {
+        ch = _CardReadIO();
+
+        if( ch < 0 )
+            return -1;  //卡不在位
+
+        k = (k << 1) | (ch & 1);
+        *retmsg = (unsigned char)(k & 0xFF);
+
+        i++;
+    
+        if(i%8 == 0)
+        {
+            retmsg++;
+            k=0;
+        }
+
+        if(address != -2)
+            _C102AddsInc(1);
+
+    }
+
+    return 0;
+
+}
+
+
+int _C102Write(int address, int bitlen, unsigned char *msg)
+{
+/*
+功能：从IC卡地址address开始向IC卡写bitlen个比特数据。如果address不小于0，先执行上电和复位操作。
+输入：address：起始比特地址, 如果小于0, 从当前地址开始, 如果等于-2,写后地址不加, bitlen应为1
+      bitlen:  要写的比特长度，应该是8的倍数，否则msg应左对齐
+      msg：    要写的内容，字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+
+    int i, k;
+    int ch;
+
+    if(address >= 0)
+    {
+        if( _C102Addressing(address) < 0)
+            return -1;
+    }
+
+    for(i=0, k=7; i<bitlen; i++)
+    {
+        ch = *msg;
+        ch = ch >> k;
+        ch &= 1;
+
+        k--;
+
+        if(k < 0)
+        {
+            msg++;
+            k = 7;
+        }
+
+
+////////////////////////////////////////////////
+        if(ch == 0)
+        {
+            _CardSetClock(LOW);
+            _CardSetPGM(HIGH);
+            _CardDelay(TDV); //Tdv=2us
+            if(_CardPutIO(LOW) < 0)
+                return -1;
+            _CardDelay(TSPR); //Tspr
+
+            _CardSetClock(HIGH);
+            _CardDelay(THPR); //Thpr=0.2us
+
+            _CardSetPGM(LOW);
+            usleep(TCHP);
+            _CardSetClock(LOW);
+            _CardDelay(TDV); //Tdv=2us
+
+        }
+
+        if( _CardReadIO() != ch )
+            return -2;
+
+        if(address != -2)
+            _C102AddsInc(1);
+
+    }
+
+    return 0;
+
+}
+
+
+int _C102Erase(int address, int bitlen)
+{
+/*
+功能：从IC卡地址address开始，擦除IC卡中bitlen个比特数据。如果address不小于0，先执行上电和复位操作。
+输入：address：起始比特地址, 如果小于0, 从当前地址开始, 如果等于-2,擦除后地址不加, bitlen应为1
+      bitlen:  要擦除的比特长度，应该是8的倍数，否则msg应左对齐
+      msg：    要写的内容，字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 擦除失败，与读出的不一致。
+               0 = 正确
+*/
+
+    int i;
+
+    if(address >= 0)
+    {
+        if( _C102Addressing(address) < 0)
+            return -1;
+    }
+
+    for(i=0; i<bitlen; i+=16)
+    {
+        _CardSetClock(LOW);
+        _CardSetPGM(HIGH);
+        _CardDelay(TDV); //Tdv=2us
+        if(_CardPutIO(HIGH) < 0)
+            return -1;
+        _CardDelay(TSPR);
+
+        _CardSetClock(HIGH);
+        _CardDelay(THPR); //Thpr=0.2us
+
+        _CardSetPGM(LOW);
+        usleep(TCHP);
+        _CardSetClock(LOW);
+        _CardDelay(TDV); //Tdv=2us
+
+        if( _CardReadIO() != 1 )
+            return -2;
+
+        if(address != -2)
+            _C102AddsInc(16);
+
+    }
+
+    return 0;
+
+}
+
+int _C102BlockErase()
+{
+/*
+功能：执行上电和复位操作，并擦除IC卡中除FZ、MTZ、MFZ外的所有区域。
+输入：无
+输出：返回值: -1 = 卡不在位； 
+              -2 = 擦除失败，与读出的不一致。
+               0 = 正确
+*/
+
+    int ret;
+
+    ret = _C102Erase(1442, 1);
+    usleep(20000);
+
+    return ret;
+}
+
+int _C102Compare(int address, int bitlen, unsigned char *msg)
+{
+/*
+功能：从IC卡地址address开始，比较IC卡中bitlen个比特数据。先执行上电和复位操作。
+输入：address：起始比特地址
+      bitlen:  要比较的比特长度，应该是8的倍数，否则msg应左对齐
+      msg：    要比较的内容，字节形式
+输出：返回值: -1 = 卡不在位； 
+               0 = 正确
+*/
+
+    int i, k;
+    int ch;
+    int ret;
+
+    if( _C102Addressing(address) < 0 )
+        return -1;
+
+    for(i=0, k=7; i<bitlen; i++)
+    {
+        ch = *msg;
+        ch = ch >> k;
+        ch &= 1;
+
+        k--;
+
+        if(k < 0)
+        {
+            msg++;
+            k = 7;
+        }
+
+
+////////////////////////////////////////////////
+        if(ch == 1)
+            ret = _CardPutIO(HIGH);
+        else
+            ret = _CardPutIO(LOW);
+
+        if(ret < 0)
+            return -1;
+
+        _CardDelay(TCLK);
+
+        _C102AddsInc(1);
+
+    }
+
+    return 0;
+}
+
+
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+int C102ReadFZ(unsigned char *fz)
+{ 
+/*
+功能：读厂商代码。厂商代码为2字节。
+输入：无
+输出：fz: 厂商代码
+      返回值: -1 = 卡不在位； 
+               0 = 正确
+*/
+
+    return _C102Read(0, 16, fz);
+}
+
+int C102ReadIZ(unsigned char *iz)
+{ 
+/*
+功能：读卡商代码。卡商代码为8字节。
+输入：无
+输出：iz：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+               0 = 正确
+*/
+
+    return _C102Read(16, 64, iz);
+}
+
+int C102ReadSCAC()
+{ 
+/*
+功能：读密码(或区密码)校验错误计数。
+输入：无
+输出：返回值: -1  = 卡不在位； 
+              0-4 = 允许错误次数,为0表示卡已被锁住
+*/
+
+    unsigned char scac;
+    unsigned char ch;
+    int i, count=0;
+
+
+    if(_C102Read(96, 8, &scac) < 0)
+        return -1;
+
+
+    scac &= 0xF0;
+
+    for(i=0; i<8; i++)
+    {
+        ch = (scac >> i) & 1;
+        if( ch == 1)
+            count++;
+    }
+
+
+    return count;
+}
+
+int C102ReadCPZ(int offset, int len, unsigned char *cpz)
+{
+/*
+功能：读代码保护区。代码保护区为8字节。
+输入：offset： 0-7
+      len:     1-8
+输出：cpz：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+              -3 = 参数错误，要写入的内容超出存储区
+               0 = 正确
+*/
+
+    if(offset+len > 8)
+        return -3;
+
+    return _C102Read(112+offset*8, len*8, cpz);
+
+}
+
+int C102ReadMTZ(unsigned char *mtz)
+{ 
+/*
+功能：读测试区。测试区为2字节。
+输入：无
+输出：mtz：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+               0 = 正确
+*/
+
+    return _C102Read(1408, 16, mtz);
+}
+
+int C102WriteMTZ(unsigned char *mtz)
+{
+/*
+功能：写测试区。测试区为2字节。
+输入：mtz：2字节
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+
+    _C102Erase(1408, 16);
+    return _C102Write(1408, 16, mtz);
+}
+
+/////////////////////////////////////////////////////////////
+
+int C102CheckSC(unsigned char *sc)
+{
+/*
+功能：比较密码。密码为2字节。
+输入：sc：2字节
+输出：返回值: 0 = 正确
+              其它 = 错误
+*/
+
+    int scac;
+    int scac1;
+    unsigned char ch;
+
+    scac = C102ReadSCAC();
+    if(scac == 0)
+        return -1;
+
+    if(_C102Compare(80, 16, sc) < 0)
+        return -2;
+
+    _C102AddsInc(4-scac);
+    ch = 0;
+    _C102Write(-2, 1, &ch);
+    _C102Read(-2, 1, &ch);
+    if(ch != 0)
+        return -3;
+
+    _C102Erase(-2, 1);
+    _C102Read(-1, 1, &ch);
+
+    if(ch != 1)
+        return -4;
+
+    scac1 = C102ReadSCAC();
+    if(scac1 != 4)
+        return -4;
+
+    return 0;
+
+}
+
+int C102WriteIZ(unsigned char *iz)
+{
+/*
+功能：写卡商代码。卡商代码为8字节。
+输入：iz：8字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+    _C102Erase(16, 64);
+    return _C102Write(16, 64, iz);
+}
+
+
+int C102WriteCPZ(int offset, int len, unsigned char *cpz)
+{
+/*
+功能：写代码保护区。写代码保护区为8字节。
+输入：offset： 0-7，一般应为偶数，如果offset为奇数，len必须为奇数
+      len:     1-8
+      cpz：    8字节
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+              -3 = 参数错误，要写入的内容超出存储区; 如果offset为奇数，len必须为奇数
+               0 = 正确
+*/
+
+    if( offset+len > 8 )
+        return -3;
+
+    if( offset%2 == 1 )
+    {//如果offset为奇数，len必须为奇数
+        if(len%2 != 1)
+            return -3;
+    }
+
+    _C102Erase(112 + offset*8, len*8);
+
+    return _C102Write(112 + offset*8, len*8, cpz);
+
+}
+
+
+int C102UpdateSC(unsigned char *sc)
+{
+/*
+功能：更新密码。密码为2字节。
+输入：sc：2字节
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+    _C102Erase(80, 16);
+    return _C102Write(80, 16, sc);
+
+}
+
+
+int C102ReadAZ(int zone, int offset, int len, unsigned char *msg)
+{
+/*
+功能：读应用区1和2中的数据。应用区为64字节。
+输入：offset： 0-63
+      len:     1-64
+输出：msg：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+              -3 = 参数错误，要写入的内容超出存储区
+               0 = 正确
+*/
+
+    int address;
+
+    if( offset+len > 64 )
+        return -3;
+
+    if(zone == 1)
+        address = 176;
+    else
+        address = 736;
+
+    address = address + offset*8;
+
+    return _C102Read(address, len*8, msg);
+
+
+}
+
+int C102WriteAZ(int zone, int offset, int len, unsigned char *msg)
+{
+/*
+功能：向应用区1或者2中写数据。应用区为64字节，每个应用区的第0字节的最高2位被强制置为0。
+输入：zone:    1-应用区1; 2-应用区2; 
+      offset： 0-63, 一般应为偶数，如果offset为奇数，len必须为奇数
+      len:     1-64
+      msg:     要写的内容
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+              -3 = 参数错误，要写入的内容超出存储区；如果offset为奇数，len必须为奇数
+               0 = 正确
+*/
+
+    int address;
+
+    if( offset+len > 64 )
+        return -3;
+
+    if( offset%2 == 1 )
+    {//如果offset为奇数，len必须为奇数
+        if(len%2 != 1)
+            return -3;
+    }
+
+//将第0字节的最高2位强制置为0。 
+    if(offset + len == 0)
+        *msg &= 0x3F;   
+
+    if(zone == 1)
+        address = 176;
+    else
+        address = 736;
+
+    address = address + offset*8;
+
+    _C102Erase(address, len*8);
+
+    return _C102Write(address, len*8, msg);
+
+}
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+int _C1604Erase(int address, int bitlen)
+{
+/*
+功能：从IC卡地址address开始，擦除IC卡中bitlen个比特数据。如果address不小于0，先执行上电和复位操作。
+输入：address：起始比特地址, 如果小于0, 从当前地址开始, 如果等于-2,擦除后地址不加, bitlen应为1
+      bitlen:  要擦除的比特长度，应该是8的倍数，否则msg应左对齐
+      msg：    要写的内容，字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 擦除失败，与读出的不一致。
+               0 = 正确
+*/
+
+    int i;
+
+    if(address >= 0)
+    {
+        if( _C102Addressing(address) < 0)
+            return -1;
+    }
+
+    for(i=0; i<bitlen; i+=8)
+    {
+        _CardSetClock(LOW);
+        _CardSetPGM(HIGH);
+        _CardDelay(TDV); //Tdv=2us
+        if(_CardPutIO(HIGH) < 0)
+            return -1;
+        _CardDelay(TSPR);
+
+        _CardSetClock(HIGH);
+        _CardDelay(THPR); //Thpr=0.2us
+
+        _CardSetPGM(LOW);
+        usleep(TCHP1604);
+        _CardSetClock(LOW);
+        _CardDelay(TDV); //Tdv=2us
+
+        if( _CardReadIO() != 1 )
+            return -2;
+
+        if(address != -2)
+            _C102AddsInc(8);
+
+    }
+
+    return 0;
+
+}
+
+int _C1604Write(int address, int bitlen, unsigned char *msg)
+{
+/*
+功能：从IC卡地址address开始向IC卡写bitlen个比特数据。如果address不小于0，先执行上电和复位操作。
+输入：address：起始比特地址, 如果小于0, 从当前地址开始, 如果等于-2,写后地址不加, bitlen应为1
+      bitlen:  要写的比特长度，应该是8的倍数，否则msg应左对齐
+      msg：    要写的内容，字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+
+    int i, k;
+    int ch;
+
+    if(address >= 0)
+    {
+        if( _C102Addressing(address) < 0)
+            return -1;
+    }
+
+    for(i=0, k=7; i<bitlen; i++)
+    {
+        ch = *msg;
+        ch = ch >> k;
+        ch &= 1;
+
+        k--;
+
+        if(k < 0)
+        {
+            msg++;
+            k = 7;
+        }
+
+
+////////////////////////////////////////////////
+        if(ch == 0)
+        {
+            _CardSetClock(LOW);
+            _CardSetPGM(HIGH);
+            _CardDelay(TDV); //Tdv=2us
+            if(_CardPutIO(LOW) < 0)
+                return -1;
+            _CardDelay(TSPR); //Tspr
+
+            _CardSetClock(HIGH);
+            _CardDelay(THPR); //Thpr=0.2us
+
+            _CardSetPGM(LOW);
+            usleep(TCHP1604);
+            _CardSetClock(LOW);
+            _CardDelay(TDV); //Tdv=2us
+
+        }
+
+        if( _CardReadIO() != ch )
+            return -2;
+
+        if(address != -2)
+            _C102AddsInc(1);
+
+    }
+
+    return 0;
+
+}
+
+
+int C1604ReadFZ(unsigned char *fz)
+{
+/*
+功能：读厂商代码。厂商代码为2字节。
+输入：无
+输出：fz: 厂商代码
+      返回值: -1 = 卡不在位； 
+               0 = 正确
+*/
+    return _C102Read(0, 16, fz);
+
+}
+
+int C1604ReadIZ(unsigned char *iz)
+{ 
+/*
+功能：读卡商代码。卡商代码为8字节。
+输入：无
+输出：iz：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+               0 = 正确
+*/
+
+    return _C102Read(16, 64, iz);
+}
+
+int C1604ReadSCAC()
+{ 
+/*
+功能：读密码(或区密码)校验错误计数。
+输入：无
+输出：返回值: -1  = 卡不在位； 
+              0-8 = 允许错误次数,为0表示卡已被锁住
+*/
+
+    unsigned char scac;
+    unsigned char ch;
+    int i, count=0;
+
+
+    if(_C102Read(96, 8, &scac) < 0)
+        return -1;
+
+
+    for(i=0; i<8; i++)
+    {
+        ch = (scac >> i) & 1;
+        if( ch == 1)
+            count++;
+    }
+
+
+    return count;
+}
+
+int C1604ReadCPZ(int offset, int len, unsigned char *cpz)
+{
+/*
+功能：读代码保护区。代码保护区为8字节。
+输入：offset： 0-7
+      len:     1-8
+输出：cpz：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+              -3 = 参数错误，要写入的内容超出存储区
+               0 = 正确
+*/
+
+    if(offset+len > 8)
+        return -3;
+
+    return _C102Read(104+offset*8, len*8, cpz);
+}
+
+
+int C1604ReadMTZ(unsigned char *mtz)
+{ 
+/*
+功能：读测试区。测试区为2字节。
+输入：无
+输出：mtz：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+               0 = 正确
+*/
+
+    return _C102Read(16040, 16, mtz);
+}
+
+int C1604WriteMTZ(unsigned char *mtz)
+{
+/*
+功能：写测试区。测试区为2字节。
+输入：mtz：2字节
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+
+    _C1604Erase(16040, 16);
+    return _C1604Write(16040, 16, mtz);
+}
+
+
+int C1604CheckSC(unsigned char *sc)
+{
+/*
+功能：比较密码。密码为2字节。
+输入：sc：2字节
+输出：返回值: 0 = 正确
+              其它 = 错误
+*/
+
+    return C102CheckSC(sc);
+
+}
+
+int C1604WriteIZ(unsigned char *iz)
+{
+/*
+功能：写卡商代码。卡商代码为8字节。
+输入：iz：8字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+    _C1604Erase(16, 64);
+    return _C1604Write(16, 64, iz);
+}
+
+int C1604WriteCPZ(int offset, int len, unsigned char *cpz)
+{
+/*
+功能：写代码保护区。写代码保护区为8字节。
+输入：offset： 0-7
+      len:     1-8
+      cpz：    8字节
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+              -3 = 参数错误，要写入的内容超出存储区
+               0 = 正确
+*/
+
+    if( offset+len > 8 )
+        return -3;
+
+    _C1604Erase(104 + offset*8, len*8);
+
+    return _C1604Write(104 + offset*8, len*8, cpz);
+
+}
+
+int C1604UpdateSC(unsigned char *sc)
+{
+/*
+功能：更新密码。密码为2字节。
+输入：sc：2字节
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+               0 = 正确
+*/
+    _C1604Erase(80, 16);
+    return _C1604Write(80, 16, sc);
+
+}
+
+int C1604ReadAZ(int zone, int offset, int len, unsigned char *msg)
+{
+/*
+功能：读应用区1-4中的数据。
+      应用区1为1195字节: 27--1221。
+      应用区2为256字节:  1227--1482。
+      应用区3为256字节:  1488--1743。
+      应用区4为256字节:  1749--2004。
+      总共1963字节
+输入：zone:    1-4
+      offset： 字节偏移
+      len:     字节长度
+输出：msg：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+              -3 = 参数错误，要写入的内容超出存储区
+               0 = 正确
+*/
+
+    int address;
+    int total;
+
+    switch(zone)
+    {
+    case 1:
+        address = 216;
+        total = 1195;
+
+        break;
+    case 2:
+        address = 9816;
+        total = 256;
+
+        break;
+    case 3:
+        address = 11904;
+        total = 256;
+
+        break;
+    case 4:
+        address = 13992;
+        total = 256;
+
+        break;
+    default:
+        return -3;
+
+    }
+
+    if( offset+len > total )
+        return -3;
+
+    address = address + offset*8;
+
+    return _C102Read(address, len*8, msg);
+
+
+}
+
+int C1604WriteAZ(int zone, int offset, int len, unsigned char *msg)
+{
+/*
+功能：向应用区1-4中写数据。每个应用区的第0字节的最高2位被强制置为0。
+      应用区1为1195字节: 27--1221。
+      应用区2为256字节:  1227--1482。
+      应用区3为256字节:  1488--1743。
+      应用区4为256字节:  1749--2004。
+      总共1963字节
+输入：zone:    1-4
+      offset： 字节偏移
+      len:     字节长度
+      msg：    要写的内容，字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+              -3 = 参数错误，要写入的内容超出存储区
+*/
+
+    int address;
+    int total;
+
+    switch(zone)
+    {
+    case 1:
+        address = 216;
+        total = 1195;
+
+        break;
+    case 2:
+        address = 9816;
+        total = 256;
+
+        break;
+    case 3:
+        address = 11904;
+        total = 256;
+
+        break;
+    case 4:
+        address = 13992;
+        total = 256;
+
+        break;
+    default:
+        return -3;
+
+    }
+
+    if( offset+len > total )
+        return -3;
+
+//将第0字节的最高2位强制置为0。 
+    if(offset + len == 0)
+        *msg &= 0x3F;   
+
+    address = address + offset*8;
+
+    _C1604Erase(address, len*8);
+
+    return _C1604Write(address, len*8, msg);
+
+}
+
+////////////////////////////////////////////////////////
+
+int GetBufferLength(int StartBitAddress, int length)
+{
+    int k;
+    int s;
+
+    s = StartBitAddress;
+
+    for(k=0; k<length; k++)
+    {
+        if(   ((s>=9776)  && (s<9824))
+            ||((s>=11864) && (s<11912))
+            ||((s>=13952) && (s<14000)) )
+        {
+            return k;
+        }
+
+        s += 8;
+    }
+
+    return k;
+
+}
+
+int C1604ReadAZBuffer(int offset, int len, unsigned char *msg)
+{
+/*
+功能：从应用区中读数据。将4个应用区串联起来，向上层提供一个1959字节大小的区域。
+      应用区1为1195字节: 27--1221。
+      应用区2为256字节:  1227--1482。
+      应用区3为256字节:  1488--1743。
+      应用区4为256字节:  1749--2004。
+      总共1963字节，每个区的第0字节不能使用，因为含有读写控制位。
+      可用空间为1963-4=1959字节
+输入：offset： 字节偏移
+      len:     字节长度
+输出：msg：    返回内容，字节形式
+      返回值: -1 = 卡不在位； 
+              -3 = 参数错误，要写入的内容超出存储区
+               0 = 正确
+*/
+
+    int i;
+    int ret;
+    int address;
+    int t;
+    int wlen=0; //已经读取的字节数
+
+    if( offset+len > 1959 )
+        return -3;
+
+    address = 216+8;
+
+    address = address + offset*8;
+
+    for(i=0; i<len; )
+    {
+        if(   ((address>=9776)  && (address<9824))
+            ||((address>=11864) && (address<11912))
+            ||((address>=13952) && (address<14000)) )
+        {
+            address += 8;
+        }
+        else
+        {
+            t = GetBufferLength(address, len-wlen);
+
+            ret = _C102Read(address, 8*t, msg);
+            if(ret < 0)
+                return ret;
+
+            msg += t;
+            i += t;
+            address += 8*t;
+            wlen += t;
+        }
+
+    }
+
+    return 0;
+
+}
+
+
+int C1604WriteAZBuffer(int offset, int len, unsigned char *msg)
+{
+/*
+功能：向应用区中写数据。将4个应用区串联起来，向上层提供一个1959字节大小的区域。
+      应用区1为1195字节: 27--1221。
+      应用区2为256字节:  1227--1482。
+      应用区3为256字节:  1488--1743。
+      应用区4为256字节:  1749--2004。
+      总共1963字节，每个区的第0字节不能使用，因为含有读写控制位。
+      可用空间为1963-4=1959字节
+输入：offset： 字节偏移
+      len:     字节长度
+      msg：    要写的内容，字节形式
+输出：返回值: -1 = 卡不在位； 
+              -2 = 写入失败，与读出的不一致。
+              -3 = 参数错误，要写入的内容超出存储区
+               0 = 正确
+*/
+
+    int i;
+    int ret;
+    int address;
+    int t;
+    int wlen=0; //已经写入的字节数
+
+    if( offset+len > 1959 )
+        return -3;
+
+    address = 216+8;
+
+    address = address + offset*8;
+
+    for(i=0; i<len; )
+    {
+        if(   ((address>=9776)  && (address<9824))
+            ||((address>=11864) && (address<11912))
+            ||((address>=13952) && (address<14000)) )
+        {
+            address += 8;
+        }
+        else
+        {
+
+            t = GetBufferLength(address, len-wlen);
+
+            ret = _C1604Erase(address, 8*t);
+            if(ret < 0)
+                return ret;
+
+            ret = _C1604Write(address, 8*t, msg);
+            if(ret < 0)
+                return ret;
+
+            msg += t;
+            i += t;
+            address += 8*t;
+            wlen += t;
+        }
+
+
+    }
+
+
+    return 0;
+
+}
+

@@ -1,0 +1,20 @@
+<html>
+<body>
+<pre>
+<h1>礦ision3 Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\huatian\桌面\test cos_1\COS.uv2
+Project File Date:  02/09/2007
+
+<h2>Output:</h2>
+Build target 'Debug'
+linking...
+Program Size: data=8.0 xdata=0 code=9706
+User command #1: Debug.bat
+C:\Documents and Settings\huatian\桌面\test cos_1>del Menu\COS.Bin 
+系统找不到指定的文件。
+C:\Documents and Settings\huatian\桌面\test cos_1>del Menu\ROM.Bin 
+系统找不到指定的文件。
+C:\Documents and Settings\huatian\桌面\test cos_1>del Menu\Rom.Txt 
+系统找不到指定的文件。
+".\Debug\COS" - 0 Error(s), 0 Warning(s).

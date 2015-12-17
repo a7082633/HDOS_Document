@@ -1,0 +1,45 @@
+//发送的
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Header>
+	<in:system xmlns:in="http://yinhai.com">
+	<userName>HD001</userName>
+	<passWord>1234</passWord>
+	<jylsh>0</jylsh>
+	<jyyzm>0</jyyzm>
+	<jybh>MessageForward</jybh>
+	<fwlsh/><nbffyzm/><fwdysxh/>
+	</in:system>
+</soap:Header>
+<soap:Body>
+	<ns2:getJylsh xmlns:ns2="http://webservice.common.yinhai.com/">
+		<inputxml>
+			<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+			<input></input>
+		</inputxml>
+	</ns2:getJylsh>
+</soap:Body>
+</soap:Envelope>
+//接收的
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Header>
+	<in:system xmlns:in="http://yinhai.com">
+		<userName>HD001</userName>
+		<passWord>1234</passWord>
+		<jylsh>151104427277614</jylsh>
+		<jyyzm>2345</jyyzm>
+		<jybh>MessageForward</jybh>
+		<fwlsh/><nbffyzm/><fwdysxh/>
+	</in:system>
+</soap:Header>
+<soap:Body>
+	<ns2:getJylsh xmlns:ns2="http://webservice.common.yinhai.com/">
+		<inputxml>
+			<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+				<input>
+					<inputmsg>B0A50000000000000000010090023432303130307378868442010000013500875B4EDE4073FA85080102030405060708</inputmsg>
+					<atr>3B6D00000081544C928684420100000135</atr>
+				</input>
+		</inputxml>
+	</ns2:getJylsh>
+</soap:Body>
+</soap:Envelope>

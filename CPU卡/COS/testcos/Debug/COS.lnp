@@ -1,0 +1,10 @@
+BANK1 {".\Debug\bank1.obj"},
+BANK2 {".\Debug\bank2.obj"},
+COMMON {".\Debug\test_cos.obj"},
+COMMON {".\Debug\ins_table.obj"},
+COMMON {".\Debug\L51_BANK.obj"},
+BANK0 {".\Debug\bank_0.obj"},
+COMMON {".\Debug\des_flash.obj"} 
+TO ".\Debug\COS" BankArea(0x3000,0x7FFF) 
+PRINT(".\COS.m51") RAMSIZE(256) 
+CODE( Prog_Eeprom(0xb000) )

@@ -1,0 +1,1 @@
+mifare plus卡有四个安全级别： level0、level1、level2、level3. 卡在进入level1层后，其操作是与Mifare Classic 相兼容的。 在升级到level2层以后，需要分别进行AES认证和MIFARE CRYPTO1 key认证 ，认证成功后其操作也同Mifare Classic。 最复杂的操作要属level3层，因为卡在进入level3层后，所有的命令都要加上8位的MAC才可成功发送，这8为的MAC是基于密文的消息认证码，这就确保了卡的安全性。

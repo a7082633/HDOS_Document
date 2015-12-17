@@ -1,0 +1,2531 @@
+BL51 BANKED LINKER/LOCATER V6.00                                                        02/09/2007  17:01:55  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.00, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE BANK1 {.\Debug\bank1.obj}, BANK2 {.\Debug\bank2.obj}, COMMON {.\Debug\test_cos.obj}, COMMON {.\
+>> Debug\ins_table.obj}, COMMON {.\Debug\L51_BANK.obj}, BANK0 {.\Debug\bank_0.obj}, COMMON {.\Debug\des_flash.obj} TO .\
+>> Debug\COS BANKAREA (0X3000, 0X7FFF) PRINT (.\COS.m51) RAMSIZE (256) CODE (PROG_EEPROM (0XB000))
+
+
+INPUT MODULES INCLUDED:
+  .\Debug\bank1.obj (EXE)
+  .\Debug\bank2.obj (INS)
+  .\Debug\test_cos.obj (TEST_COS)
+  .\Debug\ins_table.obj (INS_TABLE)
+  .\Debug\L51_BANK.obj (?BANK?SWITCHING)
+  .\Debug\bank_0.obj (INIT)
+  .\Debug\des_flash.obj (DES_FLASH)
+
+
+LINK MAP OF MODULE:  .\Debug\COS (EXE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0008H     ABSOLUTE     
+            CODE    000BH     0008H     ABSOLUTE     
+            CODE    0013H     0008H     ABSOLUTE     
+            CODE    001BH     0008H     ABSOLUTE     
+            CODE    0023H     0008H     ABSOLUTE     
+            CODE    002BH     0005H     ABSOLUTE     
+            CODE    0030H     0187H     UNIT         PROG_MAIN
+            CODE    01B7H     00A5H     INBLOCK      ?BANK?SELECT
+            CODE    025CH     003CH     UNIT         PROG_INS_TABLE
+                    0298H     0068H                  *** GAP ***
+            CODE    0300H     001CH     PAGE         ?BANK?SWITCH
+                    031CH     ACE4H                  *** GAP ***
+            CODE    B000H     0070H     UNIT         PROG_EEPROM
+                    B070H     4E90H                  *** GAP ***
+            CODE    FF00H     0011H     ABSOLUTE     
+                    FF11H     00EEH                  *** GAP ***
+            CODE    FFFFH     0001H     ABSOLUTE     
+
+            * * * * * * *   C O D E   B A N K   0   * * * * * * *
+                    0000H     3000H                  *** GAP ***
+            BANK0   3000H     0016H     UNIT         ?PR?PROG_INIT
+
+            * * * * * * *   C O D E   B A N K   1   * * * * * * *
+                    0000H     3000H                  *** GAP ***
+            BANK1   3000H     001BH     UNIT         ?PR?PROG_EXE
+
+            * * * * * * *   C O D E   B A N K   2   * * * * * * *
+                    0000H     3000H                  *** GAP ***
+            BANK2   3000H     2283H     UNIT         ?PR?PROG_INS
+
+
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 2
+
+
+
+INTERBANK CALL TABLE OF MODULE:  .\Debug\COS (EXE)
+
+ADDRESS    FUNCTION NAME
+------------------------
+ 0206H     INIT_PARAM
+ 020BH     FIND_INS
+ 0210H     READ_FLASH
+ 0215H     WRITE_FLASH
+ 021AH     ERASEFLASH
+ 021FH     TESTP2
+ 0224H     TEST_DES
+ 0229H     GET_RESPONSE
+ 022EH     READ_FLASH_1
+ 0233H     WRITE_FLASH_1
+ 0238H     ERASEFLASH_1
+ 023DH     READ_FLASH_2
+ 0242H     WRITE_FLASH_2
+ 0247H     ERASEFLASH_2
+ 024CH     GET_RGN
+ 0251H     TEST_TRIM
+ 0256H     TEST_T0
+
+
+
+SYMBOL TABLE OF MODULE:  .\Debug\COS (EXE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        EXE
+ C1:3000H         SEGMENT       ?PR?PROG_EXE
+ C1:3000H         PUBLIC        FIND_INS
+  X:0012H         SYMBOL        ADM_ADDRESS
+  X:001AH         SYMBOL        ADM_NUMBER
+  N:0005H         SYMBOL        A_KEY_ID
+  B:0028H.2       SYMBOL        BADM_VERIFY
+  X:0027H         SYMBOL        BAK_CONTROL_INDEX
+  X:0004H         SYMBOL        BAK_CONTROL_START_ADDRESS
+  X:0008H         SYMBOL        BAK_DATA_END_ADDRESS
+  X:0006H         SYMBOL        BAK_DATA_START_ADDRESS
+  B:002AH.5       SYMBOL        BALREADYSAVETERMINALRESP
+  N:009CH         SYMBOL        BAUD_BR
+  N:009BH         SYMBOL        BAUD_MR
+  B:002FH.5       SYMBOL        BBACKWARD
+  B:0029H.0       SYMBOL        BBASE_CHALLENGE
+  B:002AH.1       SYMBOL        BCHECK_BY_ALPHA
+  B:0028H.0       SYMBOL        BCHV1_VERIFY
+  B:0028H.1       SYMBOL        BCHV2_VERIFY
+  B:0029H.1       SYMBOL        BCOMMIT_SSD
+  B:0028H.6       SYMBOL        BCOS_USE_SELF
+  N:0015H         SYMBOL        BDIR
+  B:002FH.2       SYMBOL        BDISPLAY_TXT
+  B:0028H.5       SYMBOL        BENHANCE_SPEED
+  B:002FH.0       SYMBOL        BFETCH
+  N:0016H         SYMBOL        BFILE
+  B:002AH.2       SYMBOL        BFIND_ASCII_UNICODE_BIT
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 3
+
+
+  B:0028H.7       SYMBOL        BHIGH_PRIORITY_THREAD
+  B:0029H.6       SYMBOL        BIN_CODE
+  B:0029H.7       SYMBOL        BLOW_HALF_BYTE
+  B:002AH.3       SYMBOL        BNEW_SMS
+  B:002FH.1       SYMBOL        BNOT_INC_PC
+  B:002AH.0       SYMBOL        BNOT_SEND_MENU_SETUP
+  B:0029H.4       SYMBOL        BNOT_SUPPORT_DEFAULT_TEXT
+  B:0029H.5       SYMBOL        BNOT_SUPPORT_UCS2_GET_INPUT
+  N:0018H         SYMBOL        BOFFSET
+  B:002FH.6       SYMBOL        BOTA
+  B:002FH.4       SYMBOL        BRETRY_XTK_INS
+  B:0029H.3       SYMBOL        BRUN_CAVE
+  B:002AH.4       SYMBOL        BSHOW_ITEM_ALPHA
+  B:0028H.3       SYMBOL        BSUPER_KEY
+  N:0017H         SYMBOL        BTYPE
+  B:0028H.4       SYMBOL        BUIM
+  B:0029H.2       SYMBOL        BUPDATE_SSD
+  B:002FH.7       SYMBOL        BWAIT_TERMINAL_RESPONSE
+  B:002FH.3       SYMBOL        BWANT_UCS2_INPUT
+  X:FE00H         SYMBOL        BYCARD_BUF_START
+  N:001BH         SYMBOL        BYCLA
+  N:0011H         SYMBOL        BYCURRENT_FILE
+  N:0010H         SYMBOL        BYDIR
+  N:0038H         SYMBOL        BYDISPLAY_INDEX
+  N:0037H         SYMBOL        BYEDIT_INDEX
+  N:0039H         SYMBOL        BYEDIT_INDEX_MENU
+  N:0036H         SYMBOL        BYFETCH_INS
+  N:0012H         SYMBOL        BYFILE_TYPE
+  N:001CH         SYMBOL        BYINS
+  N:001AH         SYMBOL        BYINS_BAK
+  X:FF00H         SYMBOL        BYMEM_MANAGE_START
+  N:001DH         SYMBOL        BYP1
+  N:001EH         SYMBOL        BYP2
+  N:001FH         SYMBOL        BYP3
+  X:FC00H         SYMBOL        BYSEND_RECEIVE_BUF
+  X:FD00H         SYMBOL        BYTEMP_START
+  X:FF30H         SYMBOL        BYXTK_GET_INPUT_BUF
+  X:FD00H         SYMBOL        BYXTK_MENU_BUF
+  X:FF20H         SYMBOL        BYXTK_THREAD_PARA_BAK
+  N:7F25H         SYMBOL        CDMA_DF
+  N:0001H         SYMBOL        CHV1_ID
+  N:0002H         SYMBOL        CHV2_ID
+  X:0021H         SYMBOL        CLUSTER_END_ADDRESS
+  X:001DH         SYMBOL        CLUSTER_FAT_END_ADDRESS
+  X:001BH         SYMBOL        CLUSTER_FAT_START_ADDRESS
+  X:001FH         SYMBOL        CLUSTER_START_ADDRESS
+  N:0006H         SYMBOL        CRC_ACCUM_HIGH
+  N:0007H         SYMBOL        CRC_ACCUM_LOW
+  N:003DH         SYMBOL        CURRENT_SEND_SMS
+  X:0023H         SYMBOL        DATA_RECOVER_TAG_ADDRESS
+  N:003FH         SYMBOL        DCS_BYTE
+  N:009FH         SYMBOL        DES_CON
+  N:0080H         SYMBOL        DES_DECRYPT_FLAG
+  N:0000H         SYMBOL        DES_ENCRYPT_FLAG
+  N:0000H         SYMBOL        DES_FIRST_FLAG
+  N:0001H         SYMBOL        DES_NOT_FIRST_FLAG
+  N:0010H         SYMBOL        DIR
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 4
+
+
+  N:0003H         SYMBOL        DIR_CDMA_INDEX
+  N:0002H         SYMBOL        DIR_GSM_INDEX
+  N:0000H         SYMBOL        DIR_MF_INDEX
+  X:0000H         SYMBOL        DIR_START_ADDRESS
+  N:0001H         SYMBOL        DIR_TELECOM_INDEX
+  N:0000H         SYMBOL        EDIT_0
+  N:0001H         SYMBOL        EDIT_1
+  N:0002H         SYMBOL        EDIT_2
+  N:0003H         SYMBOL        EDIT_3
+  N:0004H         SYMBOL        EDIT_4
+  N:0005H         SYMBOL        EDIT_5
+  N:0006H         SYMBOL        EDIT_6
+  N:0007H         SYMBOL        EDIT_7
+  N:0008H         SYMBOL        EDIT_8
+  N:0009H         SYMBOL        EDIT_9
+  N:000AH         SYMBOL        EDIT_A
+  N:000BH         SYMBOL        EDIT_B
+  N:000CH         SYMBOL        EDIT_C
+  N:000DH         SYMBOL        EDIT_D
+  N:000EH         SYMBOL        EDIT_E
+  N:000FH         SYMBOL        EDIT_F
+  N:002CH         SYMBOL        EEPROM_MANAGE_BYTE
+  N:0000H         SYMBOL        EXE
+  N:000EH         SYMBOL        FAT_CLUSTER
+  N:000EH         SYMBOL        FAT_CLUSTER_H
+  N:000FH         SYMBOL        FAT_CLUSTER_L
+  N:000CH         SYMBOL        FFS_FAT
+  N:000CH         SYMBOL        FFS_FAT_H
+  N:000DH         SYMBOL        FFS_FAT_L
+  N:0011H         SYMBOL        FILE
+ C1:3016H         SYMBOL        FIND_INS_IN_TABLE
+ C1:3019H         SYMBOL        FIND_INS_SUCCESS
+ C1:3008H         SYMBOL        FIND_INS_TABLE_LOOP
+ C1:3005H         SYMBOL        FIND_INS_TABLE_START
+  X:0002H         SYMBOL        FIX_FILE_START_ADDRESS
+  N:000AH         SYMBOL        F_FFS
+  N:000AH         SYMBOL        F_FFS_H
+  N:000BH         SYMBOL        F_FFS_L
+  N:00FEH         SYMBOL        GO_AHEAD
+  N:00FFH         SYMBOL        GO_BACK
+  N:7F20H         SYMBOL        GSM_DF
+  N:0010H         SYMBOL        HAVE_ADM_LIMITS
+  N:0004H         SYMBOL        HAVE_CHV1_LIMITS
+  N:0008H         SYMBOL        HAVE_CHV2_LIMITS
+  N:0001H         SYMBOL        HAVE_LC
+  N:0020H         SYMBOL        HAVE_SUPER_KEY_LIMITS
+  N:0002H         SYMBOL        HAVE_WRITE_EEPROM
+  N:6F22H         SYMBOL        IMSI_M_ID
+  B:002CH.2       SYMBOL        INS_START_BIT
+  X:FFF0H         SYMBOL        INT_VECTOR
+  B:002EH.0       SYMBOL        JUDGE_RECORD_NULL
+  N:009EH         SYMBOL        KEY_ADDR
+  N:0028H         SYMBOL        KEY_BIT
+  X:0030H         SYMBOL        KEY_FUTURE_ADDRESS
+  N:0005H         SYMBOL        KI_ID
+  N:00FFH         SYMBOL        LAST_PAGE_ITEM
+  N:001BH         SYMBOL        LE_LENGTH
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 5
+
+
+  N:0012H         SYMBOL        LOOK_PEOPLE_EF
+  N:00D1H         SYMBOL        MAIN_PROCESS_OUT_SP
+  N:3F00H         SYMBOL        MF
+  N:0005H         SYMBOL        MOBILE_MODEL_EF
+  N:009AH         SYMBOL        MODE_REG
+  N:00FEH         SYMBOL        NEXT_PAGE_ITEM
+  N:0000H         SYMBOL        NONE
+ C1:3014H         SYMBOL        NOT_FIND_INS_IN_TABLE
+  N:0013H         SYMBOL        OFFSET
+  N:0013H         SYMBOL        OFFSET_HIGH
+  N:0014H         SYMBOL        OFFSET_LOW
+  N:0026H         SYMBOL        OTA_DIR_ITEM
+  N:0045H         SYMBOL        OTA_DIR_NUMBER
+  N:0043H         SYMBOL        OTA_FAT_HANDLEH
+  N:0044H         SYMBOL        OTA_FAT_HANDLEL
+  N:0027H         SYMBOL        OTA_MENU_ITEM
+  N:003EH         SYMBOL        PAGE_ADDRESS_HIGH
+  N:003FH         SYMBOL        PAGE_ADDRESS_LOW
+  N:0040H         SYMBOL        PAGE_COUNT
+  N:000BH         SYMBOL        PAGE_DISP_NUMBER
+  N:0040H         SYMBOL        PAGE_SIZE
+  N:0020H         SYMBOL        PAGE_WRITE_SIZE
+  N:009DH         SYMBOL        PLAINTEXT_ADDR
+  N:00FFH         SYMBOL        PTSS
+  N:0000H         SYMBOL        R0_BANK0
+  N:0008H         SYMBOL        R0_BANK1
+  N:0010H         SYMBOL        R0_BANK2
+  N:0018H         SYMBOL        R0_BANK3
+  N:0001H         SYMBOL        R1_BANK0
+  N:0009H         SYMBOL        R1_BANK1
+  N:0011H         SYMBOL        R1_BANK2
+  N:0019H         SYMBOL        R1_BANK3
+  N:0002H         SYMBOL        R2_BANK0
+  N:000AH         SYMBOL        R2_BANK1
+  N:0012H         SYMBOL        R2_BANK2
+  N:001AH         SYMBOL        R2_BANK3
+  N:0003H         SYMBOL        R3_BANK0
+  N:000BH         SYMBOL        R3_BANK1
+  N:0013H         SYMBOL        R3_BANK2
+  N:001BH         SYMBOL        R3_BANK3
+  N:0004H         SYMBOL        R4_BANK0
+  N:000CH         SYMBOL        R4_BANK1
+  N:0014H         SYMBOL        R4_BANK2
+  N:001CH         SYMBOL        R4_BANK3
+  N:0005H         SYMBOL        R5_BANK0
+  N:000DH         SYMBOL        R5_BANK1
+  N:0015H         SYMBOL        R5_BANK2
+  N:001DH         SYMBOL        R5_BANK3
+  N:0006H         SYMBOL        R6_BANK0
+  N:000EH         SYMBOL        R6_BANK1
+  N:0016H         SYMBOL        R6_BANK2
+  N:001EH         SYMBOL        R6_BANK3
+  N:0007H         SYMBOL        R7_BANK0
+  N:000FH         SYMBOL        R7_BANK1
+  N:0017H         SYMBOL        R7_BANK2
+  N:001FH         SYMBOL        R7_BANK3
+  N:0057H         SYMBOL        RETURN_MARK
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 6
+
+
+  B:00F8H.0       SYMBOL        RI_SRF
+  N:00A1H         SYMBOL        RNG
+  B:002CH.0       SYMBOL        RUN_W_EEPROM
+  N:00C1H         SYMBOL        SAVE_AUTHBS_BUF
+  N:FE30H         SYMBOL        SAVE_DPTR_BEGIN
+  N:00CAH         SYMBOL        SAVE_RANDBS_BUF
+  N:0000H         SYMBOL        SDES_FLAG
+  X:000CH         SYMBOL        SECTOR_128_START_END_ADDRESS
+  X:000EH         SYMBOL        SECTOR_256_START_END_ADDRESS
+  X:0010H         SYMBOL        SECTOR_512_START_END_ADDRESS
+  X:000AH         SYMBOL        SECTOR_64_START_END_ADDRESS
+  N:0040H         SYMBOL        SECTOR_SIZE
+  N:003CH         SYMBOL        SELECT_SMS_NUMBER
+  N:00F9H         SYMBOL        SEND_RECEIVE_SRF
+  N:0F42H         SYMBOL        SMS_CENTER_ID
+  N:003EH         SYMBOL        SMS_PAGE_ADDRESS
+  N:0006H         SYMBOL        SSD_ID
+  N:00D0H         SYMBOL        STACK
+  N:0022H         SYMBOL        SUPER_BEGIN
+  N:0022H         SYMBOL        SUPER_BEGIN_H
+  N:0023H         SYMBOL        SUPER_BEGIN_L
+  N:0024H         SYMBOL        SUPER_END
+  N:0024H         SYMBOL        SUPER_END_H
+  N:0025H         SYMBOL        SUPER_END_L
+  B:002CH.1       SYMBOL        SUPER_W_EEPROM
+  N:0020H         SYMBOL        SW1
+  N:0021H         SYMBOL        SW2
+  N:0040H         SYMBOL        TDES_FLAG
+  N:7F10H         SYMBOL        TELECOM_DF
+  N:002EH         SYMBOL        TEMP_BIT
+  N:0050H         SYMBOL        TEMP_BYTE
+  N:0061H         SYMBOL        TEMP_ENTRANCE1
+  N:0062H         SYMBOL        TEMP_ENTRANCE2
+  B:00F8H.1       SYMBOL        TI_SRF
+  N:004FH         SYMBOL        TOTAL_PAGE_NUM
+  N:0012H         SYMBOL        TYPE
+  N:6F31H         SYMBOL        UIM_ID_ID
+  N:0003H         SYMBOL        UNBLOCK_CHV1
+  N:0004H         SYMBOL        UNBLOCK_CHV2
+  N:0041H         SYMBOL        USE_SELECT_ITEM
+  N:0008H         SYMBOL        VIP_F
+  N:0008H         SYMBOL        VIP_F_H
+  N:0009H         SYMBOL        VIP_F_L
+  N:00CEH         SYMBOL        WRITE_ENABLE_2
+  N:00CFH         SYMBOL        WRITE_ENABLE_3
+  N:00FFH         SYMBOL        WRITE_ENABLE_4
+  N:002FH         SYMBOL        XTK_BIT
+  N:0034H         SYMBOL        XTK_INS_PC
+  N:0101H         SYMBOL        XTK_MENU_DF
+  N:0001H         SYMBOL        XTK_MENU_ID
+  N:0030H         SYMBOL        XTK_PATH1
+  N:0031H         SYMBOL        XTK_PATH2
+  N:0032H         SYMBOL        XTK_PATH3
+  N:0033H         SYMBOL        XTK_PATH4
+  N:0004H         SYMBOL        XTK_PATH_LENGTH
+  N:0035H         SYMBOL        XTK_SW2
+ C1:3000H         LINE#         14
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 7
+
+
+ C1:3002H         LINE#         15
+ C1:3005H         LINE#         17
+ C1:3006H         LINE#         18
+ C1:3008H         LINE#         20
+ C1:3009H         LINE#         21
+ C1:300AH         LINE#         22
+ C1:300CH         LINE#         23
+ C1:300EH         LINE#         25
+ C1:300FH         LINE#         26
+ C1:3010H         LINE#         27
+ C1:3011H         LINE#         28
+ C1:3012H         LINE#         29
+ C1:3014H         LINE#         31
+ C1:3015H         LINE#         32
+ C1:3016H         LINE#         34
+ C1:3018H         LINE#         35
+ C1:3019H         LINE#         38
+ C1:301AH         LINE#         39
+  -------         ENDMOD        EXE
+
+  -------         MODULE        INS
+ C2:3000H         SEGMENT       ?PR?PROG_INS
+ C2:5034H         PUBLIC        ERASEFLASH
+ C2:518BH         PUBLIC        ERASEFLASH_1
+ C2:5206H         PUBLIC        ERASEFLASH_2
+ C2:5071H         PUBLIC        GET_RESPONSE
+ C2:523DH         PUBLIC        GET_RGN
+ C2:5000H         PUBLIC        READ_FLASH
+ C2:5147H         PUBLIC        READ_FLASH_1
+ C2:51C2H         PUBLIC        READ_FLASH_2
+ C2:5063H         PUBLIC        TESTP2
+ C2:508BH         PUBLIC        TEST_DES
+ C2:5281H         PUBLIC        TEST_T0
+ C2:5250H         PUBLIC        TEST_TRIM
+ C2:5019H         PUBLIC        WRITE_FLASH
+ C2:5168H         PUBLIC        WRITE_FLASH_1
+ C2:51E3H         PUBLIC        WRITE_FLASH_2
+  D:00E0H         SYMBOL        ACC
+  X:0012H         SYMBOL        ADM_ADDRESS
+  X:001AH         SYMBOL        ADM_NUMBER
+  N:0005H         SYMBOL        A_KEY_ID
+  D:00F0H         SYMBOL        B
+  B:0028H.2       SYMBOL        BADM_VERIFY
+  X:0027H         SYMBOL        BAK_CONTROL_INDEX
+  X:0004H         SYMBOL        BAK_CONTROL_START_ADDRESS
+  X:0008H         SYMBOL        BAK_DATA_END_ADDRESS
+  X:0006H         SYMBOL        BAK_DATA_START_ADDRESS
+  B:002AH.5       SYMBOL        BALREADYSAVETERMINALRESP
+  N:009CH         SYMBOL        BAUD_BR
+  N:009BH         SYMBOL        BAUD_MR
+  B:002FH.5       SYMBOL        BBACKWARD
+  B:0029H.0       SYMBOL        BBASE_CHALLENGE
+  B:002AH.1       SYMBOL        BCHECK_BY_ALPHA
+  B:0028H.0       SYMBOL        BCHV1_VERIFY
+  B:0028H.1       SYMBOL        BCHV2_VERIFY
+  B:0029H.1       SYMBOL        BCOMMIT_SSD
+  B:0028H.6       SYMBOL        BCOS_USE_SELF
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 8
+
+
+  N:0015H         SYMBOL        BDIR
+  B:002FH.2       SYMBOL        BDISPLAY_TXT
+  B:0028H.5       SYMBOL        BENHANCE_SPEED
+  B:002FH.0       SYMBOL        BFETCH
+  N:0016H         SYMBOL        BFILE
+  B:002AH.2       SYMBOL        BFIND_ASCII_UNICODE_BIT
+  B:0028H.7       SYMBOL        BHIGH_PRIORITY_THREAD
+  B:0029H.6       SYMBOL        BIN_CODE
+ C2:505AH         SYMBOL        BISZERO
+ C2:51B9H         SYMBOL        BISZERO_1
+ C2:5234H         SYMBOL        BISZERO_2
+  B:0029H.7       SYMBOL        BLOW_HALF_BYTE
+  B:002AH.3       SYMBOL        BNEW_SMS
+  B:002FH.1       SYMBOL        BNOT_INC_PC
+  B:002AH.0       SYMBOL        BNOT_SEND_MENU_SETUP
+  B:0029H.4       SYMBOL        BNOT_SUPPORT_DEFAULT_TEXT
+  B:0029H.5       SYMBOL        BNOT_SUPPORT_UCS2_GET_INPUT
+  N:0018H         SYMBOL        BOFFSET
+  B:002FH.6       SYMBOL        BOTA
+  B:002FH.4       SYMBOL        BRETRY_XTK_INS
+  B:0029H.3       SYMBOL        BRUN_CAVE
+  B:002AH.4       SYMBOL        BSHOW_ITEM_ALPHA
+  B:0028H.3       SYMBOL        BSUPER_KEY
+  N:0017H         SYMBOL        BTYPE
+  B:0028H.4       SYMBOL        BUIM
+  B:0029H.2       SYMBOL        BUPDATE_SSD
+  B:002FH.7       SYMBOL        BWAIT_TERMINAL_RESPONSE
+  B:002FH.3       SYMBOL        BWANT_UCS2_INPUT
+  X:FE00H         SYMBOL        BYCARD_BUF_START
+  N:001BH         SYMBOL        BYCLA
+  N:0011H         SYMBOL        BYCURRENT_FILE
+  N:0010H         SYMBOL        BYDIR
+  N:0038H         SYMBOL        BYDISPLAY_INDEX
+  N:0037H         SYMBOL        BYEDIT_INDEX
+  N:0039H         SYMBOL        BYEDIT_INDEX_MENU
+  N:0036H         SYMBOL        BYFETCH_INS
+  N:0012H         SYMBOL        BYFILE_TYPE
+  N:001CH         SYMBOL        BYINS
+  N:001AH         SYMBOL        BYINS_BAK
+  X:FF00H         SYMBOL        BYMEM_MANAGE_START
+  N:001DH         SYMBOL        BYP1
+  N:001EH         SYMBOL        BYP2
+  N:001FH         SYMBOL        BYP3
+  X:FC00H         SYMBOL        BYSEND_RECEIVE_BUF
+ C2:50EEH         SYMBOL        BYTECHECKSTEP
+ C2:5129H         SYMBOL        BYTEERROR
+  X:FD00H         SYMBOL        BYTEMP_START
+  X:FF30H         SYMBOL        BYXTK_GET_INPUT_BUF
+  X:FD00H         SYMBOL        BYXTK_MENU_BUF
+  X:FF20H         SYMBOL        BYXTK_THREAD_PARA_BAK
+  N:7F25H         SYMBOL        CDMA_DF
+ C2:5125H         SYMBOL        CHECKNEXTSTEP
+ C2:5108H         SYMBOL        CHECKWRITERESULT
+  N:0001H         SYMBOL        CHV1_ID
+  N:0002H         SYMBOL        CHV2_ID
+  X:0021H         SYMBOL        CLUSTER_END_ADDRESS
+  X:001DH         SYMBOL        CLUSTER_FAT_END_ADDRESS
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 9
+
+
+  X:001BH         SYMBOL        CLUSTER_FAT_START_ADDRESS
+  X:001FH         SYMBOL        CLUSTER_START_ADDRESS
+ C2:5115H         SYMBOL        COMPAREBYTE
+  N:0006H         SYMBOL        CRC_ACCUM_HIGH
+  N:0007H         SYMBOL        CRC_ACCUM_LOW
+  N:003DH         SYMBOL        CURRENT_SEND_SMS
+  X:0023H         SYMBOL        DATA_RECOVER_TAG_ADDRESS
+  N:003FH         SYMBOL        DCS_BYTE
+  N:009FH         SYMBOL        DES_CON
+  N:0080H         SYMBOL        DES_DECRYPT_FLAG
+  N:0000H         SYMBOL        DES_ENCRYPT_FLAG
+  N:0000H         SYMBOL        DES_FIRST_FLAG
+  N:0001H         SYMBOL        DES_NOT_FIRST_FLAG
+  N:0010H         SYMBOL        DIR
+  N:0003H         SYMBOL        DIR_CDMA_INDEX
+  N:0002H         SYMBOL        DIR_GSM_INDEX
+  N:0000H         SYMBOL        DIR_MF_INDEX
+  X:0000H         SYMBOL        DIR_START_ADDRESS
+  N:0001H         SYMBOL        DIR_TELECOM_INDEX
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+ C2:5131H         SYMBOL        DPTR_SUB_ACC
+  N:0000H         SYMBOL        EDIT_0
+  N:0001H         SYMBOL        EDIT_1
+  N:0002H         SYMBOL        EDIT_2
+  N:0003H         SYMBOL        EDIT_3
+  N:0004H         SYMBOL        EDIT_4
+  N:0005H         SYMBOL        EDIT_5
+  N:0006H         SYMBOL        EDIT_6
+  N:0007H         SYMBOL        EDIT_7
+  N:0008H         SYMBOL        EDIT_8
+  N:0009H         SYMBOL        EDIT_9
+  N:000AH         SYMBOL        EDIT_A
+  N:000BH         SYMBOL        EDIT_B
+  N:000CH         SYMBOL        EDIT_C
+  N:000DH         SYMBOL        EDIT_D
+  N:000EH         SYMBOL        EDIT_E
+  N:000FH         SYMBOL        EDIT_F
+  N:002CH         SYMBOL        EEPROM_MANAGE_BYTE
+ C2:5042H         SYMBOL        ERASE_LOOP_512
+ C2:51A1H         SYMBOL        ERASE_LOOP_512_1
+ C2:521CH         SYMBOL        ERASE_LOOP_512_2
+  N:000EH         SYMBOL        FAT_CLUSTER
+  N:000EH         SYMBOL        FAT_CLUSTER_H
+  N:000FH         SYMBOL        FAT_CLUSTER_L
+  N:000CH         SYMBOL        FFS_FAT
+  N:000CH         SYMBOL        FFS_FAT_H
+  N:000DH         SYMBOL        FFS_FAT_L
+  N:0011H         SYMBOL        FILE
+  X:0002H         SYMBOL        FIX_FILE_START_ADDRESS
+  N:000AH         SYMBOL        F_FFS
+  N:000AH         SYMBOL        F_FFS_H
+  N:000BH         SYMBOL        F_FFS_L
+  N:00FEH         SYMBOL        GO_AHEAD
+  N:00FFH         SYMBOL        GO_BACK
+  N:7F20H         SYMBOL        GSM_DF
+ C2:5086H         SYMBOL        HAS_NOT_ENOUGH_DATA
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 10
+
+
+  N:0010H         SYMBOL        HAVE_ADM_LIMITS
+  N:0004H         SYMBOL        HAVE_CHV1_LIMITS
+  N:0008H         SYMBOL        HAVE_CHV2_LIMITS
+  N:0001H         SYMBOL        HAVE_LC
+ C2:507CH         SYMBOL        HAVE_RESPONSE_DATA
+  N:0020H         SYMBOL        HAVE_SUPER_KEY_LIMITS
+  N:0002H         SYMBOL        HAVE_WRITE_EEPROM
+  N:6F22H         SYMBOL        IMSI_M_ID
+  N:0000H         SYMBOL        INS
+  B:002CH.2       SYMBOL        INS_START_BIT
+  X:FFF0H         SYMBOL        INT_VECTOR
+  B:002EH.0       SYMBOL        JUDGE_RECORD_NULL
+  N:009EH         SYMBOL        KEY_ADDR
+  N:0028H         SYMBOL        KEY_BIT
+  X:0030H         SYMBOL        KEY_FUTURE_ADDRESS
+  N:0005H         SYMBOL        KI_ID
+  N:00FFH         SYMBOL        LAST_PAGE_ITEM
+  N:001BH         SYMBOL        LE_LENGTH
+  N:0012H         SYMBOL        LOOK_PEOPLE_EF
+ C2:50F1H         SYMBOL        LOOPSET
+ C2:50FCH         SYMBOL        LOOPSETSTEP
+  N:00D1H         SYMBOL        MAIN_PROCESS_OUT_SP
+ C2:502DH         SYMBOL        MEMORY_PROBLEM
+ C2:5184H         SYMBOL        MEMORY_PROBLEM_1
+ C2:51FFH         SYMBOL        MEMORY_PROBLEM_2
+  N:3F00H         SYMBOL        MF
+  N:0005H         SYMBOL        MOBILE_MODEL_EF
+  N:009AH         SYMBOL        MODE_REG
+  N:00FEH         SYMBOL        NEXT_PAGE_ITEM
+  N:0000H         SYMBOL        NONE
+ C2:3000H         SYMBOL        NOP_SPACE
+  N:0013H         SYMBOL        OFFSET
+  N:0013H         SYMBOL        OFFSET_HIGH
+  N:0014H         SYMBOL        OFFSET_LOW
+  N:0026H         SYMBOL        OTA_DIR_ITEM
+  N:0045H         SYMBOL        OTA_DIR_NUMBER
+  N:0043H         SYMBOL        OTA_FAT_HANDLEH
+  N:0044H         SYMBOL        OTA_FAT_HANDLEL
+  N:0027H         SYMBOL        OTA_MENU_ITEM
+  D:0090H         SYMBOL        P1
+  D:00A0H         SYMBOL        P2
+  D:00B0H         SYMBOL        P3
+  N:003EH         SYMBOL        PAGE_ADDRESS_HIGH
+  N:003FH         SYMBOL        PAGE_ADDRESS_LOW
+  N:0040H         SYMBOL        PAGE_COUNT
+  N:000BH         SYMBOL        PAGE_DISP_NUMBER
+  N:0040H         SYMBOL        PAGE_SIZE
+  N:0020H         SYMBOL        PAGE_WRITE_SIZE
+  N:009DH         SYMBOL        PLAINTEXT_ADDR
+  N:00FFH         SYMBOL        PTSS
+  N:0000H         SYMBOL        R0_BANK0
+  N:0008H         SYMBOL        R0_BANK1
+  N:0010H         SYMBOL        R0_BANK2
+  N:0018H         SYMBOL        R0_BANK3
+  N:0001H         SYMBOL        R1_BANK0
+  N:0009H         SYMBOL        R1_BANK1
+  N:0011H         SYMBOL        R1_BANK2
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 11
+
+
+  N:0019H         SYMBOL        R1_BANK3
+  N:0002H         SYMBOL        R2_BANK0
+  N:000AH         SYMBOL        R2_BANK1
+  N:0012H         SYMBOL        R2_BANK2
+  N:001AH         SYMBOL        R2_BANK3
+  N:0003H         SYMBOL        R3_BANK0
+  N:000BH         SYMBOL        R3_BANK1
+  N:0013H         SYMBOL        R3_BANK2
+  N:001BH         SYMBOL        R3_BANK3
+  N:0004H         SYMBOL        R4_BANK0
+  N:000CH         SYMBOL        R4_BANK1
+  N:0014H         SYMBOL        R4_BANK2
+  N:001CH         SYMBOL        R4_BANK3
+  N:0005H         SYMBOL        R5_BANK0
+  N:000DH         SYMBOL        R5_BANK1
+  N:0015H         SYMBOL        R5_BANK2
+  N:001DH         SYMBOL        R5_BANK3
+  N:0006H         SYMBOL        R6_BANK0
+  N:000EH         SYMBOL        R6_BANK1
+  N:0016H         SYMBOL        R6_BANK2
+  N:001EH         SYMBOL        R6_BANK3
+  N:0007H         SYMBOL        R7_BANK0
+  N:000FH         SYMBOL        R7_BANK1
+  N:0017H         SYMBOL        R7_BANK2
+  N:001FH         SYMBOL        R7_BANK3
+ C2:5113H         SYMBOL        RAMCHECK
+ C2:50E5H         SYMBOL        RAMORXRAM
+ C2:50EDH         SYMBOL        RAMTOFLASH
+ C2:50DFH         SYMBOL        RAMTOFLASHEEPROM
+ C2:50CCH         SYMBOL        RAM_TO_XRAM
+ C2:50D2H         SYMBOL        RAM_TO_XRAM_LOOP
+ C2:500DH         SYMBOL        READ_LOOP
+ C2:515CH         SYMBOL        READ_LOOP_1
+ C2:51D7H         SYMBOL        READ_LOOP_2
+ C2:5244H         SYMBOL        READ_RGN_LOOP
+  N:0057H         SYMBOL        RETURN_MARK
+  B:00F8H.0       SYMBOL        RI_SRF
+  N:00A1H         SYMBOL        RNG
+  B:002CH.0       SYMBOL        RUN_W_EEPROM
+  N:00C1H         SYMBOL        SAVE_AUTHBS_BUF
+  N:FE30H         SYMBOL        SAVE_DPTR_BEGIN
+  N:00CAH         SYMBOL        SAVE_RANDBS_BUF
+  N:0000H         SYMBOL        SDES_FLAG
+  X:000CH         SYMBOL        SECTOR_128_START_END_ADDRESS
+  X:000EH         SYMBOL        SECTOR_256_START_END_ADDRESS
+  X:0010H         SYMBOL        SECTOR_512_START_END_ADDRESS
+  X:000AH         SYMBOL        SECTOR_64_START_END_ADDRESS
+  N:0040H         SYMBOL        SECTOR_SIZE
+  N:003CH         SYMBOL        SELECT_SMS_NUMBER
+  N:00F9H         SYMBOL        SEND_RECEIVE_SRF
+  N:0F42H         SYMBOL        SMS_CENTER_ID
+  N:003EH         SYMBOL        SMS_PAGE_ADDRESS
+  N:0006H         SYMBOL        SSD_ID
+  N:00D0H         SYMBOL        STACK
+  N:0022H         SYMBOL        SUPER_BEGIN
+  N:0022H         SYMBOL        SUPER_BEGIN_H
+  N:0023H         SYMBOL        SUPER_BEGIN_L
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 12
+
+
+  N:0024H         SYMBOL        SUPER_END
+  N:0024H         SYMBOL        SUPER_END_H
+  N:0025H         SYMBOL        SUPER_END_L
+  B:002CH.1       SYMBOL        SUPER_W_EEPROM
+  N:0020H         SYMBOL        SW1
+  N:0021H         SYMBOL        SW2
+  N:0040H         SYMBOL        TDES_FLAG
+  N:7F10H         SYMBOL        TELECOM_DF
+  N:002EH         SYMBOL        TEMP_BIT
+  N:0050H         SYMBOL        TEMP_BYTE
+  N:0061H         SYMBOL        TEMP_ENTRANCE1
+  N:0062H         SYMBOL        TEMP_ENTRANCE2
+ C2:512FH         SYMBOL        TESTERROR
+  B:00F8H.1       SYMBOL        TI_SRF
+  N:004FH         SYMBOL        TOTAL_PAGE_NUM
+  N:0012H         SYMBOL        TYPE
+  N:6F31H         SYMBOL        UIM_ID_ID
+  N:0003H         SYMBOL        UNBLOCK_CHV1
+  N:0004H         SYMBOL        UNBLOCK_CHV2
+  N:0041H         SYMBOL        USE_SELECT_ITEM
+  N:0008H         SYMBOL        VIP_F
+  N:0008H         SYMBOL        VIP_F_H
+  N:0009H         SYMBOL        VIP_F_L
+  N:00CEH         SYMBOL        WRITE_ENABLE_2
+  N:00CFH         SYMBOL        WRITE_ENABLE_3
+  N:00FFH         SYMBOL        WRITE_ENABLE_4
+ C2:50E8H         SYMBOL        XRAMTOFLASH
+ C2:50DFH         SYMBOL        XRAMTOFLASHEEPROM
+ C2:50B9H         SYMBOL        XRAM_TO_RAM
+ C2:50BFH         SYMBOL        XRAM_TO_RAM_LOOP
+  N:002FH         SYMBOL        XTK_BIT
+  N:0034H         SYMBOL        XTK_INS_PC
+  N:0101H         SYMBOL        XTK_MENU_DF
+  N:0001H         SYMBOL        XTK_MENU_ID
+  N:0030H         SYMBOL        XTK_PATH1
+  N:0031H         SYMBOL        XTK_PATH2
+  N:0032H         SYMBOL        XTK_PATH3
+  N:0033H         SYMBOL        XTK_PATH4
+  N:0004H         SYMBOL        XTK_PATH_LENGTH
+  N:0035H         SYMBOL        XTK_SW2
+ C2:5000H         LINE#         42
+ C2:5003H         LINE#         43
+ C2:5006H         LINE#         44
+ C2:5008H         LINE#         45
+ C2:500BH         LINE#         46
+ C2:500DH         LINE#         48
+ C2:500EH         LINE#         49
+ C2:500FH         LINE#         50
+ C2:5010H         LINE#         51
+ C2:5011H         LINE#         52
+ C2:5013H         LINE#         53
+ C2:5016H         LINE#         54
+ C2:5019H         LINE#         60
+ C2:501CH         LINE#         61
+ C2:501FH         LINE#         62
+ C2:5021H         LINE#         63
+ C2:5023H         LINE#         64
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 13
+
+
+ C2:5025H         LINE#         66
+ C2:5028H         LINE#         67
+ C2:502AH         LINE#         68
+ C2:502DH         LINE#         70
+ C2:5030H         LINE#         71
+ C2:5033H         LINE#         73
+ C2:5034H         LINE#         78
+ C2:5036H         LINE#         79
+ C2:5038H         LINE#         80
+ C2:503AH         LINE#         81
+ C2:503CH         LINE#         83
+ C2:503EH         LINE#         84
+ C2:5040H         LINE#         85
+ C2:5042H         LINE#         87
+ C2:5045H         LINE#         88
+ C2:5047H         LINE#         89
+ C2:5049H         LINE#         91
+ C2:504BH         LINE#         92
+ C2:504EH         LINE#         94
+ C2:5050H         LINE#         95
+ C2:5053H         LINE#         97
+ C2:5055H         LINE#         98
+ C2:5057H         LINE#         99
+ C2:505AH         LINE#         101
+ C2:505CH         LINE#         102
+ C2:505EH         LINE#         103
+ C2:5060H         LINE#         110
+ C2:5063H         LINE#         117
+ C2:5066H         LINE#         118
+ C2:5067H         LINE#         120
+ C2:5069H         LINE#         121
+ C2:506BH         LINE#         122
+ C2:506CH         LINE#         124
+ C2:506EH         LINE#         125
+ C2:5071H         LINE#         132
+ C2:5073H         LINE#         133
+ C2:5075H         LINE#         134
+ C2:5077H         LINE#         135
+ C2:507AH         LINE#         136
+ C2:507CH         LINE#         138
+ C2:507EH         LINE#         139
+ C2:5080H         LINE#         141
+ C2:5083H         LINE#         142
+ C2:5086H         LINE#         146
+ C2:5088H         LINE#         147
+ C2:508BH         LINE#         153
+ C2:508EH         LINE#         154
+ C2:5090H         LINE#         155
+ C2:5092H         LINE#         156
+ C2:5095H         LINE#         158
+ C2:5098H         LINE#         159
+ C2:509AH         LINE#         160
+ C2:509CH         LINE#         161
+ C2:509FH         LINE#         163
+ C2:50A2H         LINE#         164
+ C2:50A5H         LINE#         165
+ C2:50A7H         LINE#         166
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 14
+
+
+ C2:50AAH         LINE#         167
+ C2:50ADH         LINE#         168
+ C2:50AFH         LINE#         169
+ C2:50B1H         LINE#         170
+ C2:50B4H         LINE#         172
+ C2:50B6H         LINE#         173
+ C2:50B9H         LINE#         179
+ C2:50BBH         LINE#         180
+ C2:50BDH         LINE#         181
+ C2:50BFH         LINE#         183
+ C2:50C0H         LINE#         184
+ C2:50C1H         LINE#         185
+ C2:50C2H         LINE#         186
+ C2:50C3H         LINE#         187
+ C2:50C5H         LINE#         188
+ C2:50C7H         LINE#         189
+ C2:50C9H         LINE#         190
+ C2:50CBH         LINE#         191
+ C2:50CCH         LINE#         195
+ C2:50CEH         LINE#         196
+ C2:50D0H         LINE#         197
+ C2:50D2H         LINE#         199
+ C2:50D3H         LINE#         200
+ C2:50D4H         LINE#         201
+ C2:50D5H         LINE#         202
+ C2:50D6H         LINE#         203
+ C2:50D8H         LINE#         204
+ C2:50DAH         LINE#         205
+ C2:50DCH         LINE#         206
+ C2:50DEH         LINE#         207
+ C2:50DFH         LINE#         218
+ C2:50E1H         LINE#         219
+ C2:50E3H         LINE#         220
+ C2:50E5H         LINE#         223
+ C2:50E6H         LINE#         224
+ C2:50E8H         LINE#         226
+ C2:50EAH         LINE#         227
+ C2:50EBH         LINE#         228
+ C2:50EDH         LINE#         230
+ C2:50EEH         LINE#         232
+ C2:50F1H         LINE#         234
+ C2:50F2H         LINE#         235
+ C2:50F3H         LINE#         237
+ C2:50F4H         LINE#         238
+ C2:50F6H         LINE#         239
+ C2:50F7H         LINE#         240
+ C2:50F9H         LINE#         241
+ C2:50FAH         LINE#         242
+ C2:50FCH         LINE#         244
+ C2:50FEH         LINE#         247
+ C2:5100H         LINE#         248
+ C2:5102H         LINE#         249
+ C2:5104H         LINE#         251
+ C2:5105H         LINE#         252
+ C2:5108H         LINE#         255
+ C2:5109H         LINE#         256
+ C2:510BH         LINE#         258
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 15
+
+
+ C2:510EH         LINE#         259
+ C2:510FH         LINE#         260
+ C2:5111H         LINE#         261
+ C2:5113H         LINE#         263
+ C2:5115H         LINE#         265
+ C2:5116H         LINE#         266
+ C2:5118H         LINE#         267
+ C2:511AH         LINE#         268
+ C2:511BH         LINE#         269
+ C2:511CH         LINE#         271
+ C2:511DH         LINE#         272
+ C2:511FH         LINE#         273
+ C2:5120H         LINE#         274
+ C2:5122H         LINE#         275
+ C2:5123H         LINE#         276
+ C2:5125H         LINE#         278
+ C2:5127H         LINE#         280
+ C2:5128H         LINE#         281
+ C2:5129H         LINE#         284
+ C2:512BH         LINE#         285
+ C2:512DH         LINE#         286
+ C2:512FH         LINE#         288
+ C2:5130H         LINE#         289
+ C2:5131H         LINE#         298
+ C2:5133H         LINE#         300
+ C2:5134H         LINE#         301
+ C2:5136H         LINE#         302
+ C2:5138H         LINE#         303
+ C2:513AH         LINE#         304
+ C2:513CH         LINE#         306
+ C2:513EH         LINE#         307
+ C2:5140H         LINE#         308
+ C2:5142H         LINE#         310
+ C2:5144H         LINE#         312
+ C2:5146H         LINE#         314
+ C2:5147H         LINE#         325
+ C2:514AH         LINE#         326
+ C2:514DH         LINE#         327
+ C2:514FH         LINE#         328
+ C2:5152H         LINE#         329
+ C2:5154H         LINE#         331
+ C2:5156H         LINE#         332
+ C2:5158H         LINE#         333
+ C2:515AH         LINE#         334
+ C2:515CH         LINE#         337
+ C2:515DH         LINE#         338
+ C2:515EH         LINE#         339
+ C2:515FH         LINE#         340
+ C2:5160H         LINE#         341
+ C2:5162H         LINE#         342
+ C2:5165H         LINE#         343
+ C2:5168H         LINE#         349
+ C2:516BH         LINE#         350
+ C2:516EH         LINE#         351
+ C2:5170H         LINE#         352
+ C2:5172H         LINE#         353
+ C2:5174H         LINE#         355
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 16
+
+
+ C2:5176H         LINE#         356
+ C2:5178H         LINE#         357
+ C2:517AH         LINE#         358
+ C2:517CH         LINE#         360
+ C2:517FH         LINE#         361
+ C2:5181H         LINE#         362
+ C2:5184H         LINE#         364
+ C2:5187H         LINE#         365
+ C2:518AH         LINE#         367
+ C2:518BH         LINE#         372
+ C2:518DH         LINE#         373
+ C2:518FH         LINE#         374
+ C2:5191H         LINE#         375
+ C2:5193H         LINE#         377
+ C2:5195H         LINE#         378
+ C2:5197H         LINE#         379
+ C2:5199H         LINE#         380
+ C2:519BH         LINE#         383
+ C2:519DH         LINE#         384
+ C2:519FH         LINE#         385
+ C2:51A1H         LINE#         387
+ C2:51A4H         LINE#         388
+ C2:51A6H         LINE#         389
+ C2:51A8H         LINE#         391
+ C2:51AAH         LINE#         392
+ C2:51ADH         LINE#         394
+ C2:51AFH         LINE#         395
+ C2:51B2H         LINE#         397
+ C2:51B4H         LINE#         398
+ C2:51B6H         LINE#         399
+ C2:51B9H         LINE#         401
+ C2:51BBH         LINE#         402
+ C2:51BDH         LINE#         403
+ C2:51BFH         LINE#         410
+ C2:51C2H         LINE#         418
+ C2:51C5H         LINE#         419
+ C2:51C8H         LINE#         420
+ C2:51CAH         LINE#         421
+ C2:51CDH         LINE#         422
+ C2:51CFH         LINE#         424
+ C2:51D1H         LINE#         425
+ C2:51D3H         LINE#         426
+ C2:51D5H         LINE#         427
+ C2:51D7H         LINE#         430
+ C2:51D8H         LINE#         431
+ C2:51D9H         LINE#         432
+ C2:51DAH         LINE#         433
+ C2:51DBH         LINE#         434
+ C2:51DDH         LINE#         435
+ C2:51E0H         LINE#         436
+ C2:51E3H         LINE#         442
+ C2:51E6H         LINE#         443
+ C2:51E9H         LINE#         444
+ C2:51EBH         LINE#         445
+ C2:51EDH         LINE#         446
+ C2:51EFH         LINE#         448
+ C2:51F1H         LINE#         449
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 17
+
+
+ C2:51F3H         LINE#         450
+ C2:51F5H         LINE#         451
+ C2:51F7H         LINE#         453
+ C2:51FAH         LINE#         454
+ C2:51FCH         LINE#         455
+ C2:51FFH         LINE#         457
+ C2:5202H         LINE#         458
+ C2:5205H         LINE#         460
+ C2:5206H         LINE#         465
+ C2:5208H         LINE#         466
+ C2:520AH         LINE#         467
+ C2:520CH         LINE#         468
+ C2:520EH         LINE#         470
+ C2:5210H         LINE#         471
+ C2:5212H         LINE#         472
+ C2:5214H         LINE#         473
+ C2:5216H         LINE#         476
+ C2:5218H         LINE#         477
+ C2:521AH         LINE#         478
+ C2:521CH         LINE#         480
+ C2:521FH         LINE#         481
+ C2:5221H         LINE#         482
+ C2:5223H         LINE#         484
+ C2:5225H         LINE#         485
+ C2:5228H         LINE#         487
+ C2:522AH         LINE#         488
+ C2:522DH         LINE#         490
+ C2:522FH         LINE#         491
+ C2:5231H         LINE#         492
+ C2:5234H         LINE#         494
+ C2:5236H         LINE#         495
+ C2:5238H         LINE#         496
+ C2:523AH         LINE#         503
+ C2:523DH         LINE#         510
+ C2:523FH         LINE#         511
+ C2:5242H         LINE#         512
+ C2:5244H         LINE#         514
+ C2:5246H         LINE#         515
+ C2:5247H         LINE#         516
+ C2:5248H         LINE#         517
+ C2:524AH         LINE#         518
+ C2:524DH         LINE#         519
+ C2:5250H         LINE#         525
+ C2:5253H         LINE#         526
+ C2:5256H         LINE#         527
+ C2:5257H         LINE#         529
+ C2:5259H         LINE#         530
+ C2:525CH         LINE#         531
+ C2:525EH         LINE#         532
+ C2:525FH         LINE#         533
+ C2:5262H         LINE#         534
+ C2:5264H         LINE#         535
+ C2:5265H         LINE#         536
+ C2:5268H         LINE#         537
+ C2:526AH         LINE#         538
+ C2:526BH         LINE#         539
+ C2:526EH         LINE#         540
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 18
+
+
+ C2:5270H         LINE#         542
+ C2:5271H         LINE#         543
+ C2:5274H         LINE#         544
+ C2:5276H         LINE#         545
+ C2:5277H         LINE#         546
+ C2:5279H         LINE#         548
+ C2:527CH         LINE#         549
+ C2:527EH         LINE#         551
+ C2:5281H         LINE#         555
+  -------         ENDMOD        INS
+
+  -------         MODULE        TEST_COS
+  C:0030H         SEGMENT       PROG_MAIN
+  C:01A3H         PUBLIC        COMMAND_SUCCESS
+  C:01B1H         PUBLIC        INCORRECT_PARAMETER_P3
+  C:019DH         PUBLIC        LENGTH_XX_RESPONSE_DATA
+  C:00DAH         SYMBOL        ?_LEGALITY_INS
+  D:00E0H         SYMBOL        ACC
+  X:0012H         SYMBOL        ADM_ADDRESS
+  X:001AH         SYMBOL        ADM_NUMBER
+  C:FF11H         SYMBOL        ATR_END
+  C:FF00H         SYMBOL        ATR_START
+  N:0005H         SYMBOL        A_KEY_ID
+  D:00F0H         SYMBOL        B
+  B:0028H.2       SYMBOL        BADM_VERIFY
+  C:0137H         SYMBOL        BAD_CLA
+  C:013AH         SYMBOL        BAD_CLA_INS_BACK
+  C:0132H         SYMBOL        BAD_INS
+  C:00E6H         SYMBOL        BAD_INS_TEMP
+  X:0027H         SYMBOL        BAK_CONTROL_INDEX
+  X:0004H         SYMBOL        BAK_CONTROL_START_ADDRESS
+  X:0008H         SYMBOL        BAK_DATA_END_ADDRESS
+  X:0006H         SYMBOL        BAK_DATA_START_ADDRESS
+  B:002AH.5       SYMBOL        BALREADYSAVETERMINALRESP
+  N:009CH         SYMBOL        BAUD_BR
+  N:009BH         SYMBOL        BAUD_MR
+  B:002FH.5       SYMBOL        BBACKWARD
+  B:0029H.0       SYMBOL        BBASE_CHALLENGE
+  B:002AH.1       SYMBOL        BCHECK_BY_ALPHA
+  B:0028H.0       SYMBOL        BCHV1_VERIFY
+  B:0028H.1       SYMBOL        BCHV2_VERIFY
+  B:0029H.1       SYMBOL        BCOMMIT_SSD
+  B:0028H.6       SYMBOL        BCOS_USE_SELF
+  N:0015H         SYMBOL        BDIR
+  B:002FH.2       SYMBOL        BDISPLAY_TXT
+  B:0028H.5       SYMBOL        BENHANCE_SPEED
+  B:002FH.0       SYMBOL        BFETCH
+  N:0016H         SYMBOL        BFILE
+  B:002AH.2       SYMBOL        BFIND_ASCII_UNICODE_BIT
+  B:0028H.7       SYMBOL        BHIGH_PRIORITY_THREAD
+  B:0029H.6       SYMBOL        BIN_CODE
+  B:0029H.7       SYMBOL        BLOW_HALF_BYTE
+  B:002AH.3       SYMBOL        BNEW_SMS
+  B:002FH.1       SYMBOL        BNOT_INC_PC
+  B:002AH.0       SYMBOL        BNOT_SEND_MENU_SETUP
+  B:0029H.4       SYMBOL        BNOT_SUPPORT_DEFAULT_TEXT
+  B:0029H.5       SYMBOL        BNOT_SUPPORT_UCS2_GET_INPUT
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 19
+
+
+  N:0018H         SYMBOL        BOFFSET
+  B:002FH.6       SYMBOL        BOTA
+  B:002FH.4       SYMBOL        BRETRY_XTK_INS
+  B:0029H.3       SYMBOL        BRUN_CAVE
+  B:002AH.4       SYMBOL        BSHOW_ITEM_ALPHA
+  B:0028H.3       SYMBOL        BSUPER_KEY
+  N:0017H         SYMBOL        BTYPE
+  B:0028H.4       SYMBOL        BUIM
+  B:0029H.2       SYMBOL        BUPDATE_SSD
+  B:002FH.7       SYMBOL        BWAIT_TERMINAL_RESPONSE
+  B:002FH.3       SYMBOL        BWANT_UCS2_INPUT
+  X:FE00H         SYMBOL        BYCARD_BUF_START
+  N:001BH         SYMBOL        BYCLA
+  N:0011H         SYMBOL        BYCURRENT_FILE
+  N:0010H         SYMBOL        BYDIR
+  N:0038H         SYMBOL        BYDISPLAY_INDEX
+  N:0037H         SYMBOL        BYEDIT_INDEX
+  N:0039H         SYMBOL        BYEDIT_INDEX_MENU
+  N:0036H         SYMBOL        BYFETCH_INS
+  N:0012H         SYMBOL        BYFILE_TYPE
+  N:001CH         SYMBOL        BYINS
+  N:001AH         SYMBOL        BYINS_BAK
+  X:FF00H         SYMBOL        BYMEM_MANAGE_START
+  N:001DH         SYMBOL        BYP1
+  N:001EH         SYMBOL        BYP2
+  N:001FH         SYMBOL        BYP3
+  X:FC00H         SYMBOL        BYSEND_RECEIVE_BUF
+  X:FD00H         SYMBOL        BYTEMP_START
+  X:FF30H         SYMBOL        BYXTK_GET_INPUT_BUF
+  X:FD00H         SYMBOL        BYXTK_MENU_BUF
+  X:FF20H         SYMBOL        BYXTK_THREAD_PARA_BAK
+  C:019CH         SYMBOL        CALL_COMMAND_INS
+  N:7F25H         SYMBOL        CDMA_DF
+  N:0001H         SYMBOL        CHV1_ID
+  N:0002H         SYMBOL        CHV2_ID
+  C:0042H         SYMBOL        CLR_RAM_LOOP
+  C:004EH         SYMBOL        CLR_THREAD_PARA_LOOP
+  C:0113H         SYMBOL        CLR_WRITE_ENABLE_FLAG
+  X:0021H         SYMBOL        CLUSTER_END_ADDRESS
+  X:001DH         SYMBOL        CLUSTER_FAT_END_ADDRESS
+  X:001BH         SYMBOL        CLUSTER_FAT_START_ADDRESS
+  X:001FH         SYMBOL        CLUSTER_START_ADDRESS
+  C:01A9H         SYMBOL        COMMAND_SUCCESS_91XX
+  C:01ADH         SYMBOL        COMMAND_SUCCESS_NORMAL
+  N:0006H         SYMBOL        CRC_ACCUM_HIGH
+  N:0007H         SYMBOL        CRC_ACCUM_LOW
+  N:003DH         SYMBOL        CURRENT_SEND_SMS
+  X:0023H         SYMBOL        DATA_RECOVER_TAG_ADDRESS
+  N:003FH         SYMBOL        DCS_BYTE
+  N:009FH         SYMBOL        DES_CON
+  N:0080H         SYMBOL        DES_DECRYPT_FLAG
+  N:0000H         SYMBOL        DES_ENCRYPT_FLAG
+  N:0000H         SYMBOL        DES_FIRST_FLAG
+  N:0001H         SYMBOL        DES_NOT_FIRST_FLAG
+  N:0010H         SYMBOL        DIR
+  N:0003H         SYMBOL        DIR_CDMA_INDEX
+  N:0002H         SYMBOL        DIR_GSM_INDEX
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 20
+
+
+  N:0000H         SYMBOL        DIR_MF_INDEX
+  X:0000H         SYMBOL        DIR_START_ADDRESS
+  N:0001H         SYMBOL        DIR_TELECOM_INDEX
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        EDIT_0
+  N:0001H         SYMBOL        EDIT_1
+  N:0002H         SYMBOL        EDIT_2
+  N:0003H         SYMBOL        EDIT_3
+  N:0004H         SYMBOL        EDIT_4
+  N:0005H         SYMBOL        EDIT_5
+  N:0006H         SYMBOL        EDIT_6
+  N:0007H         SYMBOL        EDIT_7
+  N:0008H         SYMBOL        EDIT_8
+  N:0009H         SYMBOL        EDIT_9
+  N:000AH         SYMBOL        EDIT_A
+  N:000BH         SYMBOL        EDIT_B
+  N:000CH         SYMBOL        EDIT_C
+  N:000DH         SYMBOL        EDIT_D
+  N:000EH         SYMBOL        EDIT_E
+  N:000FH         SYMBOL        EDIT_F
+  C:0173H         SYMBOL        EEPROM_INT_0
+  C:0174H         SYMBOL        EEPROM_INT_1
+  C:0188H         SYMBOL        EEPROM_INT_2
+  C:0189H         SYMBOL        EEPROM_INT_3
+  C:018AH         SYMBOL        EEPROM_INT_4
+  C:018BH         SYMBOL        EEPROM_INT_5
+  N:002CH         SYMBOL        EEPROM_MANAGE_BYTE
+  C:018CH         SYMBOL        EXEC_INS_OPERATE
+  N:000EH         SYMBOL        FAT_CLUSTER
+  N:000EH         SYMBOL        FAT_CLUSTER_H
+  N:000FH         SYMBOL        FAT_CLUSTER_L
+  N:000CH         SYMBOL        FFS_FAT
+  N:000CH         SYMBOL        FFS_FAT_H
+  N:000DH         SYMBOL        FFS_FAT_L
+  N:0011H         SYMBOL        FILE
+  X:0002H         SYMBOL        FIX_FILE_START_ADDRESS
+  N:000AH         SYMBOL        F_FFS
+  N:000AH         SYMBOL        F_FFS_H
+  N:000BH         SYMBOL        F_FFS_L
+  N:00FEH         SYMBOL        GO_AHEAD
+  N:00FFH         SYMBOL        GO_BACK
+  N:7F20H         SYMBOL        GSM_DF
+  C:00F4H         SYMBOL        HAS_LC_DATA_OPERATE
+  N:0010H         SYMBOL        HAVE_ADM_LIMITS
+  N:0004H         SYMBOL        HAVE_CHV1_LIMITS
+  N:0008H         SYMBOL        HAVE_CHV2_LIMITS
+  N:0001H         SYMBOL        HAVE_LC
+  N:0020H         SYMBOL        HAVE_SUPER_KEY_LIMITS
+  N:0002H         SYMBOL        HAVE_WRITE_EEPROM
+  C:003DH         SYMBOL        IC_RESET_DELAY
+  D:00A8H         SYMBOL        IE
+  N:6F22H         SYMBOL        IMSI_M_ID
+  B:002CH.2       SYMBOL        INS_START_BIT
+  X:FFF0H         SYMBOL        INT_VECTOR
+  B:002EH.0       SYMBOL        JUDGE_RECORD_NULL
+  N:009EH         SYMBOL        KEY_ADDR
+  N:0028H         SYMBOL        KEY_BIT
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 21
+
+
+  X:0030H         SYMBOL        KEY_FUTURE_ADDRESS
+  N:0005H         SYMBOL        KI_ID
+  N:00FFH         SYMBOL        LAST_PAGE_ITEM
+  N:001BH         SYMBOL        LE_LENGTH
+  N:0012H         SYMBOL        LOOK_PEOPLE_EF
+  C:0030H         SYMBOL        MAIN
+  N:00D1H         SYMBOL        MAIN_PROCESS_OUT_SP
+  N:3F00H         SYMBOL        MF
+  N:0005H         SYMBOL        MOBILE_MODEL_EF
+  N:009AH         SYMBOL        MODE_REG
+  N:00FEH         SYMBOL        NEXT_PAGE_ITEM
+  N:0000H         SYMBOL        NONE
+  C:00FBH         SYMBOL        NORMAL_RECEIVE_LC_DATA
+  C:007CH         SYMBOL        NO_PTS
+  N:0013H         SYMBOL        OFFSET
+  N:0013H         SYMBOL        OFFSET_HIGH
+  N:0014H         SYMBOL        OFFSET_LOW
+  N:0026H         SYMBOL        OTA_DIR_ITEM
+  N:0045H         SYMBOL        OTA_DIR_NUMBER
+  N:0043H         SYMBOL        OTA_FAT_HANDLEH
+  N:0044H         SYMBOL        OTA_FAT_HANDLEL
+  N:0027H         SYMBOL        OTA_MENU_ITEM
+  D:0090H         SYMBOL        P1
+  D:00A0H         SYMBOL        P2
+  N:003EH         SYMBOL        PAGE_ADDRESS_HIGH
+  N:003FH         SYMBOL        PAGE_ADDRESS_LOW
+  N:0040H         SYMBOL        PAGE_COUNT
+  N:000BH         SYMBOL        PAGE_DISP_NUMBER
+  N:0040H         SYMBOL        PAGE_SIZE
+  N:0020H         SYMBOL        PAGE_WRITE_SIZE
+  D:0087H         SYMBOL        PCON
+  N:009DH         SYMBOL        PLAINTEXT_ADDR
+  D:00D0H         SYMBOL        PSW
+  N:00FFH         SYMBOL        PTSS
+  N:0000H         SYMBOL        R0_BANK0
+  N:0008H         SYMBOL        R0_BANK1
+  N:0010H         SYMBOL        R0_BANK2
+  N:0018H         SYMBOL        R0_BANK3
+  N:0001H         SYMBOL        R1_BANK0
+  N:0009H         SYMBOL        R1_BANK1
+  N:0011H         SYMBOL        R1_BANK2
+  N:0019H         SYMBOL        R1_BANK3
+  N:0002H         SYMBOL        R2_BANK0
+  N:000AH         SYMBOL        R2_BANK1
+  N:0012H         SYMBOL        R2_BANK2
+  N:001AH         SYMBOL        R2_BANK3
+  N:0003H         SYMBOL        R3_BANK0
+  N:000BH         SYMBOL        R3_BANK1
+  N:0013H         SYMBOL        R3_BANK2
+  N:001BH         SYMBOL        R3_BANK3
+  N:0004H         SYMBOL        R4_BANK0
+  N:000CH         SYMBOL        R4_BANK1
+  N:0014H         SYMBOL        R4_BANK2
+  N:001CH         SYMBOL        R4_BANK3
+  N:0005H         SYMBOL        R5_BANK0
+  N:000DH         SYMBOL        R5_BANK1
+  N:0015H         SYMBOL        R5_BANK2
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 22
+
+
+  N:001DH         SYMBOL        R5_BANK3
+  N:0006H         SYMBOL        R6_BANK0
+  N:000EH         SYMBOL        R6_BANK1
+  N:0016H         SYMBOL        R6_BANK2
+  N:001EH         SYMBOL        R6_BANK3
+  N:0007H         SYMBOL        R7_BANK0
+  N:000FH         SYMBOL        R7_BANK1
+  N:0017H         SYMBOL        R7_BANK2
+  N:001FH         SYMBOL        R7_BANK3
+  B:0098H.2       SYMBOL        RB8
+  C:00BFH         SYMBOL        RECEIVE_APDU
+  C:00CBH         SYMBOL        RECEIVE_APDU_LOOP
+  C:013FH         SYMBOL        RECEIVE_BYTE
+  C:0068H         SYMBOL        RECEIVE_BYTE_START
+  C:00B7H         SYMBOL        RECEIVE_CLA
+  C:00BFH         SYMBOL        RECEIVE_INS
+  C:0104H         SYMBOL        RECEIVE_LC_LOOP
+  C:0084H         SYMBOL        RECEIVE_PTS_LOOP
+  N:0057H         SYMBOL        RETURN_MARK
+  B:00F8H.0       SYMBOL        RI_SRF
+  N:00A1H         SYMBOL        RNG
+  B:002CH.0       SYMBOL        RUN_W_EEPROM
+  N:00C1H         SYMBOL        SAVE_AUTHBS_BUF
+  N:FE30H         SYMBOL        SAVE_DPTR_BEGIN
+  C:0087H         SYMBOL        SAVE_PTS
+  N:00CAH         SYMBOL        SAVE_RANDBS_BUF
+  D:0098H         SYMBOL        SCON
+  N:0000H         SYMBOL        SDES_FLAG
+  X:000CH         SYMBOL        SECTOR_128_START_END_ADDRESS
+  X:000EH         SYMBOL        SECTOR_256_START_END_ADDRESS
+  X:0010H         SYMBOL        SECTOR_512_START_END_ADDRESS
+  X:000AH         SYMBOL        SECTOR_64_START_END_ADDRESS
+  N:0040H         SYMBOL        SECTOR_SIZE
+  N:003CH         SYMBOL        SELECT_SMS_NUMBER
+  C:0055H         SYMBOL        SEND_ATR
+  C:005AH         SYMBOL        SEND_ATR_LOOP
+  C:0150H         SYMBOL        SEND_BYTE
+  C:008FH         SYMBOL        SEND_PTS
+  N:00F9H         SYMBOL        SEND_RECEIVE_SRF
+  C:0126H         SYMBOL        SEND_SW1_SW2
+  C:016BH         SYMBOL        SEND_XRAM_LOOP
+  C:016BH         SYMBOL        SEND_XRAM_R2
+  C:01ADH         SYMBOL        SET_SW1_SW2_9000
+  N:0F42H         SYMBOL        SMS_CENTER_ID
+  N:003EH         SYMBOL        SMS_PAGE_ADDRESS
+  D:0081H         SYMBOL        SP
+  N:0006H         SYMBOL        SSD_ID
+  N:00D0H         SYMBOL        STACK
+  C:010BH         SYMBOL        START_EXEC_INS
+  N:0022H         SYMBOL        SUPER_BEGIN
+  N:0022H         SYMBOL        SUPER_BEGIN_H
+  N:0023H         SYMBOL        SUPER_BEGIN_L
+  N:0024H         SYMBOL        SUPER_END
+  N:0024H         SYMBOL        SUPER_END_H
+  N:0025H         SYMBOL        SUPER_END_L
+  B:002CH.1       SYMBOL        SUPER_W_EEPROM
+  N:0020H         SYMBOL        SW1
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 23
+
+
+  N:0021H         SYMBOL        SW2
+  B:0098H.3       SYMBOL        TB8
+  D:0088H         SYMBOL        TCON
+  N:0040H         SYMBOL        TDES_FLAG
+  N:7F10H         SYMBOL        TELECOM_DF
+  N:002EH         SYMBOL        TEMP_BIT
+  N:0050H         SYMBOL        TEMP_BYTE
+  N:0061H         SYMBOL        TEMP_ENTRANCE1
+  N:0062H         SYMBOL        TEMP_ENTRANCE2
+  D:008CH         SYMBOL        TH0
+  B:00F8H.1       SYMBOL        TI_SRF
+  N:004FH         SYMBOL        TOTAL_PAGE_NUM
+  B:0088H.4       SYMBOL        TR0
+  N:0012H         SYMBOL        TYPE
+  N:6F31H         SYMBOL        UIM_ID_ID
+  N:0003H         SYMBOL        UNBLOCK_CHV1
+  N:0004H         SYMBOL        UNBLOCK_CHV2
+  N:0041H         SYMBOL        USE_SELECT_ITEM
+  N:0008H         SYMBOL        VIP_F
+  N:0008H         SYMBOL        VIP_F_H
+  N:0009H         SYMBOL        VIP_F_L
+  N:00CEH         SYMBOL        WRITE_ENABLE_2
+  N:00CFH         SYMBOL        WRITE_ENABLE_3
+  N:00FFH         SYMBOL        WRITE_ENABLE_4
+  N:002FH         SYMBOL        XTK_BIT
+  N:0034H         SYMBOL        XTK_INS_PC
+  N:0101H         SYMBOL        XTK_MENU_DF
+  N:0001H         SYMBOL        XTK_MENU_ID
+  N:0030H         SYMBOL        XTK_PATH1
+  N:0031H         SYMBOL        XTK_PATH2
+  N:0032H         SYMBOL        XTK_PATH3
+  N:0033H         SYMBOL        XTK_PATH4
+  N:0004H         SYMBOL        XTK_PATH_LENGTH
+  N:0035H         SYMBOL        XTK_SW2
+  C:0000H         LINE#         20
+  C:0003H         LINE#         26
+  C:0006H         LINE#         28
+  C:0007H         LINE#         29
+  C:0008H         LINE#         30
+  C:0009H         LINE#         31
+  C:000AH         LINE#         32
+  C:000BH         LINE#         37
+  C:000EH         LINE#         39
+  C:000FH         LINE#         40
+  C:0010H         LINE#         41
+  C:0011H         LINE#         42
+  C:0012H         LINE#         43
+  C:0013H         LINE#         48
+  C:0016H         LINE#         50
+  C:0017H         LINE#         51
+  C:0018H         LINE#         52
+  C:0019H         LINE#         53
+  C:001AH         LINE#         54
+  C:001BH         LINE#         59
+  C:001EH         LINE#         61
+  C:001FH         LINE#         62
+  C:0020H         LINE#         63
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 24
+
+
+  C:0021H         LINE#         64
+  C:0022H         LINE#         65
+  C:0023H         LINE#         70
+  C:0026H         LINE#         72
+  C:0027H         LINE#         73
+  C:0028H         LINE#         74
+  C:0029H         LINE#         75
+  C:002AH         LINE#         76
+  C:002BH         LINE#         81
+  C:002EH         LINE#         83
+  C:002FH         LINE#         84
+  C:0030H         LINE#         91
+  C:0033H         LINE#         92
+  C:0036H         LINE#         93
+  C:0037H         LINE#         94
+  C:003AH         LINE#         95
+  C:003DH         LINE#         97
+  C:003EH         LINE#         98
+  C:0040H         LINE#         99
+  C:0042H         LINE#         101
+  C:0043H         LINE#         102
+  C:0044H         LINE#         103
+  C:0046H         LINE#         106
+  C:0047H         LINE#         107
+  C:0049H         LINE#         108
+  C:004CH         LINE#         109
+  C:004EH         LINE#         111
+  C:004FH         LINE#         112
+  C:0050H         LINE#         113
+  C:0052H         LINE#         115
+  C:0055H         LINE#         118
+  C:0057H         LINE#         119
+  C:005AH         LINE#         121
+  C:005BH         LINE#         122
+  C:005CH         LINE#         123
+  C:005FH         LINE#         124
+  C:0060H         LINE#         125
+  C:0062H         LINE#         127
+  C:0065H         LINE#         128
+  C:0068H         LINE#         130
+  C:006BH         LINE#         131
+  C:006EH         LINE#         132
+  C:0071H         LINE#         133
+  C:0074H         LINE#         135
+  C:0077H         LINE#         136
+  C:007AH         LINE#         138
+  C:007CH         LINE#         140
+  C:007EH         LINE#         141
+  C:0080H         LINE#         142
+  C:0082H         LINE#         143
+  C:0084H         LINE#         145
+  C:0087H         LINE#         147
+  C:0088H         LINE#         148
+  C:0089H         LINE#         150
+  C:008BH         LINE#         151
+  C:008DH         LINE#         152
+  C:008FH         LINE#         154
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 25
+
+
+  C:0091H         LINE#         155
+  C:0093H         LINE#         157
+  C:0094H         LINE#         158
+  C:0096H         LINE#         159
+  C:0098H         LINE#         160
+  C:0099H         LINE#         161
+  C:009CH         LINE#         162
+  C:009FH         LINE#         164
+  C:00A2H         LINE#         165
+  C:00A3H         LINE#         166
+  C:00A5H         LINE#         167
+  C:00A7H         LINE#         169
+  C:00A9H         LINE#         171
+  C:00AAH         LINE#         172
+  C:00ABH         LINE#         173
+  C:00ADH         LINE#         174
+  C:00AFH         LINE#         176
+  C:00B2H         LINE#         177
+  C:00B5H         LINE#         178
+  C:00B7H         LINE#         180
+  C:00B9H         LINE#         181
+  C:00BBH         LINE#         183
+  C:00BDH         LINE#         184
+  C:00BFH         LINE#         187
+  C:00C2H         LINE#         188
+  C:00C5H         LINE#         189
+  C:00C8H         LINE#         190
+  C:00CBH         LINE#         192
+  C:00CEH         LINE#         193
+  C:00CFH         LINE#         194
+  C:00D0H         LINE#         196
+  C:00D2H         LINE#         198
+  C:00D4H         LINE#         199
+  C:00D6H         LINE#         200
+  C:00D8H         LINE#         201
+  C:00DAH         LINE#         203
+  C:00DCH         LINE#         206
+  C:00DFH         LINE#         207
+  C:00E2H         LINE#         208
+  C:00E4H         LINE#         209
+  C:00E6H         LINE#         211
+  C:00E8H         LINE#         212
+  C:00EAH         LINE#         214
+  C:00ECH         LINE#         215
+  C:00EEH         LINE#         217
+  C:00F1H         LINE#         219
+  C:00F2H         LINE#         220
+  C:00F4H         LINE#         222
+  C:00F7H         LINE#         224
+  C:00F9H         LINE#         225
+  C:00FBH         LINE#         227
+  C:00FCH         LINE#         228
+  C:00FFH         LINE#         230
+  C:0101H         LINE#         231
+  C:0104H         LINE#         233
+  C:0107H         LINE#         234
+  C:0108H         LINE#         235
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 26
+
+
+  C:0109H         LINE#         237
+  C:010BH         LINE#         241
+  C:010EH         LINE#         242
+  C:0110H         LINE#         243
+  C:0113H         LINE#         246
+  C:0115H         LINE#         247
+  C:0117H         LINE#         248
+  C:0119H         LINE#         250
+  C:011BH         LINE#         251
+  C:011EH         LINE#         253
+  C:0120H         LINE#         254
+  C:0123H         LINE#         255
+  C:0126H         LINE#         258
+  C:0128H         LINE#         259
+  C:012BH         LINE#         261
+  C:012DH         LINE#         262
+  C:0130H         LINE#         264
+  C:0132H         LINE#         268
+  C:0135H         LINE#         269
+  C:0137H         LINE#         271
+  C:013AH         LINE#         273
+  C:013DH         LINE#         274
+  C:013FH         LINE#         284
+  C:0142H         LINE#         286
+  C:0145H         LINE#         287
+  C:0148H         LINE#         289
+  C:014BH         LINE#         290
+  C:014DH         LINE#         291
+  C:014FH         LINE#         293
+  C:0150H         LINE#         296
+  C:0152H         LINE#         297
+  C:0154H         LINE#         298
+  C:0156H         LINE#         299
+  C:0158H         LINE#         301
+  C:015AH         LINE#         302
+  C:015DH         LINE#         303
+  C:0160H         LINE#         305
+  C:0163H         LINE#         306
+  C:0166H         LINE#         308
+  C:0167H         LINE#         309
+  C:0168H         LINE#         310
+  C:0169H         LINE#         311
+  C:016AH         LINE#         313
+  C:016BH         LINE#         318
+  C:016CH         LINE#         319
+  C:016FH         LINE#         321
+  C:0170H         LINE#         322
+  C:0172H         LINE#         324
+  C:0173H         LINE#         328
+  C:0174H         LINE#         332
+  C:0176H         LINE#         333
+  C:0178H         LINE#         335
+  C:017AH         LINE#         336
+  C:017DH         LINE#         338
+  C:017EH         LINE#         339
+  C:0180H         LINE#         340
+  C:0181H         LINE#         341
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 27
+
+
+  C:0183H         LINE#         343
+  C:0185H         LINE#         344
+  C:0187H         LINE#         346
+  C:0188H         LINE#         350
+  C:0189H         LINE#         354
+  C:018AH         LINE#         358
+  C:018BH         LINE#         362
+  C:018CH         LINE#         365
+  C:018FH         LINE#         367
+  C:0191H         LINE#         368
+  C:0192H         LINE#         369
+  C:0194H         LINE#         371
+  C:0196H         LINE#         372
+  C:0197H         LINE#         373
+  C:0199H         LINE#         375
+  C:019CH         LINE#         377
+  C:019DH         LINE#         383
+  C:01A0H         LINE#         384
+  C:01A2H         LINE#         385
+  C:01A3H         LINE#         388
+  C:01A5H         LINE#         389
+  C:01A7H         LINE#         390
+  C:01A9H         LINE#         392
+  C:01ACH         LINE#         393
+  C:01ADH         LINE#         396
+  C:01B0H         LINE#         397
+  C:01B1H         LINE#         400
+  C:01B4H         LINE#         401
+  C:01B6H         LINE#         403
+  -------         ENDMOD        TEST_COS
+
+  -------         MODULE        INS_TABLE
+  C:025CH         SEGMENT       PROG_INS_TABLE
+  C:025CH         PUBLIC        COMMAND_INS
+  C:0298H         PUBLIC        COMMAND_INS_END
+  N:000FH         PUBLIC        NUMBER_INS
+  X:0012H         SYMBOL        ADM_ADDRESS
+  X:001AH         SYMBOL        ADM_NUMBER
+  N:0005H         SYMBOL        A_KEY_ID
+  B:0028H.2       SYMBOL        BADM_VERIFY
+  X:0027H         SYMBOL        BAK_CONTROL_INDEX
+  X:0004H         SYMBOL        BAK_CONTROL_START_ADDRESS
+  X:0008H         SYMBOL        BAK_DATA_END_ADDRESS
+  X:0006H         SYMBOL        BAK_DATA_START_ADDRESS
+  B:002AH.5       SYMBOL        BALREADYSAVETERMINALRESP
+  N:009CH         SYMBOL        BAUD_BR
+  N:009BH         SYMBOL        BAUD_MR
+  B:002FH.5       SYMBOL        BBACKWARD
+  B:0029H.0       SYMBOL        BBASE_CHALLENGE
+  B:002AH.1       SYMBOL        BCHECK_BY_ALPHA
+  B:0028H.0       SYMBOL        BCHV1_VERIFY
+  B:0028H.1       SYMBOL        BCHV2_VERIFY
+  B:0029H.1       SYMBOL        BCOMMIT_SSD
+  B:0028H.6       SYMBOL        BCOS_USE_SELF
+  N:0015H         SYMBOL        BDIR
+  B:002FH.2       SYMBOL        BDISPLAY_TXT
+  B:0028H.5       SYMBOL        BENHANCE_SPEED
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 28
+
+
+  B:002FH.0       SYMBOL        BFETCH
+  N:0016H         SYMBOL        BFILE
+  B:002AH.2       SYMBOL        BFIND_ASCII_UNICODE_BIT
+  B:0028H.7       SYMBOL        BHIGH_PRIORITY_THREAD
+  B:0029H.6       SYMBOL        BIN_CODE
+  B:0029H.7       SYMBOL        BLOW_HALF_BYTE
+  B:002AH.3       SYMBOL        BNEW_SMS
+  B:002FH.1       SYMBOL        BNOT_INC_PC
+  B:002AH.0       SYMBOL        BNOT_SEND_MENU_SETUP
+  B:0029H.4       SYMBOL        BNOT_SUPPORT_DEFAULT_TEXT
+  B:0029H.5       SYMBOL        BNOT_SUPPORT_UCS2_GET_INPUT
+  N:0018H         SYMBOL        BOFFSET
+  B:002FH.6       SYMBOL        BOTA
+  B:002FH.4       SYMBOL        BRETRY_XTK_INS
+  B:0029H.3       SYMBOL        BRUN_CAVE
+  B:002AH.4       SYMBOL        BSHOW_ITEM_ALPHA
+  B:0028H.3       SYMBOL        BSUPER_KEY
+  N:0017H         SYMBOL        BTYPE
+  B:0028H.4       SYMBOL        BUIM
+  B:0029H.2       SYMBOL        BUPDATE_SSD
+  B:002FH.7       SYMBOL        BWAIT_TERMINAL_RESPONSE
+  B:002FH.3       SYMBOL        BWANT_UCS2_INPUT
+  X:FE00H         SYMBOL        BYCARD_BUF_START
+  N:001BH         SYMBOL        BYCLA
+  N:0011H         SYMBOL        BYCURRENT_FILE
+  N:0010H         SYMBOL        BYDIR
+  N:0038H         SYMBOL        BYDISPLAY_INDEX
+  N:0037H         SYMBOL        BYEDIT_INDEX
+  N:0039H         SYMBOL        BYEDIT_INDEX_MENU
+  N:0036H         SYMBOL        BYFETCH_INS
+  N:0012H         SYMBOL        BYFILE_TYPE
+  N:001CH         SYMBOL        BYINS
+  N:001AH         SYMBOL        BYINS_BAK
+  X:FF00H         SYMBOL        BYMEM_MANAGE_START
+  N:001DH         SYMBOL        BYP1
+  N:001EH         SYMBOL        BYP2
+  N:001FH         SYMBOL        BYP3
+  X:FC00H         SYMBOL        BYSEND_RECEIVE_BUF
+  X:FD00H         SYMBOL        BYTEMP_START
+  X:FF30H         SYMBOL        BYXTK_GET_INPUT_BUF
+  X:FD00H         SYMBOL        BYXTK_MENU_BUF
+  X:FF20H         SYMBOL        BYXTK_THREAD_PARA_BAK
+  N:7F25H         SYMBOL        CDMA_DF
+  N:0001H         SYMBOL        CHV1_ID
+  N:0002H         SYMBOL        CHV2_ID
+  X:0021H         SYMBOL        CLUSTER_END_ADDRESS
+  X:001DH         SYMBOL        CLUSTER_FAT_END_ADDRESS
+  X:001BH         SYMBOL        CLUSTER_FAT_START_ADDRESS
+  X:001FH         SYMBOL        CLUSTER_START_ADDRESS
+  N:0006H         SYMBOL        CRC_ACCUM_HIGH
+  N:0007H         SYMBOL        CRC_ACCUM_LOW
+  N:003DH         SYMBOL        CURRENT_SEND_SMS
+  X:0023H         SYMBOL        DATA_RECOVER_TAG_ADDRESS
+  N:003FH         SYMBOL        DCS_BYTE
+  N:009FH         SYMBOL        DES_CON
+  N:0080H         SYMBOL        DES_DECRYPT_FLAG
+  N:0000H         SYMBOL        DES_ENCRYPT_FLAG
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 29
+
+
+  N:0000H         SYMBOL        DES_FIRST_FLAG
+  N:0001H         SYMBOL        DES_NOT_FIRST_FLAG
+  N:0010H         SYMBOL        DIR
+  N:0003H         SYMBOL        DIR_CDMA_INDEX
+  N:0002H         SYMBOL        DIR_GSM_INDEX
+  N:0000H         SYMBOL        DIR_MF_INDEX
+  X:0000H         SYMBOL        DIR_START_ADDRESS
+  N:0001H         SYMBOL        DIR_TELECOM_INDEX
+  N:0000H         SYMBOL        EDIT_0
+  N:0001H         SYMBOL        EDIT_1
+  N:0002H         SYMBOL        EDIT_2
+  N:0003H         SYMBOL        EDIT_3
+  N:0004H         SYMBOL        EDIT_4
+  N:0005H         SYMBOL        EDIT_5
+  N:0006H         SYMBOL        EDIT_6
+  N:0007H         SYMBOL        EDIT_7
+  N:0008H         SYMBOL        EDIT_8
+  N:0009H         SYMBOL        EDIT_9
+  N:000AH         SYMBOL        EDIT_A
+  N:000BH         SYMBOL        EDIT_B
+  N:000CH         SYMBOL        EDIT_C
+  N:000DH         SYMBOL        EDIT_D
+  N:000EH         SYMBOL        EDIT_E
+  N:000FH         SYMBOL        EDIT_F
+  N:002CH         SYMBOL        EEPROM_MANAGE_BYTE
+  N:000EH         SYMBOL        FAT_CLUSTER
+  N:000EH         SYMBOL        FAT_CLUSTER_H
+  N:000FH         SYMBOL        FAT_CLUSTER_L
+  N:000CH         SYMBOL        FFS_FAT
+  N:000CH         SYMBOL        FFS_FAT_H
+  N:000DH         SYMBOL        FFS_FAT_L
+  N:0011H         SYMBOL        FILE
+  X:0002H         SYMBOL        FIX_FILE_START_ADDRESS
+  N:000AH         SYMBOL        F_FFS
+  N:000AH         SYMBOL        F_FFS_H
+  N:000BH         SYMBOL        F_FFS_L
+  N:00FEH         SYMBOL        GO_AHEAD
+  N:00FFH         SYMBOL        GO_BACK
+  N:7F20H         SYMBOL        GSM_DF
+  N:0010H         SYMBOL        HAVE_ADM_LIMITS
+  N:0004H         SYMBOL        HAVE_CHV1_LIMITS
+  N:0008H         SYMBOL        HAVE_CHV2_LIMITS
+  N:0001H         SYMBOL        HAVE_LC
+  N:0020H         SYMBOL        HAVE_SUPER_KEY_LIMITS
+  N:0002H         SYMBOL        HAVE_WRITE_EEPROM
+  N:6F22H         SYMBOL        IMSI_M_ID
+  B:002CH.2       SYMBOL        INS_START_BIT
+  N:0000H         SYMBOL        INS_TABLE
+  X:FFF0H         SYMBOL        INT_VECTOR
+  B:002EH.0       SYMBOL        JUDGE_RECORD_NULL
+  N:009EH         SYMBOL        KEY_ADDR
+  N:0028H         SYMBOL        KEY_BIT
+  X:0030H         SYMBOL        KEY_FUTURE_ADDRESS
+  N:0005H         SYMBOL        KI_ID
+  N:00FFH         SYMBOL        LAST_PAGE_ITEM
+  N:001BH         SYMBOL        LE_LENGTH
+  N:0012H         SYMBOL        LOOK_PEOPLE_EF
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 30
+
+
+  N:00D1H         SYMBOL        MAIN_PROCESS_OUT_SP
+  N:3F00H         SYMBOL        MF
+  N:0005H         SYMBOL        MOBILE_MODEL_EF
+  N:009AH         SYMBOL        MODE_REG
+  N:00FEH         SYMBOL        NEXT_PAGE_ITEM
+  N:0000H         SYMBOL        NONE
+  N:0013H         SYMBOL        OFFSET
+  N:0013H         SYMBOL        OFFSET_HIGH
+  N:0014H         SYMBOL        OFFSET_LOW
+  N:0026H         SYMBOL        OTA_DIR_ITEM
+  N:0045H         SYMBOL        OTA_DIR_NUMBER
+  N:0043H         SYMBOL        OTA_FAT_HANDLEH
+  N:0044H         SYMBOL        OTA_FAT_HANDLEL
+  N:0027H         SYMBOL        OTA_MENU_ITEM
+  N:003EH         SYMBOL        PAGE_ADDRESS_HIGH
+  N:003FH         SYMBOL        PAGE_ADDRESS_LOW
+  N:0040H         SYMBOL        PAGE_COUNT
+  N:000BH         SYMBOL        PAGE_DISP_NUMBER
+  N:0040H         SYMBOL        PAGE_SIZE
+  N:0020H         SYMBOL        PAGE_WRITE_SIZE
+  N:009DH         SYMBOL        PLAINTEXT_ADDR
+  N:00FFH         SYMBOL        PTSS
+  N:0000H         SYMBOL        R0_BANK0
+  N:0008H         SYMBOL        R0_BANK1
+  N:0010H         SYMBOL        R0_BANK2
+  N:0018H         SYMBOL        R0_BANK3
+  N:0001H         SYMBOL        R1_BANK0
+  N:0009H         SYMBOL        R1_BANK1
+  N:0011H         SYMBOL        R1_BANK2
+  N:0019H         SYMBOL        R1_BANK3
+  N:0002H         SYMBOL        R2_BANK0
+  N:000AH         SYMBOL        R2_BANK1
+  N:0012H         SYMBOL        R2_BANK2
+  N:001AH         SYMBOL        R2_BANK3
+  N:0003H         SYMBOL        R3_BANK0
+  N:000BH         SYMBOL        R3_BANK1
+  N:0013H         SYMBOL        R3_BANK2
+  N:001BH         SYMBOL        R3_BANK3
+  N:0004H         SYMBOL        R4_BANK0
+  N:000CH         SYMBOL        R4_BANK1
+  N:0014H         SYMBOL        R4_BANK2
+  N:001CH         SYMBOL        R4_BANK3
+  N:0005H         SYMBOL        R5_BANK0
+  N:000DH         SYMBOL        R5_BANK1
+  N:0015H         SYMBOL        R5_BANK2
+  N:001DH         SYMBOL        R5_BANK3
+  N:0006H         SYMBOL        R6_BANK0
+  N:000EH         SYMBOL        R6_BANK1
+  N:0016H         SYMBOL        R6_BANK2
+  N:001EH         SYMBOL        R6_BANK3
+  N:0007H         SYMBOL        R7_BANK0
+  N:000FH         SYMBOL        R7_BANK1
+  N:0017H         SYMBOL        R7_BANK2
+  N:001FH         SYMBOL        R7_BANK3
+  N:0057H         SYMBOL        RETURN_MARK
+  B:00F8H.0       SYMBOL        RI_SRF
+  N:00A1H         SYMBOL        RNG
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 31
+
+
+  B:002CH.0       SYMBOL        RUN_W_EEPROM
+  N:00C1H         SYMBOL        SAVE_AUTHBS_BUF
+  N:FE30H         SYMBOL        SAVE_DPTR_BEGIN
+  N:00CAH         SYMBOL        SAVE_RANDBS_BUF
+  N:0000H         SYMBOL        SDES_FLAG
+  X:000CH         SYMBOL        SECTOR_128_START_END_ADDRESS
+  X:000EH         SYMBOL        SECTOR_256_START_END_ADDRESS
+  X:0010H         SYMBOL        SECTOR_512_START_END_ADDRESS
+  X:000AH         SYMBOL        SECTOR_64_START_END_ADDRESS
+  N:0040H         SYMBOL        SECTOR_SIZE
+  N:003CH         SYMBOL        SELECT_SMS_NUMBER
+  N:00F9H         SYMBOL        SEND_RECEIVE_SRF
+  N:0F42H         SYMBOL        SMS_CENTER_ID
+  N:003EH         SYMBOL        SMS_PAGE_ADDRESS
+  N:0006H         SYMBOL        SSD_ID
+  N:00D0H         SYMBOL        STACK
+  N:0022H         SYMBOL        SUPER_BEGIN
+  N:0022H         SYMBOL        SUPER_BEGIN_H
+  N:0023H         SYMBOL        SUPER_BEGIN_L
+  N:0024H         SYMBOL        SUPER_END
+  N:0024H         SYMBOL        SUPER_END_H
+  N:0025H         SYMBOL        SUPER_END_L
+  B:002CH.1       SYMBOL        SUPER_W_EEPROM
+  N:0020H         SYMBOL        SW1
+  N:0021H         SYMBOL        SW2
+  N:0040H         SYMBOL        TDES_FLAG
+  N:7F10H         SYMBOL        TELECOM_DF
+  N:002EH         SYMBOL        TEMP_BIT
+  N:0050H         SYMBOL        TEMP_BYTE
+  N:0061H         SYMBOL        TEMP_ENTRANCE1
+  N:0062H         SYMBOL        TEMP_ENTRANCE2
+  B:00F8H.1       SYMBOL        TI_SRF
+  N:004FH         SYMBOL        TOTAL_PAGE_NUM
+  N:0012H         SYMBOL        TYPE
+  N:6F31H         SYMBOL        UIM_ID_ID
+  N:0003H         SYMBOL        UNBLOCK_CHV1
+  N:0004H         SYMBOL        UNBLOCK_CHV2
+  N:0041H         SYMBOL        USE_SELECT_ITEM
+  N:0008H         SYMBOL        VIP_F
+  N:0008H         SYMBOL        VIP_F_H
+  N:0009H         SYMBOL        VIP_F_L
+  N:00CEH         SYMBOL        WRITE_ENABLE_2
+  N:00CFH         SYMBOL        WRITE_ENABLE_3
+  N:00FFH         SYMBOL        WRITE_ENABLE_4
+  N:002FH         SYMBOL        XTK_BIT
+  N:0034H         SYMBOL        XTK_INS_PC
+  N:0101H         SYMBOL        XTK_MENU_DF
+  N:0001H         SYMBOL        XTK_MENU_ID
+  N:0030H         SYMBOL        XTK_PATH1
+  N:0031H         SYMBOL        XTK_PATH2
+  N:0032H         SYMBOL        XTK_PATH3
+  N:0033H         SYMBOL        XTK_PATH4
+  N:0004H         SYMBOL        XTK_PATH_LENGTH
+  N:0035H         SYMBOL        XTK_SW2
+  -------         ENDMOD        INS_TABLE
+
+  -------         MODULE        ?BANK?SWITCHING
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 32
+
+
+  C:01B7H         SEGMENT       ?BANK?SELECT
+  C:0300H         SEGMENT       ?BANK?SWITCH
+  C:01B7H         PUBLIC        ?B_BANK0
+  C:01C9H         PUBLIC        ?B_BANK1
+  C:01DBH         PUBLIC        ?B_BANK2
+  C:01EDH         PUBLIC        ?B_BANK3
+  D:00B0H         PUBLIC        ?B_CURRENTBANK
+  N:0010H         PUBLIC        ?B_FACTOR
+  N:0030H         PUBLIC        ?B_MASK
+  N:0000H         PUBLIC        ?B_MODE
+  N:0004H         PUBLIC        ?B_NBANKS
+  N:0000H         PUBLIC        ?B_RST_BANK
+  C:0300H         PUBLIC        ?B_SWITCH0
+  C:0308H         PUBLIC        ?B_SWITCH1
+  C:0310H         PUBLIC        ?B_SWITCH2
+  C:0318H         PUBLIC        ?B_SWITCH3
+  C:0200H         PUBLIC        ?B_SWITCHBANK_A
+  C:01FFH         PUBLIC        _SWITCHBANK
+  N:0000H         SYMBOL        ?BANK?SWITCHING
+  N:0004H         SYMBOL        ?B_FIRSTBIT
+  D:00B0H         SYMBOL        ?B_PORT
+  N:0000H         SYMBOL        ?B_RTX
+  N:0000H         SYMBOL        ?B_VAR_BANKING
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  N:0000H         SYMBOL        BANK0
+  N:0010H         SYMBOL        BANK1
+  N:0020H         SYMBOL        BANK2
+  N:0030H         SYMBOL        BANK3
+  N:0004H         SYMBOL        CNT
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  B:00A8H.7       SYMBOL        EA
+  D:00A8H         SYMBOL        IE
+  N:0003H         SYMBOL        MASK
+  D:00B0H         SYMBOL        P3
+  -------         ENDMOD        ?BANK?SWITCHING
+
+  -------         MODULE        INIT
+ C0:3000H         SEGMENT       ?PR?PROG_INIT
+ C0:3000H         PUBLIC        INIT_PARAM
+  X:0012H         SYMBOL        ADM_ADDRESS
+  X:001AH         SYMBOL        ADM_NUMBER
+  N:0005H         SYMBOL        A_KEY_ID
+  B:0028H.2       SYMBOL        BADM_VERIFY
+  X:0027H         SYMBOL        BAK_CONTROL_INDEX
+  X:0004H         SYMBOL        BAK_CONTROL_START_ADDRESS
+  X:0008H         SYMBOL        BAK_DATA_END_ADDRESS
+  X:0006H         SYMBOL        BAK_DATA_START_ADDRESS
+  B:002AH.5       SYMBOL        BALREADYSAVETERMINALRESP
+  N:009CH         SYMBOL        BAUD_BR
+  N:009BH         SYMBOL        BAUD_MR
+  B:002FH.5       SYMBOL        BBACKWARD
+  B:0029H.0       SYMBOL        BBASE_CHALLENGE
+  B:002AH.1       SYMBOL        BCHECK_BY_ALPHA
+  B:0028H.0       SYMBOL        BCHV1_VERIFY
+  B:0028H.1       SYMBOL        BCHV2_VERIFY
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 33
+
+
+  B:0029H.1       SYMBOL        BCOMMIT_SSD
+  B:0028H.6       SYMBOL        BCOS_USE_SELF
+  N:0015H         SYMBOL        BDIR
+  B:002FH.2       SYMBOL        BDISPLAY_TXT
+  B:0028H.5       SYMBOL        BENHANCE_SPEED
+  B:002FH.0       SYMBOL        BFETCH
+  N:0016H         SYMBOL        BFILE
+  B:002AH.2       SYMBOL        BFIND_ASCII_UNICODE_BIT
+  B:0028H.7       SYMBOL        BHIGH_PRIORITY_THREAD
+  B:0029H.6       SYMBOL        BIN_CODE
+  B:0029H.7       SYMBOL        BLOW_HALF_BYTE
+  B:002AH.3       SYMBOL        BNEW_SMS
+  B:002FH.1       SYMBOL        BNOT_INC_PC
+  B:002AH.0       SYMBOL        BNOT_SEND_MENU_SETUP
+  B:0029H.4       SYMBOL        BNOT_SUPPORT_DEFAULT_TEXT
+  B:0029H.5       SYMBOL        BNOT_SUPPORT_UCS2_GET_INPUT
+  N:0018H         SYMBOL        BOFFSET
+  B:002FH.6       SYMBOL        BOTA
+  B:002FH.4       SYMBOL        BRETRY_XTK_INS
+  B:0029H.3       SYMBOL        BRUN_CAVE
+  B:002AH.4       SYMBOL        BSHOW_ITEM_ALPHA
+  B:0028H.3       SYMBOL        BSUPER_KEY
+  N:0017H         SYMBOL        BTYPE
+  B:0028H.4       SYMBOL        BUIM
+  B:0029H.2       SYMBOL        BUPDATE_SSD
+  B:002FH.7       SYMBOL        BWAIT_TERMINAL_RESPONSE
+  B:002FH.3       SYMBOL        BWANT_UCS2_INPUT
+  X:FE00H         SYMBOL        BYCARD_BUF_START
+  N:001BH         SYMBOL        BYCLA
+  N:0011H         SYMBOL        BYCURRENT_FILE
+  N:0010H         SYMBOL        BYDIR
+  N:0038H         SYMBOL        BYDISPLAY_INDEX
+  N:0037H         SYMBOL        BYEDIT_INDEX
+  N:0039H         SYMBOL        BYEDIT_INDEX_MENU
+  N:0036H         SYMBOL        BYFETCH_INS
+  N:0012H         SYMBOL        BYFILE_TYPE
+  N:001CH         SYMBOL        BYINS
+  N:001AH         SYMBOL        BYINS_BAK
+  X:FF00H         SYMBOL        BYMEM_MANAGE_START
+  N:001DH         SYMBOL        BYP1
+  N:001EH         SYMBOL        BYP2
+  N:001FH         SYMBOL        BYP3
+  X:FC00H         SYMBOL        BYSEND_RECEIVE_BUF
+  X:FD00H         SYMBOL        BYTEMP_START
+  X:FF30H         SYMBOL        BYXTK_GET_INPUT_BUF
+  X:FD00H         SYMBOL        BYXTK_MENU_BUF
+  X:FF20H         SYMBOL        BYXTK_THREAD_PARA_BAK
+  N:7F25H         SYMBOL        CDMA_DF
+  N:0001H         SYMBOL        CHV1_ID
+  N:0002H         SYMBOL        CHV2_ID
+  X:0021H         SYMBOL        CLUSTER_END_ADDRESS
+  X:001DH         SYMBOL        CLUSTER_FAT_END_ADDRESS
+  X:001BH         SYMBOL        CLUSTER_FAT_START_ADDRESS
+  X:001FH         SYMBOL        CLUSTER_START_ADDRESS
+  N:0006H         SYMBOL        CRC_ACCUM_HIGH
+  N:0007H         SYMBOL        CRC_ACCUM_LOW
+  N:003DH         SYMBOL        CURRENT_SEND_SMS
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 34
+
+
+  X:0023H         SYMBOL        DATA_RECOVER_TAG_ADDRESS
+  N:003FH         SYMBOL        DCS_BYTE
+  N:009FH         SYMBOL        DES_CON
+  N:0080H         SYMBOL        DES_DECRYPT_FLAG
+  N:0000H         SYMBOL        DES_ENCRYPT_FLAG
+  N:0000H         SYMBOL        DES_FIRST_FLAG
+  N:0001H         SYMBOL        DES_NOT_FIRST_FLAG
+  N:0010H         SYMBOL        DIR
+  N:0003H         SYMBOL        DIR_CDMA_INDEX
+  N:0002H         SYMBOL        DIR_GSM_INDEX
+  N:0000H         SYMBOL        DIR_MF_INDEX
+  X:0000H         SYMBOL        DIR_START_ADDRESS
+  N:0001H         SYMBOL        DIR_TELECOM_INDEX
+  N:0000H         SYMBOL        EDIT_0
+  N:0001H         SYMBOL        EDIT_1
+  N:0002H         SYMBOL        EDIT_2
+  N:0003H         SYMBOL        EDIT_3
+  N:0004H         SYMBOL        EDIT_4
+  N:0005H         SYMBOL        EDIT_5
+  N:0006H         SYMBOL        EDIT_6
+  N:0007H         SYMBOL        EDIT_7
+  N:0008H         SYMBOL        EDIT_8
+  N:0009H         SYMBOL        EDIT_9
+  N:000AH         SYMBOL        EDIT_A
+  N:000BH         SYMBOL        EDIT_B
+  N:000CH         SYMBOL        EDIT_C
+  N:000DH         SYMBOL        EDIT_D
+  N:000EH         SYMBOL        EDIT_E
+  N:000FH         SYMBOL        EDIT_F
+  N:002CH         SYMBOL        EEPROM_MANAGE_BYTE
+  N:000EH         SYMBOL        FAT_CLUSTER
+  N:000EH         SYMBOL        FAT_CLUSTER_H
+  N:000FH         SYMBOL        FAT_CLUSTER_L
+  N:000CH         SYMBOL        FFS_FAT
+  N:000CH         SYMBOL        FFS_FAT_H
+  N:000DH         SYMBOL        FFS_FAT_L
+  N:0011H         SYMBOL        FILE
+  X:0002H         SYMBOL        FIX_FILE_START_ADDRESS
+  N:000AH         SYMBOL        F_FFS
+  N:000AH         SYMBOL        F_FFS_H
+  N:000BH         SYMBOL        F_FFS_L
+  N:00FEH         SYMBOL        GO_AHEAD
+  N:00FFH         SYMBOL        GO_BACK
+  N:7F20H         SYMBOL        GSM_DF
+  N:0010H         SYMBOL        HAVE_ADM_LIMITS
+  N:0004H         SYMBOL        HAVE_CHV1_LIMITS
+  N:0008H         SYMBOL        HAVE_CHV2_LIMITS
+  N:0001H         SYMBOL        HAVE_LC
+  N:0020H         SYMBOL        HAVE_SUPER_KEY_LIMITS
+  N:0002H         SYMBOL        HAVE_WRITE_EEPROM
+  D:00A8H         SYMBOL        IE
+  N:6F22H         SYMBOL        IMSI_M_ID
+  N:0000H         SYMBOL        INIT
+ C0:3015H         SYMBOL        INIT_PARAM_OUT
+  B:002CH.2       SYMBOL        INS_START_BIT
+  X:FFF0H         SYMBOL        INT_VECTOR
+  B:002EH.0       SYMBOL        JUDGE_RECORD_NULL
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 35
+
+
+  N:009EH         SYMBOL        KEY_ADDR
+  N:0028H         SYMBOL        KEY_BIT
+  X:0030H         SYMBOL        KEY_FUTURE_ADDRESS
+  N:0005H         SYMBOL        KI_ID
+  N:00FFH         SYMBOL        LAST_PAGE_ITEM
+  N:001BH         SYMBOL        LE_LENGTH
+  N:0012H         SYMBOL        LOOK_PEOPLE_EF
+  N:00D1H         SYMBOL        MAIN_PROCESS_OUT_SP
+  N:3F00H         SYMBOL        MF
+  N:0005H         SYMBOL        MOBILE_MODEL_EF
+  N:009AH         SYMBOL        MODE_REG
+  N:00FEH         SYMBOL        NEXT_PAGE_ITEM
+  N:0000H         SYMBOL        NONE
+  N:0013H         SYMBOL        OFFSET
+  N:0013H         SYMBOL        OFFSET_HIGH
+  N:0014H         SYMBOL        OFFSET_LOW
+  N:0026H         SYMBOL        OTA_DIR_ITEM
+  N:0045H         SYMBOL        OTA_DIR_NUMBER
+  N:0043H         SYMBOL        OTA_FAT_HANDLEH
+  N:0044H         SYMBOL        OTA_FAT_HANDLEL
+  N:0027H         SYMBOL        OTA_MENU_ITEM
+  N:003EH         SYMBOL        PAGE_ADDRESS_HIGH
+  N:003FH         SYMBOL        PAGE_ADDRESS_LOW
+  N:0040H         SYMBOL        PAGE_COUNT
+  N:000BH         SYMBOL        PAGE_DISP_NUMBER
+  N:0040H         SYMBOL        PAGE_SIZE
+  N:0020H         SYMBOL        PAGE_WRITE_SIZE
+  D:0087H         SYMBOL        PCON
+  N:009DH         SYMBOL        PLAINTEXT_ADDR
+  N:00FFH         SYMBOL        PTSS
+  N:0000H         SYMBOL        R0_BANK0
+  N:0008H         SYMBOL        R0_BANK1
+  N:0010H         SYMBOL        R0_BANK2
+  N:0018H         SYMBOL        R0_BANK3
+  N:0001H         SYMBOL        R1_BANK0
+  N:0009H         SYMBOL        R1_BANK1
+  N:0011H         SYMBOL        R1_BANK2
+  N:0019H         SYMBOL        R1_BANK3
+  N:0002H         SYMBOL        R2_BANK0
+  N:000AH         SYMBOL        R2_BANK1
+  N:0012H         SYMBOL        R2_BANK2
+  N:001AH         SYMBOL        R2_BANK3
+  N:0003H         SYMBOL        R3_BANK0
+  N:000BH         SYMBOL        R3_BANK1
+  N:0013H         SYMBOL        R3_BANK2
+  N:001BH         SYMBOL        R3_BANK3
+  N:0004H         SYMBOL        R4_BANK0
+  N:000CH         SYMBOL        R4_BANK1
+  N:0014H         SYMBOL        R4_BANK2
+  N:001CH         SYMBOL        R4_BANK3
+  N:0005H         SYMBOL        R5_BANK0
+  N:000DH         SYMBOL        R5_BANK1
+  N:0015H         SYMBOL        R5_BANK2
+  N:001DH         SYMBOL        R5_BANK3
+  N:0006H         SYMBOL        R6_BANK0
+  N:000EH         SYMBOL        R6_BANK1
+  N:0016H         SYMBOL        R6_BANK2
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 36
+
+
+  N:001EH         SYMBOL        R6_BANK3
+  N:0007H         SYMBOL        R7_BANK0
+  N:000FH         SYMBOL        R7_BANK1
+  N:0017H         SYMBOL        R7_BANK2
+  N:001FH         SYMBOL        R7_BANK3
+  N:0057H         SYMBOL        RETURN_MARK
+  B:00F8H.0       SYMBOL        RI_SRF
+  N:00A1H         SYMBOL        RNG
+  B:002CH.0       SYMBOL        RUN_W_EEPROM
+  N:00C1H         SYMBOL        SAVE_AUTHBS_BUF
+  N:FE30H         SYMBOL        SAVE_DPTR_BEGIN
+  N:00CAH         SYMBOL        SAVE_RANDBS_BUF
+  D:0098H         SYMBOL        SCON
+  N:0000H         SYMBOL        SDES_FLAG
+  X:000CH         SYMBOL        SECTOR_128_START_END_ADDRESS
+  X:000EH         SYMBOL        SECTOR_256_START_END_ADDRESS
+  X:0010H         SYMBOL        SECTOR_512_START_END_ADDRESS
+  X:000AH         SYMBOL        SECTOR_64_START_END_ADDRESS
+  N:0040H         SYMBOL        SECTOR_SIZE
+  N:003CH         SYMBOL        SELECT_SMS_NUMBER
+  N:00F9H         SYMBOL        SEND_RECEIVE_SRF
+  N:0F42H         SYMBOL        SMS_CENTER_ID
+  N:003EH         SYMBOL        SMS_PAGE_ADDRESS
+  N:0006H         SYMBOL        SSD_ID
+  N:00D0H         SYMBOL        STACK
+  N:0022H         SYMBOL        SUPER_BEGIN
+  N:0022H         SYMBOL        SUPER_BEGIN_H
+  N:0023H         SYMBOL        SUPER_BEGIN_L
+  N:0024H         SYMBOL        SUPER_END
+  N:0024H         SYMBOL        SUPER_END_H
+  N:0025H         SYMBOL        SUPER_END_L
+  B:002CH.1       SYMBOL        SUPER_W_EEPROM
+  N:0020H         SYMBOL        SW1
+  N:0021H         SYMBOL        SW2
+  D:0088H         SYMBOL        TCON
+  N:0040H         SYMBOL        TDES_FLAG
+  N:7F10H         SYMBOL        TELECOM_DF
+  N:002EH         SYMBOL        TEMP_BIT
+  N:0050H         SYMBOL        TEMP_BYTE
+  N:0061H         SYMBOL        TEMP_ENTRANCE1
+  N:0062H         SYMBOL        TEMP_ENTRANCE2
+  B:00F8H.1       SYMBOL        TI_SRF
+  D:0089H         SYMBOL        TMOD
+  N:004FH         SYMBOL        TOTAL_PAGE_NUM
+  N:0012H         SYMBOL        TYPE
+  N:6F31H         SYMBOL        UIM_ID_ID
+  N:0003H         SYMBOL        UNBLOCK_CHV1
+  N:0004H         SYMBOL        UNBLOCK_CHV2
+  N:0041H         SYMBOL        USE_SELECT_ITEM
+  N:0008H         SYMBOL        VIP_F
+  N:0008H         SYMBOL        VIP_F_H
+  N:0009H         SYMBOL        VIP_F_L
+  N:00CEH         SYMBOL        WRITE_ENABLE_2
+  N:00CFH         SYMBOL        WRITE_ENABLE_3
+  N:00FFH         SYMBOL        WRITE_ENABLE_4
+  N:002FH         SYMBOL        XTK_BIT
+  N:0034H         SYMBOL        XTK_INS_PC
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 37
+
+
+  N:0101H         SYMBOL        XTK_MENU_DF
+  N:0001H         SYMBOL        XTK_MENU_ID
+  N:0030H         SYMBOL        XTK_PATH1
+  N:0031H         SYMBOL        XTK_PATH2
+  N:0032H         SYMBOL        XTK_PATH3
+  N:0033H         SYMBOL        XTK_PATH4
+  N:0004H         SYMBOL        XTK_PATH_LENGTH
+  N:0035H         SYMBOL        XTK_SW2
+ C0:3000H         LINE#         10
+ C0:3003H         LINE#         11
+ C0:3006H         LINE#         12
+ C0:3009H         LINE#         13
+ C0:300CH         LINE#         15
+ C0:300FH         LINE#         20
+ C0:3012H         LINE#         21
+ C0:3015H         LINE#         23
+  -------         ENDMOD        INIT
+
+  -------         MODULE        DES_FLASH
+  C:B000H         SEGMENT       PROG_EEPROM
+  C:B051H         PUBLIC        ACC_ADD_DPTR
+  C:B000H         PUBLIC        DES_ENCRYPT_OR_DECRYPT
+  C:B001H         PUBLIC        ERASE_SECTOR
+  C:B048H         PUBLIC        FILL_XRAM_A
+  C:B05EH         PUBLIC        WRITEPROCESS
+  D:00E0H         SYMBOL        ACC
+  X:0012H         SYMBOL        ADM_ADDRESS
+  X:001AH         SYMBOL        ADM_NUMBER
+  N:0005H         SYMBOL        A_KEY_ID
+  B:0028H.2       SYMBOL        BADM_VERIFY
+  X:0027H         SYMBOL        BAK_CONTROL_INDEX
+  X:0004H         SYMBOL        BAK_CONTROL_START_ADDRESS
+  X:0008H         SYMBOL        BAK_DATA_END_ADDRESS
+  X:0006H         SYMBOL        BAK_DATA_START_ADDRESS
+  B:002AH.5       SYMBOL        BALREADYSAVETERMINALRESP
+  N:009CH         SYMBOL        BAUD_BR
+  N:009BH         SYMBOL        BAUD_MR
+  B:002FH.5       SYMBOL        BBACKWARD
+  B:0029H.0       SYMBOL        BBASE_CHALLENGE
+  B:002AH.1       SYMBOL        BCHECK_BY_ALPHA
+  B:0028H.0       SYMBOL        BCHV1_VERIFY
+  B:0028H.1       SYMBOL        BCHV2_VERIFY
+  B:0029H.1       SYMBOL        BCOMMIT_SSD
+  B:0028H.6       SYMBOL        BCOS_USE_SELF
+  N:0015H         SYMBOL        BDIR
+  B:002FH.2       SYMBOL        BDISPLAY_TXT
+  B:0028H.5       SYMBOL        BENHANCE_SPEED
+  B:002FH.0       SYMBOL        BFETCH
+  N:0016H         SYMBOL        BFILE
+  B:002AH.2       SYMBOL        BFIND_ASCII_UNICODE_BIT
+  B:0028H.7       SYMBOL        BHIGH_PRIORITY_THREAD
+  B:0029H.6       SYMBOL        BIN_CODE
+  B:0029H.7       SYMBOL        BLOW_HALF_BYTE
+  B:002AH.3       SYMBOL        BNEW_SMS
+  B:002FH.1       SYMBOL        BNOT_INC_PC
+  B:002AH.0       SYMBOL        BNOT_SEND_MENU_SETUP
+  B:0029H.4       SYMBOL        BNOT_SUPPORT_DEFAULT_TEXT
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 38
+
+
+  B:0029H.5       SYMBOL        BNOT_SUPPORT_UCS2_GET_INPUT
+  N:0018H         SYMBOL        BOFFSET
+  B:002FH.6       SYMBOL        BOTA
+  B:002FH.4       SYMBOL        BRETRY_XTK_INS
+  B:0029H.3       SYMBOL        BRUN_CAVE
+  B:002AH.4       SYMBOL        BSHOW_ITEM_ALPHA
+  B:0028H.3       SYMBOL        BSUPER_KEY
+  N:0017H         SYMBOL        BTYPE
+  B:0028H.4       SYMBOL        BUIM
+  B:0029H.2       SYMBOL        BUPDATE_SSD
+  B:002FH.7       SYMBOL        BWAIT_TERMINAL_RESPONSE
+  B:002FH.3       SYMBOL        BWANT_UCS2_INPUT
+  X:FE00H         SYMBOL        BYCARD_BUF_START
+  N:001BH         SYMBOL        BYCLA
+  N:0011H         SYMBOL        BYCURRENT_FILE
+  N:0010H         SYMBOL        BYDIR
+  N:0038H         SYMBOL        BYDISPLAY_INDEX
+  N:0037H         SYMBOL        BYEDIT_INDEX
+  N:0039H         SYMBOL        BYEDIT_INDEX_MENU
+  N:0036H         SYMBOL        BYFETCH_INS
+  N:0012H         SYMBOL        BYFILE_TYPE
+  N:001CH         SYMBOL        BYINS
+  N:001AH         SYMBOL        BYINS_BAK
+  X:FF00H         SYMBOL        BYMEM_MANAGE_START
+  N:001DH         SYMBOL        BYP1
+  N:001EH         SYMBOL        BYP2
+  N:001FH         SYMBOL        BYP3
+  X:FC00H         SYMBOL        BYSEND_RECEIVE_BUF
+  X:FD00H         SYMBOL        BYTEMP_START
+  X:FF30H         SYMBOL        BYXTK_GET_INPUT_BUF
+  X:FD00H         SYMBOL        BYXTK_MENU_BUF
+  X:FF20H         SYMBOL        BYXTK_THREAD_PARA_BAK
+  N:7F25H         SYMBOL        CDMA_DF
+  N:0001H         SYMBOL        CHV1_ID
+  N:0002H         SYMBOL        CHV2_ID
+  X:0021H         SYMBOL        CLUSTER_END_ADDRESS
+  X:001DH         SYMBOL        CLUSTER_FAT_END_ADDRESS
+  X:001BH         SYMBOL        CLUSTER_FAT_START_ADDRESS
+  X:001FH         SYMBOL        CLUSTER_START_ADDRESS
+  N:0006H         SYMBOL        CRC_ACCUM_HIGH
+  N:0007H         SYMBOL        CRC_ACCUM_LOW
+  N:003DH         SYMBOL        CURRENT_SEND_SMS
+  X:0023H         SYMBOL        DATA_RECOVER_TAG_ADDRESS
+  N:003FH         SYMBOL        DCS_BYTE
+  N:009FH         SYMBOL        DES_CON
+  N:0080H         SYMBOL        DES_DECRYPT_FLAG
+  N:0000H         SYMBOL        DES_ENCRYPT_FLAG
+  N:0000H         SYMBOL        DES_FIRST_FLAG
+  N:0000H         SYMBOL        DES_FLASH
+  N:0001H         SYMBOL        DES_NOT_FIRST_FLAG
+  N:0010H         SYMBOL        DIR
+  N:0003H         SYMBOL        DIR_CDMA_INDEX
+  N:0002H         SYMBOL        DIR_GSM_INDEX
+  N:0000H         SYMBOL        DIR_MF_INDEX
+  X:0000H         SYMBOL        DIR_START_ADDRESS
+  N:0001H         SYMBOL        DIR_TELECOM_INDEX
+  D:0083H         SYMBOL        DPH
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 39
+
+
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        EDIT_0
+  N:0001H         SYMBOL        EDIT_1
+  N:0002H         SYMBOL        EDIT_2
+  N:0003H         SYMBOL        EDIT_3
+  N:0004H         SYMBOL        EDIT_4
+  N:0005H         SYMBOL        EDIT_5
+  N:0006H         SYMBOL        EDIT_6
+  N:0007H         SYMBOL        EDIT_7
+  N:0008H         SYMBOL        EDIT_8
+  N:0009H         SYMBOL        EDIT_9
+  N:000AH         SYMBOL        EDIT_A
+  N:000BH         SYMBOL        EDIT_B
+  N:000CH         SYMBOL        EDIT_C
+  N:000DH         SYMBOL        EDIT_D
+  N:000EH         SYMBOL        EDIT_E
+  N:000FH         SYMBOL        EDIT_F
+  N:002CH         SYMBOL        EEPROM_MANAGE_BYTE
+  C:B044H         SYMBOL        ERASESUCCESS
+  N:000EH         SYMBOL        FAT_CLUSTER
+  N:000EH         SYMBOL        FAT_CLUSTER_H
+  N:000FH         SYMBOL        FAT_CLUSTER_L
+  N:000CH         SYMBOL        FFS_FAT
+  N:000CH         SYMBOL        FFS_FAT_H
+  N:000DH         SYMBOL        FFS_FAT_L
+  N:0011H         SYMBOL        FILE
+  C:B04CH         SYMBOL        FILL_XRAM_A_LOOP
+  X:0002H         SYMBOL        FIX_FILE_START_ADDRESS
+  N:000AH         SYMBOL        F_FFS
+  N:000AH         SYMBOL        F_FFS_H
+  N:000BH         SYMBOL        F_FFS_L
+  N:00FEH         SYMBOL        GO_AHEAD
+  N:00FFH         SYMBOL        GO_BACK
+  N:7F20H         SYMBOL        GSM_DF
+  N:0010H         SYMBOL        HAVE_ADM_LIMITS
+  N:0004H         SYMBOL        HAVE_CHV1_LIMITS
+  N:0008H         SYMBOL        HAVE_CHV2_LIMITS
+  N:0001H         SYMBOL        HAVE_LC
+  N:0020H         SYMBOL        HAVE_SUPER_KEY_LIMITS
+  N:0002H         SYMBOL        HAVE_WRITE_EEPROM
+  N:6F22H         SYMBOL        IMSI_M_ID
+  B:002CH.2       SYMBOL        INS_START_BIT
+  X:FFF0H         SYMBOL        INT_VECTOR
+  B:002EH.0       SYMBOL        JUDGE_RECORD_NULL
+  N:009EH         SYMBOL        KEY_ADDR
+  N:0028H         SYMBOL        KEY_BIT
+  X:0030H         SYMBOL        KEY_FUTURE_ADDRESS
+  N:0005H         SYMBOL        KI_ID
+  N:00FFH         SYMBOL        LAST_PAGE_ITEM
+  N:001BH         SYMBOL        LE_LENGTH
+  N:0012H         SYMBOL        LOOK_PEOPLE_EF
+  N:00D1H         SYMBOL        MAIN_PROCESS_OUT_SP
+  N:3F00H         SYMBOL        MF
+  N:0005H         SYMBOL        MOBILE_MODEL_EF
+  N:009AH         SYMBOL        MODE_REG
+  N:00FEH         SYMBOL        NEXT_PAGE_ITEM
+  N:0000H         SYMBOL        NONE
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 40
+
+
+  N:0013H         SYMBOL        OFFSET
+  N:0013H         SYMBOL        OFFSET_HIGH
+  N:0014H         SYMBOL        OFFSET_LOW
+  N:0026H         SYMBOL        OTA_DIR_ITEM
+  N:0045H         SYMBOL        OTA_DIR_NUMBER
+  N:0043H         SYMBOL        OTA_FAT_HANDLEH
+  N:0044H         SYMBOL        OTA_FAT_HANDLEL
+  N:0027H         SYMBOL        OTA_MENU_ITEM
+  N:003EH         SYMBOL        PAGE_ADDRESS_HIGH
+  N:003FH         SYMBOL        PAGE_ADDRESS_LOW
+  N:0040H         SYMBOL        PAGE_COUNT
+  N:000BH         SYMBOL        PAGE_DISP_NUMBER
+  N:0040H         SYMBOL        PAGE_SIZE
+  N:0020H         SYMBOL        PAGE_WRITE_SIZE
+  N:009DH         SYMBOL        PLAINTEXT_ADDR
+  N:00FFH         SYMBOL        PTSS
+  N:0000H         SYMBOL        R0_BANK0
+  N:0008H         SYMBOL        R0_BANK1
+  N:0010H         SYMBOL        R0_BANK2
+  N:0018H         SYMBOL        R0_BANK3
+  N:0001H         SYMBOL        R1_BANK0
+  N:0009H         SYMBOL        R1_BANK1
+  N:0011H         SYMBOL        R1_BANK2
+  N:0019H         SYMBOL        R1_BANK3
+  N:0002H         SYMBOL        R2_BANK0
+  N:000AH         SYMBOL        R2_BANK1
+  N:0012H         SYMBOL        R2_BANK2
+  N:001AH         SYMBOL        R2_BANK3
+  N:0003H         SYMBOL        R3_BANK0
+  N:000BH         SYMBOL        R3_BANK1
+  N:0013H         SYMBOL        R3_BANK2
+  N:001BH         SYMBOL        R3_BANK3
+  N:0004H         SYMBOL        R4_BANK0
+  N:000CH         SYMBOL        R4_BANK1
+  N:0014H         SYMBOL        R4_BANK2
+  N:001CH         SYMBOL        R4_BANK3
+  N:0005H         SYMBOL        R5_BANK0
+  N:000DH         SYMBOL        R5_BANK1
+  N:0015H         SYMBOL        R5_BANK2
+  N:001DH         SYMBOL        R5_BANK3
+  N:0006H         SYMBOL        R6_BANK0
+  N:000EH         SYMBOL        R6_BANK1
+  N:0016H         SYMBOL        R6_BANK2
+  N:001EH         SYMBOL        R6_BANK3
+  N:0007H         SYMBOL        R7_BANK0
+  N:000FH         SYMBOL        R7_BANK1
+  N:0017H         SYMBOL        R7_BANK2
+  N:001FH         SYMBOL        R7_BANK3
+  N:0057H         SYMBOL        RETURN_MARK
+  B:00F8H.0       SYMBOL        RI_SRF
+  N:00A1H         SYMBOL        RNG
+  B:002CH.0       SYMBOL        RUN_W_EEPROM
+  N:00C1H         SYMBOL        SAVE_AUTHBS_BUF
+  N:FE30H         SYMBOL        SAVE_DPTR_BEGIN
+  N:00CAH         SYMBOL        SAVE_RANDBS_BUF
+  N:0000H         SYMBOL        SDES_FLAG
+  X:000CH         SYMBOL        SECTOR_128_START_END_ADDRESS
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 41
+
+
+  X:000EH         SYMBOL        SECTOR_256_START_END_ADDRESS
+  X:0010H         SYMBOL        SECTOR_512_START_END_ADDRESS
+  X:000AH         SYMBOL        SECTOR_64_START_END_ADDRESS
+  C:B005H         SYMBOL        SECTOR_ERASE
+  N:0040H         SYMBOL        SECTOR_SIZE
+  N:003CH         SYMBOL        SELECT_SMS_NUMBER
+  N:00F9H         SYMBOL        SEND_RECEIVE_SRF
+  N:0F42H         SYMBOL        SMS_CENTER_ID
+  N:003EH         SYMBOL        SMS_PAGE_ADDRESS
+  N:0006H         SYMBOL        SSD_ID
+  N:00D0H         SYMBOL        STACK
+  N:0022H         SYMBOL        SUPER_BEGIN
+  N:0022H         SYMBOL        SUPER_BEGIN_H
+  N:0023H         SYMBOL        SUPER_BEGIN_L
+  N:0024H         SYMBOL        SUPER_END
+  N:0024H         SYMBOL        SUPER_END_H
+  N:0025H         SYMBOL        SUPER_END_L
+  B:002CH.1       SYMBOL        SUPER_W_EEPROM
+  N:0020H         SYMBOL        SW1
+  N:0021H         SYMBOL        SW2
+  N:0040H         SYMBOL        TDES_FLAG
+  N:7F10H         SYMBOL        TELECOM_DF
+  N:002EH         SYMBOL        TEMP_BIT
+  N:0050H         SYMBOL        TEMP_BYTE
+  N:0061H         SYMBOL        TEMP_ENTRANCE1
+  N:0062H         SYMBOL        TEMP_ENTRANCE2
+  B:00F8H.1       SYMBOL        TI_SRF
+  N:004FH         SYMBOL        TOTAL_PAGE_NUM
+  N:0012H         SYMBOL        TYPE
+  N:6F31H         SYMBOL        UIM_ID_ID
+  N:0003H         SYMBOL        UNBLOCK_CHV1
+  N:0004H         SYMBOL        UNBLOCK_CHV2
+  N:0041H         SYMBOL        USE_SELECT_ITEM
+  N:0008H         SYMBOL        VIP_F
+  N:0008H         SYMBOL        VIP_F_H
+  N:0009H         SYMBOL        VIP_F_L
+  C:B039H         SYMBOL        VREAD_VERIFY
+  N:00CEH         SYMBOL        WRITE_ENABLE_2
+  N:00CFH         SYMBOL        WRITE_ENABLE_3
+  N:00FFH         SYMBOL        WRITE_ENABLE_4
+  N:002FH         SYMBOL        XTK_BIT
+  N:0034H         SYMBOL        XTK_INS_PC
+  N:0101H         SYMBOL        XTK_MENU_DF
+  N:0001H         SYMBOL        XTK_MENU_ID
+  N:0030H         SYMBOL        XTK_PATH1
+  N:0031H         SYMBOL        XTK_PATH2
+  N:0032H         SYMBOL        XTK_PATH3
+  N:0033H         SYMBOL        XTK_PATH4
+  N:0004H         SYMBOL        XTK_PATH_LENGTH
+  N:0035H         SYMBOL        XTK_SW2
+  C:B000H         LINE#         24
+  C:B001H         LINE#         43
+  C:B003H         LINE#         45
+  C:B005H         LINE#         48
+  C:B007H         LINE#         49
+  C:B009H         LINE#         52
+  C:B00CH         LINE#         53
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 42
+
+
+  C:B00FH         LINE#         54
+  C:B011H         LINE#         55
+  C:B012H         LINE#         56
+  C:B015H         LINE#         57
+  C:B017H         LINE#         58
+  C:B018H         LINE#         59
+  C:B01BH         LINE#         60
+  C:B01DH         LINE#         61
+  C:B01EH         LINE#         62
+  C:B021H         LINE#         63
+  C:B023H         LINE#         64
+  C:B024H         LINE#         65
+  C:B027H         LINE#         66
+  C:B029H         LINE#         67
+  C:B02AH         LINE#         70
+  C:B02CH         LINE#         71
+  C:B02EH         LINE#         72
+  C:B030H         LINE#         73
+  C:B031H         LINE#         75
+  C:B032H         LINE#         76
+  C:B033H         LINE#         77
+  C:B034H         LINE#         78
+  C:B035H         LINE#         79
+  C:B036H         LINE#         80
+  C:B037H         LINE#         81
+  C:B038H         LINE#         82
+  C:B039H         LINE#         84
+  C:B03BH         LINE#         85
+  C:B03EH         LINE#         86
+  C:B040H         LINE#         87
+  C:B041H         LINE#         88
+  C:B043H         LINE#         89
+  C:B044H         LINE#         92
+  C:B045H         LINE#         93
+  C:B047H         LINE#         94
+  C:B048H         LINE#         99
+  C:B04BH         LINE#         100
+  C:B04CH         LINE#         102
+  C:B04DH         LINE#         103
+  C:B04EH         LINE#         105
+  C:B050H         LINE#         107
+  C:B051H         LINE#         112
+  C:B053H         LINE#         113
+  C:B055H         LINE#         115
+  C:B057H         LINE#         116
+  C:B059H         LINE#         117
+  C:B05BH         LINE#         119
+  C:B05DH         LINE#         121
+  C:B05EH         LINE#         130
+  C:B060H         LINE#         131
+  C:B062H         LINE#         132
+  C:B064H         LINE#         149
+  C:B066H         LINE#         150
+  C:B068H         LINE#         151
+  C:B06AH         LINE#         153
+  C:B06BH         LINE#         154
+  C:B06CH         LINE#         155
+BL51 BANKED LINKER/LOCATER V6.00                                                      02/09/2007  17:01:55  PAGE 43
+
+
+  C:B06DH         LINE#         156
+  C:B06EH         LINE#         157
+  C:B06FH         LINE#         159
+  -------         ENDMOD        DES_FLASH
+
+Program Size: data=8.0 xdata=0 code=9706
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

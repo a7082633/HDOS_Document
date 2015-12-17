@@ -1,0 +1,1 @@
+"09ctest\bank2.asm" INCDIR(include) SET (SMALL,simulator) DEBUG PRINT(.\bank2.lst) OBJECT(.\Debug\bank2.obj) EP

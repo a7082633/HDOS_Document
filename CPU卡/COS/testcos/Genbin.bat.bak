@@ -1,0 +1,4 @@
+hex2bin /q .\Release\cos.h00  cos_h00.Bin
+hex2bin /q .\Release\cos.h01  cos_h01.Bin
+bin\hex2bin /q .\Release\cos.h02  cos_h02.Bin
+link_bin.exe

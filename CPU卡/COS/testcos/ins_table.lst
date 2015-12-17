@@ -1,0 +1,738 @@
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     1
+
+
+MACRO ASSEMBLER A51 V6.23
+OBJECT MODULE PLACED IN .\Release\ins_table.obj
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE 09ctest\ins_table.asm SET(SMALL) PRINT(.\ins_table.lst) OBJECT(.\Release\i
+                      ns_table.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1                                     Name    INS_Table
+                       2     
+                       3     ;$include (main.inc)
+  0000          +1     4     R0_Bank0                        equ     00h
+  0001          +1     5     R1_Bank0                        equ     01h
+  0002          +1     6     R2_Bank0                        equ     02h
+  0003          +1     7     R3_Bank0                        equ     03h
+  0004          +1     8     R4_Bank0                        equ     04h
+  0005          +1     9     R5_Bank0                        equ     05h
+  0006          +1    10     R6_Bank0                        equ     06h
+  0007          +1    11     R7_Bank0                        equ     07h
+                +1    12     
+  0008          +1    13     R0_Bank1                        equ     08h
+  0009          +1    14     R1_Bank1                        equ     09h
+  000A          +1    15     R2_Bank1                        equ     0Ah
+  000B          +1    16     R3_Bank1                        equ     0Bh
+  000C          +1    17     R4_Bank1                        equ     0Ch
+  000D          +1    18     R5_Bank1                        equ     0Dh
+  000E          +1    19     R6_Bank1                        equ     0Eh
+  000F          +1    20     R7_Bank1                        equ     0Fh
+                +1    21     
+  0010          +1    22     R0_Bank2                        equ     10h
+  0011          +1    23     R1_Bank2                        equ     11h
+  0012          +1    24     R2_Bank2                        equ     12h
+  0013          +1    25     R3_Bank2                        equ     13h
+  0014          +1    26     R4_Bank2                        equ     14h
+  0015          +1    27     R5_Bank2                        equ     15h
+  0016          +1    28     R6_Bank2                        equ     16h
+  0017          +1    29     R7_Bank2                        equ     17h
+                +1    30     
+  0018          +1    31     R0_Bank3                        equ     18h
+  0019          +1    32     R1_Bank3                        equ     19h
+  001A          +1    33     R2_Bank3                        equ     1Ah
+  001B          +1    34     R3_Bank3                        equ     1Bh
+  001C          +1    35     R4_Bank3                        equ     1Ch
+  001D          +1    36     R5_Bank3                        equ     1Dh
+  001E          +1    37     R6_Bank3                        equ     1Eh
+  001F          +1    38     R7_Bank3                        equ     1Fh
+                +1    39     
+  0000          +1    40     Edit_0                          equ     00h
+  0001          +1    41     Edit_1                          equ     01h
+  0002          +1    42     Edit_2                          equ     02h
+  0003          +1    43     Edit_3                          equ     03h
+  0004          +1    44     Edit_4                          equ     04h
+  0005          +1    45     Edit_5                          equ     05h
+  0006          +1    46     Edit_6                          equ     06h
+  0007          +1    47     Edit_7                          equ     07h
+  0008          +1    48     Edit_8                          equ     08h
+  0009          +1    49     Edit_9                          equ     09h
+  000A          +1    50     Edit_A                          equ     0Ah
+  000B          +1    51     Edit_B                          equ     0Bh
+  000C          +1    52     Edit_C                          equ     0Ch
+  000D          +1    53     Edit_D                          equ     0Dh
+  000E          +1    54     Edit_E                          equ     0Eh
+  000F          +1    55     Edit_F                          equ     0Fh
+                +1    56     ;;******************************************************
+                +1    57     
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     2
+
+  0000          +1    58     DIR_MF_Index                    equ     00h
+  0001          +1    59     DIR_Telecom_Index               equ     01h
+  0002          +1    60     DIR_GSM_Index                   equ     02h
+  0003          +1    61     DIR_CDMA_Index                  equ     03h
+                +1    62     
+  0004          +1    63     XTK_Path_Length                 equ     04h
+  000B          +1    64     Page_Disp_Number                equ     0bh
+  0020          +1    65     Page_Write_Size                 equ     20h
+  0040          +1    66     Page_Size                       equ     40h
+  00FF          +1    67     PTSS                            equ     0ffh
+                +1    68     
+  00FE          +1    69     Next_Page_Item                  equ     0FEh
+  00FF          +1    70     Last_Page_Item                  equ     0FFh
+                +1    71     
+  00FF          +1    72     GO_BACK                         equ     Last_Page_Item
+  00FE          +1    73     GO_AHEAD                        equ     Next_Page_Item
+                +1    74     ;;******************************************************
+                +1    75     
+  0000          +1    76     DES_Encrypt_Flag                equ     00h
+  0080          +1    77     DES_Decrypt_Flag                equ     80h
+                +1    78     
+  0000          +1    79     SDES_Flag                       equ     00h
+  0040          +1    80     TDES_Flag                       equ     40h
+                +1    81     
+  0000          +1    82     DES_First_Flag                  equ     00h
+  0001          +1    83     DES_Not_First_Flag              equ     01h
+                +1    84     
+  0000          +1    85     None                            equ     00000000b
+  0001          +1    86     Have_Lc                         equ     00000001b
+  0002          +1    87     Have_Write_Eeprom               equ     00000010b
+  0004          +1    88     Have_CHV1_Limits                equ     00000100b
+  0008          +1    89     Have_CHV2_Limits                equ     00001000b
+  0010          +1    90     Have_ADM_Limits                 equ     00010000b
+  0020          +1    91     Have_Super_Key_Limits           equ     00100000b
+                +1    92     
+                +1    93     
+  0006          +1    94     CRC_accum_high                  equ     R6_Bank0
+  0007          +1    95     CRC_accum_low                   equ     R7_Bank0
+                +1    96     
+  0008          +1    97     VIP_F                           EQU     08H
+  000A          +1    98     F_FFS                           EQU     0AH
+  000C          +1    99     FFS_FAT                         EQU     0CH                             ;Number in FFS_FAT 
+                             MUST be at bouadary od EEPROM_PAGE
+  000E          +1   100     FAT_CLUSTER                     EQU     0EH                             ;Number in FAT_CLUS
+                             TER MUST be at bouadary od EEPROM_PAGE
+                +1   101     
+  0008          +1   102     VIP_F_H                         equ     VIP_F+00h
+  0009          +1   103     VIP_F_L                         equ     VIP_F+01h
+                +1   104     
+  000A          +1   105     F_FFS_H                         equ     F_FFS+00h
+  000B          +1   106     F_FFS_L                         equ     F_FFS+01h
+                +1   107     
+  000C          +1   108     FFS_FAT_H                       equ     FFS_FAT+00h
+  000D          +1   109     FFS_FAT_L                       equ     FFS_FAT+01h
+                +1   110     
+  000E          +1   111     FAT_CLUSTER_H                   equ     FAT_CLUSTER+00h
+  000F          +1   112     FAT_CLUSTER_L                   equ     FAT_CLUSTER+01h
+                +1   113     
+                +1   114     
+  0010          +1   115     DIR                             EQU     10H
+  0011          +1   116     FILE                            EQU     11H
+  0012          +1   117     TYPE                            EQU     12H
+  0013          +1   118     OFFSET                          EQU     13H
+                +1   119     ;OFFSET+1                       EQU     14H
+                +1   120     
+                +1   121     
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     3
+
+  0010          +1   122     byDir                           equ     DIR                             ; current directory
+  0011          +1   123     byCurrent_File                  equ     FILE                            ; Current file.
+  0012          +1   124     byFile_Type                     equ     TYPE                            ; Type file BIT7=1/
+                             0: FAT/FIXED file
+  0013          +1   125     offset_high                     equ     OFFSET                          ; Save eeprom offse
+                             t of current file
+  0014          +1   126     offset_low                      equ     OFFSET+01h
+                +1   127     
+                +1   128     
+  0015          +1   129     BDIR                            EQU     15h                             ;The following byte
+                             s are for Backups when do FSELECT().
+  0016          +1   130     BFILE                           EQU     16H
+  0017          +1   131     BTYPE                           EQU     17H
+  0018          +1   132     BOFFSET                         EQU     18H
+                +1   133     ;BOFFSET+1                      EQU     19H
+                +1   134     
+  001A          +1   135     byINS_Bak                       equ     1Ah
+  001B          +1   136     byCLA                           equ     1BH
+  001C          +1   137     byINS                           equ     1CH
+  001D          +1   138     byP1                            equ     1DH
+  001E          +1   139     byP2                            equ     1EH
+  001F          +1   140     byP3                            equ     1FH
+  001B          +1   141     Le_Length                       equ     byCLA
+                +1   142     
+  0020          +1   143     SW1                             equ     20h                             ; Ó¦´ðÐÅÏ¢µÚÒ»¸ö×Ö½
+                             Ú, Can be use temp
+  0021          +1   144     SW2                             equ     21h                             ; Ó¦´ðÐÅÏ¢µÚ¶þ¸ö×Ö½
+                             Ú, Can be use temp
+                +1   145     
+  0022          +1   146     SUPER_BEGIN                     equ     22h
+  0022          +1   147     SUPER_BEGIN_H                   equ     SUPER_BEGIN+00h
+  0023          +1   148     SUPER_BEGIN_L                   equ     SUPER_BEGIN+01h
+                +1   149     
+  0024          +1   150     SUPER_END                       equ     24h
+  0024          +1   151     SUPER_END_H                     equ     SUPER_END+00h
+  0025          +1   152     SUPER_END_L                     equ     SUPER_END+01h
+                +1   153     
+  0026          +1   154     OTA_dir_Item                    equ     26h
+  0027          +1   155     OTA_Menu_Item                   equ     27h
+                +1   156     
+  0028          +1   157     Key_Bit                         equ     28h
+  0040          +1   158     bCHV1_Verify                    bit     Key_Bit.0                       ; CHV1 ÑéÖ¤±êÖ¾
+  0041          +1   159     bCHV2_Verify                    bit     Key_Bit.1                       ; CHV2 ÑéÖ¤±êÖ¾
+  0042          +1   160     bADM_Verify                     bit     Key_Bit.2                       ; ADM  ÑéÖ¤±êÖ¾
+  0043          +1   161     bSuper_Key                      bit     Key_Bit.3
+  0044          +1   162     bUIM                            bit     Key_Bit.4                       ; =0 For SIM , =1 F
+                             or UIM
+  0045          +1   163     bEnhance_Speed                  bit     Key_Bit.5
+  0046          +1   164     bCOS_use_self                   bit     Key_Bit.6                       ; =0 Use normal, =1
+                              Use by COS self
+  0047          +1   165     bHigh_Priority_Thread           bit     Key_Bit.7
+                +1   166     
+  0048          +1   167     bBase_Challenge                 Bit     29h.0
+  0049          +1   168     bCommit_SSD                     Bit     29h.1
+  004A          +1   169     bUpdate_SSD                     Bit     29h.2
+  004B          +1   170     bRun_CAVE                       Bit     29h.3
+                +1   171     
+  004C          +1   172     bNot_Support_Default_Text       bit     29h.4
+  004D          +1   173     bNot_Support_UCS2_Get_Input     bit     29h.5                           ; FOR ½µ¼¶ÏÔÊ¾
+  004E          +1   174     bIn_Code                        bit     29h.6
+  004F          +1   175     bLow_half_byte                  bit     29h.7
+                +1   176     
+  0050          +1   177     bNot_Send_Menu_Setup            bit     2Ah.0
+                +1   178     
+  0051          +1   179     bCheck_by_alpha                 bit     2Ah.1
+  0052          +1   180     bFind_ascii_unicode_bit         bit     2Ah.2
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     4
+
+  0053          +1   181     bNew_SMS                        bit     2Ah.3
+  0054          +1   182     bShow_Item_Alpha                bit     2Ah.4
+  0055          +1   183     bAlreadySaveTerminalResp        bit     2Ah.5
+                +1   184     
+  002E          +1   185     Temp_bit                        equ     2Eh
+                +1   186     
+  002F          +1   187     XTK_Bit                         equ     2Fh
+  0078          +1   188     bFetch                          bit     XTK_Bit.0
+  0079          +1   189     bNot_INC_PC                     bit     XTK_Bit.1
+  007A          +1   190     bDisplay_Txt                    bit     XTK_Bit.2                       ; XTK Command End
+  007B          +1   191     bWant_UCS2_Input                bit     XTK_Bit.3
+  007C          +1   192     bRetry_XTK_INS                  bit     XTK_Bit.4
+  007D          +1   193     bBackward                       bit     XTK_Bit.5
+  007E          +1   194     bOTA                            BIT     XTK_Bit.6
+  007F          +1   195     bWait_Terminal_Response         bit     XTK_Bit.7
+                +1   196     
+  0030          +1   197     XTK_PATH1                       equ     30H                             ; ¿ØÖÆ×Ö½Ú±àºÅµÄµÚÒ
+                             »¸ö×Ö½Ú
+  0031          +1   198     XTK_PATH2                       equ     31H                             ; ¿ØÖÆ×Ö½Ú±àºÅµÄµÚ¶
+                             þ¸ö×Ö½Ú
+  0032          +1   199     XTK_PATH3                       equ     32H                             ; ¿ØÖÆ×Ö½Ú±àºÅµÄµÚÈ
+                             ¸ö×Ö½Ú
+  0033          +1   200     XTK_PATH4                       equ     33H                             ; ¿ØÖÆ×Ö½Ú±àºÅµÄµÚÈ
+                             ¸ö×Ö½Ú
+  0034          +1   201     XTK_INS_PC                      equ     34H                             ; ²Ëµ¥ÃüÁîË÷ÒºÅ
+  0035          +1   202     XTK_sw2                         equ     35h                             ; UTK return Data l
+                             ength
+  0036          +1   203     byFetch_INS                     equ     36h
+  0037          +1   204     byEDIT_INDEX                    equ     37H                             ; ±à¼­ÇøË÷ÒºÅ
+  0038          +1   205     byDisplay_Index                 equ     38h
+                +1   206     
+  0039          +1   207     byEdit_index_Menu               EQU     39h
+                +1   208     
+  003C          +1   209     Select_SMS_Number               equ     3Ch
+  003D          +1   210     Current_Send_SMS                equ     3Dh
+                +1   211     
+  003E          +1   212     Page_Address_high               equ     3Eh
+  003F          +1   213     Page_Address_low                equ     3Fh
+  003E          +1   214     SMS_page_address                equ     Page_Address_high
+  003F          +1   215     DCS_byte                        equ     Page_Address_low
+                +1   216     
+  0040          +1   217     Page_Count                      equ     40h                             ; Ò³ÏÔÊ¾¼ÆÊÆ÷
+  0041          +1   218     Use_Select_Item                 equ     41h
+                +1   219     
+  0043          +1   220     OTA_FAT_HANDLEH                 EQU     43H
+  0044          +1   221     OTA_FAT_HANDLEL                 EQU     44H
+  0045          +1   222     OTA_DIR_NUMBER                  EQU     45H
+                +1   223     
+  004F          +1   224     total_page_num                  equ     4FH
+  0050          +1   225     Temp_byte                       equ     50h
+                +1   226     
+  00D0          +1   227     STACK                           equ     0D0h                            ; 48 byte Stack can
+                              be use
+                +1   228     
+  00C1          +1   229     Save_AUTHBS_buf                 equ     Save_RANDBS_buf-02h-04h-03h
+  00CA          +1   230     Save_RANDBS_buf                 equ     STACK-02h-04h
+  00CE          +1   231     Write_Enable_2                  equ     STACK-02h
+  00CF          +1   232     Write_Enable_3                  equ     STACK-01h
+                +1   233     
+                +1   234     
+  00FF          +1   235     Write_Enable_4                  equ     100h-01h
+                +1   236     ;;******************************************************
+                +1   237     $if  Simulator                           <> 0
+                +1           Send_Receive_SRF                equ     0f9h
+                +1           TI_SRF                          bit     0f9h
+                +1           RI_SRF                          bit     0f8h
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     5
+
+                +1           
+                +1           $else 
+  0099          +1   243     Send_Receive_SRF                equ     099h
+  0099          +1   244     TI_SRF                          bit     099h
+  0098          +1   245     RI_SRF                          bit     098h
+                +1   246     
+                +1   247     $endif 
+                +1   248     
+  009A          +1   249     MODE_REG                        equ     9Ah
+  009B          +1   250     Baud_MR                         equ     9Bh
+  009C          +1   251     Baud_BR                         equ     9CH
+                +1   252     
+  00A1          +1   253     RNG                             equ     0A1h
+                +1   254     ;;******************************************************
+                +1   255     
+  0000          +1   256     Dir_Start_Address               XData   0000h                           ; Ä¿Â¼ÆðÊ¼µØÖ·
+  0002          +1   257     Fix_File_Start_Address          XData   0002h                           ; ±ê×¼ÎÄ¼þ¡¢¹Ì¶¨ÎÄ¼
+                             þµÄÆðÊ¼µØÖ·
+                +1   258     
+  0004          +1   259     Bak_Control_Start_Address       XData   0004h
+  0006          +1   260     Bak_Data_Start_Address          XData   0006h
+  0008          +1   261     Bak_Data_End_Address            XData   0008h
+  000A          +1   262     Sector_64_Start_End_Address     XData   000Ah
+  000C          +1   263     Sector_128_Start_End_Address    XData   000Ch
+  000E          +1   264     Sector_256_Start_End_Address    XData   000Eh
+  0010          +1   265     Sector_512_Start_End_Address    XData   0010h
+                +1   266     
+  0012          +1   267     ADM_Address                     XData   0012h                           ; ADM
+  001A          +1   268     ADM_Number                      XData   001Ah                           ; ADM Ê£Óà³¢ÊÔ´ÎÊ
+                +1   269     
+  001B          +1   270     Cluster_FAT_Start_Address       XData   001Bh   ; ´Ø¹ÜÀíµÄÎÄ¼þ·ÖÅä±íÆðÊ¼µØÖ·
+  001D          +1   271     Cluster_FAT_End_Address         XData   001Dh   ; ´Ø¹ÜÀíµÄÎÄ¼þ·ÖÅä±í½áÊøµØÖ·
+  001F          +1   272     CLuster_Start_Address           XData   001Fh   ; ´Ø¹ÜÀíµÄÆðÊ¼µØÖ·
+  0021          +1   273     CLuster_End_Address             XData   0021h   ; ´Ø¹ÜÀíµÄ½áÊøµØÖ·
+                +1   274     
+                +1   275     ;********** added by yeq for flash ****************
+                +1   276     
+  0023          +1   277     Data_Recover_Tag_Address        XData   0023h   ; 8 bytes
+  0027          +1   278     Bak_Control_Index               XData   0027h   
+                +1   279     
+                +1   280     ;********** added by yeq for flash end *************
+                +1   281     
+                +1   282     ;Key_Future_Address              XData   0011h
+                +1   283     
+  0030          +1   284     Key_Future_Address              XData   0030h
+                +1   285     
+  FC00          +1   286     bySend_Receive_buf              XData   0FC00h                          ; 256 Byte Send Rec
+                             eive Buf
+  FD00          +1   287     byXTK_Menu_buf                  XData   0FD00h                          ; 256 Byte XTK Menu
+                              Buf
+  FD00          +1   288     byTemp_start                    XData   0FD00h                          ; 256 Temp Var Buf
+                +1   289     
+  FE00          +1   290     byCard_Buf_start                XData   0FE00h                          ; 256 Temp Var Buf
+                +1   291     
+  FF00          +1   292     byMem_Manage_start              XData   0FF00h                          ; 32 Byte Men Manag
+                             er Block
+  FF20          +1   293     byXTK_Thread_Para_Bak           XData   0FF20h                          ; 16 Byte
+  FF30          +1   294     byXTK_Get_Input_buf             XData   0FF30h                          ; 208 Byte
+  FFF0          +1   295     INT_Vector                      XData   0FFF0h                          ; 16 Byte Int Vecto
+                             r
+                +1   296     ;;******************************************************
+                +1   297     
+  3F00          +1   298     MF                              equ     3F00h
+  7F10          +1   299     Telecom_DF                      equ     7F10h
+  7F20          +1   300     GSM_DF                          equ     7F20h
+  7F25          +1   301     CDMA_DF                         equ     7F25h
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     6
+
+                +1   302     
+  0101          +1   303     XTK_Menu_DF                     equ     0101h
+  0001          +1   304     XTK_Menu_ID                     equ     0001h
+  0005          +1   305     Mobile_Model_EF                 equ     0005h
+                +1   306     
+  0012          +1   307     Look_People_EF                  equ     0012h
+                +1   308     
+  0001          +1   309     CHV1_ID                         equ     0001h
+  0002          +1   310     CHV2_ID                         equ     0002h
+  0003          +1   311     UnBlock_CHV1                    equ     0003h
+  0004          +1   312     UnBlock_CHV2                    equ     0004h
+                +1   313     
+  0005          +1   314     Ki_ID                           equ     0005h
+  0F42          +1   315     SMS_Center_ID                   equ     0F42h
+                +1   316     
+  0005          +1   317     A_Key_ID                        equ     0005h
+  0006          +1   318     SSD_ID                          equ     0006h
+  6F22          +1   319     IMSI_M_ID                       equ     6F22h
+  6F31          +1   320     UIM_ID_ID                       equ     6f31h
+                +1   321     
+  FE30          +1   322     save_dptr_begin                 equ     byCard_Buf_start+0030h
+                +1   323     ;;******************************************************
+  0057          +1   324     return_mark                     equ     temp_byte+07h
+  0061          +1   325     temp_entrance1                  equ     temp_byte+11h
+  0062          +1   326     temp_entrance2                  equ     temp_byte+12h
+                +1   327     
+  0070          +1   328     judge_record_null               bit     temp_bit.0
+                +1   329     
+  00D1          +1   330     MAIN_PROCESS_OUT_SP             EQU     0D1H
+                +1   331     
+                +1   332     
+  002C          +1   333     eeprom_manage_byte                      equ             2ch
+  0060          +1   334     run_W_eeprom                    bit     2ch.0
+  0061          +1   335     Super_W_eeprom                  bit     2ch.1
+  0062          +1   336     INS_start_bit                   bit     2ch.2
+  0040          +1   337     Sector_Size                     equ     40h
+                +1   338     ;;*************************************************************
+                +1   339     ;;¶¨ÒåDESÄ£¿éÌØÊâ¼Ä´æÆ÷
+                +1   340     ;;09L
+                +1   341     ;;added by laiht for 09L des module end 2005.10.20
+  009D          +1   342     PLAINTEXT_ADDR  equ     09dh    ;Ã÷ÎÄ»òÃÜÎÄµÄ»ùÖ·
+  009E          +1   343     KEY_ADDR        equ     09eh    ;ÃÜÔ¿µÄ»ùÖ·
+  009F          +1   344     DES_CON         equ     09fh    ;des ¿ØÖÆ¼Ä´æÆ÷
+                +1   345     
+                +1   346     ;;DES_CON [0]£º²Ù×÷Ä£Ê½Ñ¡Ôñ£º
+                +1   347     ;       ;0 £º½øÐÐ¼ÓÃÜÔËËã
+                +1   348     ;       ;1 £º½øÐÐ½âÃÜÔËËã;
+                +1   349     ;;DES_CON [1]£ºDESÄ£¿éÃÅ¿ØÊ±ÖÓ£¬ÐëÔÚÔËËã¿ªÊ¼Ö®Ç°´ò¿ª
+                +1   350     ;;DES_CON [2]£ºDESÔËËãÊ¹ÄÜ
+                +1   351     ;;³õÊ¼»¯ÄÚ²¿RAM £¬½«Ã÷ÎÄºÍÃÜÔ¿Ð´ÈëÄÚ²¿RAM DESÊ¾ÝÇø£¬Ã÷ÎÄºÍÃÜÔ¿¸÷Õ¼8Byte¿Õ¼ä£¬×¢Òâ£ºÊ¾ÝµÍÎ»Ð
+                             ´ÈëµÍµØÖ·¡£
+                +1   352     ;;¿ªÆôÊ±ÖÓ£¬¼´½«DES_CON [1]ÖÃÎª1
+                +1   353     ;;ÉèÖÃ¼Ó½âÃÜÄ£Ê½¼°Ã÷ÎÄ£¬ÃÜÔ¿»ùÖ·£¬¼´¸ù¾ÝÄÚ²¿RAM³õÊ¼»¯Çé¿öÉèÖÃDES_CON[0]¡¢PLAINTEXT_ADDRºÍPL
+                             AINTEXT_ADDR£»
+                +1   354     ;;ÉèÖÃDESÔËËãÊ¹ÄÜ£¬¼´½«DES_CON[2]ÖÃÎª1£¬¿ªÊ¼DESÔËËã£¬ÔÚÖ´ÐÐÍêÒ»´ÎDESÔËËãºó£¬DES_CON [2]»áÓ²
+                             ¼þÇå"0"£¬±íÊ¾DESÔËËã½áÊø
+                +1   355     ;;ÔËËã½áÊøºó£¬½«DES_CON [1] ÖÃÎª0£¬¹Ø¶ÏÊ±ÖÓ£¬ÒÔ½ÚÔ¼¹¦ºÄ
+                +1   356     
+                +1   357     
+                +1   358     ;****************************************************************
+                +1   359     ;;******************************************************
+                +1   360     Define_INS      MACRO   INS_Index, INS_Address, INS_attribute
+                +1   361     
+                +1   362     Extrn   Code    (INS_Address)
+                +1   363             db      INS_Index
+                +1   364             db      INS_attribute
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     7
+
+                +1   365             dw      INS_Address
+                +1   366     
+                +1   367             ENDM
+                     368     
+                     369     
+                     370     
+                     371     Public                          Number_INS
+                     372     Public                          Command_INS
+                     373     Public                          Command_INS_End
+                     374     
+  000F               375     Number_INS                 equ     (Command_INS_End-Command_INS)/4
+                     376     
+                     377     PROG_INS_Table                  Segment Code
+----                 378                                     RSEG    PROG_INS_Table
+                     379     ;;******************************************************
+                     380     
+0000                 381     Command_INS:
+                     382             Define_INS      011h, Read_Flash,             None
+                     389             Define_INS      012h, Write_Flash,            Have_Lc+Have_Write_Eeprom
+                     396             Define_INS      013h, EraseFlash,             Have_Write_Eeprom
+                     403             Define_INS      015h, testP2,                 Have_Lc
+                     410             Define_INS      016h, test_des,               Have_Lc
+                     417             Define_INS      0C0h, Get_Response,           None
+                     424     
+                     425             Define_INS      017h, Read_Flash_1,           None
+                     432             Define_INS      018h, Write_Flash_1,            Have_Lc+Have_Write_Eeprom
+                     439             Define_INS      019h, EraseFlash_1,           Have_Write_Eeprom
+                     446     
+                     447             Define_INS      01ah, Read_Flash_2,           None
+                     454             Define_INS      01bh, Write_Flash_2,            Have_Lc+Have_Write_Eeprom
+                     461             Define_INS      01ch, EraseFlash_2,           Have_Write_Eeprom
+                     468     
+                     469             Define_INS      01dh, get_rgn,        None
+                     476     
+                     477             Define_INS      01eh, test_trim,              None
+                     484     
+                     485             Define_INS      01fh, test_t0,        None
+                     492     
+003C                 493     Command_INS_End:
+                     494     
+                     495     
+                     496             end
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     8
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                       T Y P E  V A L U E   ATTRIBUTES
+
+ADM_ADDRESS. . . . . . . . .  X ADDR   0012H   A   
+ADM_NUMBER . . . . . . . . .  X ADDR   001AH   A   
+A_KEY_ID . . . . . . . . . .  N NUMB   0005H   A   
+BADM_VERIFY. . . . . . . . .  B ADDR   0028H.2 A   
+BAK_CONTROL_INDEX. . . . . .  X ADDR   0027H   A   
+BAK_CONTROL_START_ADDRESS. .  X ADDR   0004H   A   
+BAK_DATA_END_ADDRESS . . . .  X ADDR   0008H   A   
+BAK_DATA_START_ADDRESS . . .  X ADDR   0006H   A   
+BALREADYSAVETERMINALRESP . .  B ADDR   002AH.5 A   
+BAUD_BR. . . . . . . . . . .  N NUMB   009CH   A   
+BAUD_MR. . . . . . . . . . .  N NUMB   009BH   A   
+BBACKWARD. . . . . . . . . .  B ADDR   002FH.5 A   
+BBASE_CHALLENGE. . . . . . .  B ADDR   0029H.0 A   
+BCHECK_BY_ALPHA. . . . . . .  B ADDR   002AH.1 A   
+BCHV1_VERIFY . . . . . . . .  B ADDR   0028H.0 A   
+BCHV2_VERIFY . . . . . . . .  B ADDR   0028H.1 A   
+BCOMMIT_SSD. . . . . . . . .  B ADDR   0029H.1 A   
+BCOS_USE_SELF. . . . . . . .  B ADDR   0028H.6 A   
+BDIR . . . . . . . . . . . .  N NUMB   0015H   A   
+BDISPLAY_TXT . . . . . . . .  B ADDR   002FH.2 A   
+BENHANCE_SPEED . . . . . . .  B ADDR   0028H.5 A   
+BFETCH . . . . . . . . . . .  B ADDR   002FH.0 A   
+BFILE. . . . . . . . . . . .  N NUMB   0016H   A   
+BFIND_ASCII_UNICODE_BIT. . .  B ADDR   002AH.2 A   
+BHIGH_PRIORITY_THREAD. . . .  B ADDR   0028H.7 A   
+BIN_CODE . . . . . . . . . .  B ADDR   0029H.6 A   
+BLOW_HALF_BYTE . . . . . . .  B ADDR   0029H.7 A   
+BNEW_SMS . . . . . . . . . .  B ADDR   002AH.3 A   
+BNOT_INC_PC. . . . . . . . .  B ADDR   002FH.1 A   
+BNOT_SEND_MENU_SETUP . . . .  B ADDR   002AH.0 A   
+BNOT_SUPPORT_DEFAULT_TEXT. .  B ADDR   0029H.4 A   
+BNOT_SUPPORT_UCS2_GET_INPUT.  B ADDR   0029H.5 A   
+BOFFSET. . . . . . . . . . .  N NUMB   0018H   A   
+BOTA . . . . . . . . . . . .  B ADDR   002FH.6 A   
+BRETRY_XTK_INS . . . . . . .  B ADDR   002FH.4 A   
+BRUN_CAVE. . . . . . . . . .  B ADDR   0029H.3 A   
+BSHOW_ITEM_ALPHA . . . . . .  B ADDR   002AH.4 A   
+BSUPER_KEY . . . . . . . . .  B ADDR   0028H.3 A   
+BTYPE. . . . . . . . . . . .  N NUMB   0017H   A   
+BUIM . . . . . . . . . . . .  B ADDR   0028H.4 A   
+BUPDATE_SSD. . . . . . . . .  B ADDR   0029H.2 A   
+BWAIT_TERMINAL_RESPONSE. . .  B ADDR   002FH.7 A   
+BWANT_UCS2_INPUT . . . . . .  B ADDR   002FH.3 A   
+BYCARD_BUF_START . . . . . .  X ADDR   FE00H   A   
+BYCLA. . . . . . . . . . . .  N NUMB   001BH   A   
+BYCURRENT_FILE . . . . . . .  N NUMB   0011H   A   
+BYDIR. . . . . . . . . . . .  N NUMB   0010H   A   
+BYDISPLAY_INDEX. . . . . . .  N NUMB   0038H   A   
+BYEDIT_INDEX . . . . . . . .  N NUMB   0037H   A   
+BYEDIT_INDEX_MENU. . . . . .  N NUMB   0039H   A   
+BYFETCH_INS. . . . . . . . .  N NUMB   0036H   A   
+BYFILE_TYPE. . . . . . . . .  N NUMB   0012H   A   
+BYINS. . . . . . . . . . . .  N NUMB   001CH   A   
+BYINS_BAK. . . . . . . . . .  N NUMB   001AH   A   
+BYMEM_MANAGE_START . . . . .  X ADDR   FF00H   A   
+BYP1 . . . . . . . . . . . .  N NUMB   001DH   A   
+BYP2 . . . . . . . . . . . .  N NUMB   001EH   A   
+BYP3 . . . . . . . . . . . .  N NUMB   001FH   A   
+BYSEND_RECEIVE_BUF . . . . .  X ADDR   FC00H   A   
+BYTEMP_START . . . . . . . .  X ADDR   FD00H   A   
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE     9
+
+BYXTK_GET_INPUT_BUF. . . . .  X ADDR   FF30H   A   
+BYXTK_MENU_BUF . . . . . . .  X ADDR   FD00H   A   
+BYXTK_THREAD_PARA_BAK. . . .  X ADDR   FF20H   A   
+CDMA_DF. . . . . . . . . . .  N NUMB   7F25H   A   
+CHV1_ID. . . . . . . . . . .  N NUMB   0001H   A   
+CHV2_ID. . . . . . . . . . .  N NUMB   0002H   A   
+CLUSTER_END_ADDRESS. . . . .  X ADDR   0021H   A   
+CLUSTER_FAT_END_ADDRESS. . .  X ADDR   001DH   A   
+CLUSTER_FAT_START_ADDRESS. .  X ADDR   001BH   A   
+CLUSTER_START_ADDRESS. . . .  X ADDR   001FH   A   
+COMMAND_INS. . . . . . . . .  C ADDR   0000H   R   SEG=PROG_INS_TABLE
+COMMAND_INS_END. . . . . . .  C ADDR   003CH   R   SEG=PROG_INS_TABLE
+CRC_ACCUM_HIGH . . . . . . .  N NUMB   0006H   A   
+CRC_ACCUM_LOW. . . . . . . .  N NUMB   0007H   A   
+CURRENT_SEND_SMS . . . . . .  N NUMB   003DH   A   
+DATA_RECOVER_TAG_ADDRESS . .  X ADDR   0023H   A   
+DCS_BYTE . . . . . . . . . .  N NUMB   003FH   A   
+DES_CON. . . . . . . . . . .  N NUMB   009FH   A   
+DES_DECRYPT_FLAG . . . . . .  N NUMB   0080H   A   
+DES_ENCRYPT_FLAG . . . . . .  N NUMB   0000H   A   
+DES_FIRST_FLAG . . . . . . .  N NUMB   0000H   A   
+DES_NOT_FIRST_FLAG . . . . .  N NUMB   0001H   A   
+DIR. . . . . . . . . . . . .  N NUMB   0010H   A   
+DIR_CDMA_INDEX . . . . . . .  N NUMB   0003H   A   
+DIR_GSM_INDEX. . . . . . . .  N NUMB   0002H   A   
+DIR_MF_INDEX . . . . . . . .  N NUMB   0000H   A   
+DIR_START_ADDRESS. . . . . .  X ADDR   0000H   A   
+DIR_TELECOM_INDEX. . . . . .  N NUMB   0001H   A   
+EDIT_0 . . . . . . . . . . .  N NUMB   0000H   A   
+EDIT_1 . . . . . . . . . . .  N NUMB   0001H   A   
+EDIT_2 . . . . . . . . . . .  N NUMB   0002H   A   
+EDIT_3 . . . . . . . . . . .  N NUMB   0003H   A   
+EDIT_4 . . . . . . . . . . .  N NUMB   0004H   A   
+EDIT_5 . . . . . . . . . . .  N NUMB   0005H   A   
+EDIT_6 . . . . . . . . . . .  N NUMB   0006H   A   
+EDIT_7 . . . . . . . . . . .  N NUMB   0007H   A   
+EDIT_8 . . . . . . . . . . .  N NUMB   0008H   A   
+EDIT_9 . . . . . . . . . . .  N NUMB   0009H   A   
+EDIT_A . . . . . . . . . . .  N NUMB   000AH   A   
+EDIT_B . . . . . . . . . . .  N NUMB   000BH   A   
+EDIT_C . . . . . . . . . . .  N NUMB   000CH   A   
+EDIT_D . . . . . . . . . . .  N NUMB   000DH   A   
+EDIT_E . . . . . . . . . . .  N NUMB   000EH   A   
+EDIT_F . . . . . . . . . . .  N NUMB   000FH   A   
+EEPROM_MANAGE_BYTE . . . . .  N NUMB   002CH   A   
+ERASEFLASH . . . . . . . . .  C ADDR   -----       EXT
+ERASEFLASH_1 . . . . . . . .  C ADDR   -----       EXT
+ERASEFLASH_2 . . . . . . . .  C ADDR   -----       EXT
+FAT_CLUSTER. . . . . . . . .  N NUMB   000EH   A   
+FAT_CLUSTER_H. . . . . . . .  N NUMB   000EH   A   
+FAT_CLUSTER_L. . . . . . . .  N NUMB   000FH   A   
+FFS_FAT. . . . . . . . . . .  N NUMB   000CH   A   
+FFS_FAT_H. . . . . . . . . .  N NUMB   000CH   A   
+FFS_FAT_L. . . . . . . . . .  N NUMB   000DH   A   
+FILE . . . . . . . . . . . .  N NUMB   0011H   A   
+FIX_FILE_START_ADDRESS . . .  X ADDR   0002H   A   
+F_FFS. . . . . . . . . . . .  N NUMB   000AH   A   
+F_FFS_H. . . . . . . . . . .  N NUMB   000AH   A   
+F_FFS_L. . . . . . . . . . .  N NUMB   000BH   A   
+GET_RESPONSE . . . . . . . .  C ADDR   -----       EXT
+GET_RGN. . . . . . . . . . .  C ADDR   -----       EXT
+GO_AHEAD . . . . . . . . . .  N NUMB   00FEH   A   
+GO_BACK. . . . . . . . . . .  N NUMB   00FFH   A   
+GSM_DF . . . . . . . . . . .  N NUMB   7F20H   A   
+HAVE_ADM_LIMITS. . . . . . .  N NUMB   0010H   A   
+HAVE_CHV1_LIMITS . . . . . .  N NUMB   0004H   A   
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE    10
+
+HAVE_CHV2_LIMITS . . . . . .  N NUMB   0008H   A   
+HAVE_LC. . . . . . . . . . .  N NUMB   0001H   A   
+HAVE_SUPER_KEY_LIMITS. . . .  N NUMB   0020H   A   
+HAVE_WRITE_EEPROM. . . . . .  N NUMB   0002H   A   
+IMSI_M_ID. . . . . . . . . .  N NUMB   6F22H   A   
+INS_START_BIT. . . . . . . .  B ADDR   002CH.2 A   
+INS_TABLE. . . . . . . . . .  N NUMB   -----       
+INT_VECTOR . . . . . . . . .  X ADDR   FFF0H   A   
+JUDGE_RECORD_NULL. . . . . .  B ADDR   002EH.0 A   
+KEY_ADDR . . . . . . . . . .  N NUMB   009EH   A   
+KEY_BIT. . . . . . . . . . .  N NUMB   0028H   A   
+KEY_FUTURE_ADDRESS . . . . .  X ADDR   0030H   A   
+KI_ID. . . . . . . . . . . .  N NUMB   0005H   A   
+LAST_PAGE_ITEM . . . . . . .  N NUMB   00FFH   A   
+LE_LENGTH. . . . . . . . . .  N NUMB   001BH   A   
+LOOK_PEOPLE_EF . . . . . . .  N NUMB   0012H   A   
+MAIN_PROCESS_OUT_SP. . . . .  N NUMB   00D1H   A   
+MF . . . . . . . . . . . . .  N NUMB   3F00H   A   
+MOBILE_MODEL_EF. . . . . . .  N NUMB   0005H   A   
+MODE_REG . . . . . . . . . .  N NUMB   009AH   A   
+NEXT_PAGE_ITEM . . . . . . .  N NUMB   00FEH   A   
+NONE . . . . . . . . . . . .  N NUMB   0000H   A   
+NUMBER_INS . . . . . . . . .  N NUMB   000FH   A   
+OFFSET . . . . . . . . . . .  N NUMB   0013H   A   
+OFFSET_HIGH. . . . . . . . .  N NUMB   0013H   A   
+OFFSET_LOW . . . . . . . . .  N NUMB   0014H   A   
+OTA_DIR_ITEM . . . . . . . .  N NUMB   0026H   A   
+OTA_DIR_NUMBER . . . . . . .  N NUMB   0045H   A   
+OTA_FAT_HANDLEH. . . . . . .  N NUMB   0043H   A   
+OTA_FAT_HANDLEL. . . . . . .  N NUMB   0044H   A   
+OTA_MENU_ITEM. . . . . . . .  N NUMB   0027H   A   
+PAGE_ADDRESS_HIGH. . . . . .  N NUMB   003EH   A   
+PAGE_ADDRESS_LOW . . . . . .  N NUMB   003FH   A   
+PAGE_COUNT . . . . . . . . .  N NUMB   0040H   A   
+PAGE_DISP_NUMBER . . . . . .  N NUMB   000BH   A   
+PAGE_SIZE. . . . . . . . . .  N NUMB   0040H   A   
+PAGE_WRITE_SIZE. . . . . . .  N NUMB   0020H   A   
+PLAINTEXT_ADDR . . . . . . .  N NUMB   009DH   A   
+PROG_INS_TABLE . . . . . . .  C SEG    003CH       REL=UNIT
+PTSS . . . . . . . . . . . .  N NUMB   00FFH   A   
+R0_BANK0 . . . . . . . . . .  N NUMB   0000H   A   
+R0_BANK1 . . . . . . . . . .  N NUMB   0008H   A   
+R0_BANK2 . . . . . . . . . .  N NUMB   0010H   A   
+R0_BANK3 . . . . . . . . . .  N NUMB   0018H   A   
+R1_BANK0 . . . . . . . . . .  N NUMB   0001H   A   
+R1_BANK1 . . . . . . . . . .  N NUMB   0009H   A   
+R1_BANK2 . . . . . . . . . .  N NUMB   0011H   A   
+R1_BANK3 . . . . . . . . . .  N NUMB   0019H   A   
+R2_BANK0 . . . . . . . . . .  N NUMB   0002H   A   
+R2_BANK1 . . . . . . . . . .  N NUMB   000AH   A   
+R2_BANK2 . . . . . . . . . .  N NUMB   0012H   A   
+R2_BANK3 . . . . . . . . . .  N NUMB   001AH   A   
+R3_BANK0 . . . . . . . . . .  N NUMB   0003H   A   
+R3_BANK1 . . . . . . . . . .  N NUMB   000BH   A   
+R3_BANK2 . . . . . . . . . .  N NUMB   0013H   A   
+R3_BANK3 . . . . . . . . . .  N NUMB   001BH   A   
+R4_BANK0 . . . . . . . . . .  N NUMB   0004H   A   
+R4_BANK1 . . . . . . . . . .  N NUMB   000CH   A   
+R4_BANK2 . . . . . . . . . .  N NUMB   0014H   A   
+R4_BANK3 . . . . . . . . . .  N NUMB   001CH   A   
+R5_BANK0 . . . . . . . . . .  N NUMB   0005H   A   
+R5_BANK1 . . . . . . . . . .  N NUMB   000DH   A   
+R5_BANK2 . . . . . . . . . .  N NUMB   0015H   A   
+R5_BANK3 . . . . . . . . . .  N NUMB   001DH   A   
+R6_BANK0 . . . . . . . . . .  N NUMB   0006H   A   
+R6_BANK1 . . . . . . . . . .  N NUMB   000EH   A   
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE    11
+
+R6_BANK2 . . . . . . . . . .  N NUMB   0016H   A   
+R6_BANK3 . . . . . . . . . .  N NUMB   001EH   A   
+R7_BANK0 . . . . . . . . . .  N NUMB   0007H   A   
+R7_BANK1 . . . . . . . . . .  N NUMB   000FH   A   
+R7_BANK2 . . . . . . . . . .  N NUMB   0017H   A   
+R7_BANK3 . . . . . . . . . .  N NUMB   001FH   A   
+READ_FLASH . . . . . . . . .  C ADDR   -----       EXT
+READ_FLASH_1 . . . . . . . .  C ADDR   -----       EXT
+READ_FLASH_2 . . . . . . . .  C ADDR   -----       EXT
+RETURN_MARK. . . . . . . . .  N NUMB   0057H   A   
+RI_SRF . . . . . . . . . . .  B ADDR   0098H.0 A   
+RNG. . . . . . . . . . . . .  N NUMB   00A1H   A   
+RUN_W_EEPROM . . . . . . . .  B ADDR   002CH.0 A   
+SAVE_AUTHBS_BUF. . . . . . .  N NUMB   00C1H   A   
+SAVE_DPTR_BEGIN. . . . . . .  N NUMB   FE30H   A   
+SAVE_RANDBS_BUF. . . . . . .  N NUMB   00CAH   A   
+SDES_FLAG. . . . . . . . . .  N NUMB   0000H   A   
+SECTOR_128_START_END_ADDRESS  X ADDR   000CH   A   
+SECTOR_256_START_END_ADDRESS  X ADDR   000EH   A   
+SECTOR_512_START_END_ADDRESS  X ADDR   0010H   A   
+SECTOR_64_START_END_ADDRESS.  X ADDR   000AH   A   
+SECTOR_SIZE. . . . . . . . .  N NUMB   0040H   A   
+SELECT_SMS_NUMBER. . . . . .  N NUMB   003CH   A   
+SEND_RECEIVE_SRF . . . . . .  N NUMB   0099H   A   
+SMS_CENTER_ID. . . . . . . .  N NUMB   0F42H   A   
+SMS_PAGE_ADDRESS . . . . . .  N NUMB   003EH   A   
+SSD_ID . . . . . . . . . . .  N NUMB   0006H   A   
+STACK. . . . . . . . . . . .  N NUMB   00D0H   A   
+SUPER_BEGIN. . . . . . . . .  N NUMB   0022H   A   
+SUPER_BEGIN_H. . . . . . . .  N NUMB   0022H   A   
+SUPER_BEGIN_L. . . . . . . .  N NUMB   0023H   A   
+SUPER_END. . . . . . . . . .  N NUMB   0024H   A   
+SUPER_END_H. . . . . . . . .  N NUMB   0024H   A   
+SUPER_END_L. . . . . . . . .  N NUMB   0025H   A   
+SUPER_W_EEPROM . . . . . . .  B ADDR   002CH.1 A   
+SW1. . . . . . . . . . . . .  N NUMB   0020H   A   
+SW2. . . . . . . . . . . . .  N NUMB   0021H   A   
+TDES_FLAG. . . . . . . . . .  N NUMB   0040H   A   
+TELECOM_DF . . . . . . . . .  N NUMB   7F10H   A   
+TEMP_BIT . . . . . . . . . .  N NUMB   002EH   A   
+TEMP_BYTE. . . . . . . . . .  N NUMB   0050H   A   
+TEMP_ENTRANCE1 . . . . . . .  N NUMB   0061H   A   
+TEMP_ENTRANCE2 . . . . . . .  N NUMB   0062H   A   
+TESTP2 . . . . . . . . . . .  C ADDR   -----       EXT
+TEST_DES . . . . . . . . . .  C ADDR   -----       EXT
+TEST_T0. . . . . . . . . . .  C ADDR   -----       EXT
+TEST_TRIM. . . . . . . . . .  C ADDR   -----       EXT
+TI_SRF . . . . . . . . . . .  B ADDR   0098H.1 A   
+TOTAL_PAGE_NUM . . . . . . .  N NUMB   004FH   A   
+TYPE . . . . . . . . . . . .  N NUMB   0012H   A   
+UIM_ID_ID. . . . . . . . . .  N NUMB   6F31H   A   
+UNBLOCK_CHV1 . . . . . . . .  N NUMB   0003H   A   
+UNBLOCK_CHV2 . . . . . . . .  N NUMB   0004H   A   
+USE_SELECT_ITEM. . . . . . .  N NUMB   0041H   A   
+VIP_F. . . . . . . . . . . .  N NUMB   0008H   A   
+VIP_F_H. . . . . . . . . . .  N NUMB   0008H   A   
+VIP_F_L. . . . . . . . . . .  N NUMB   0009H   A   
+WRITE_ENABLE_2 . . . . . . .  N NUMB   00CEH   A   
+WRITE_ENABLE_3 . . . . . . .  N NUMB   00CFH   A   
+WRITE_ENABLE_4 . . . . . . .  N NUMB   00FFH   A   
+WRITE_FLASH. . . . . . . . .  C ADDR   -----       EXT
+WRITE_FLASH_1. . . . . . . .  C ADDR   -----       EXT
+WRITE_FLASH_2. . . . . . . .  C ADDR   -----       EXT
+XTK_BIT. . . . . . . . . . .  N NUMB   002FH   A   
+XTK_INS_PC . . . . . . . . .  N NUMB   0034H   A   
+XTK_MENU_DF. . . . . . . . .  N NUMB   0101H   A   
+A51 MACRO ASSEMBLER  INS_TABLE                                                            03/31/2006 10:32:12 PAGE    12
+
+XTK_MENU_ID. . . . . . . . .  N NUMB   0001H   A   
+XTK_PATH1. . . . . . . . . .  N NUMB   0030H   A   
+XTK_PATH2. . . . . . . . . .  N NUMB   0031H   A   
+XTK_PATH3. . . . . . . . . .  N NUMB   0032H   A   
+XTK_PATH4. . . . . . . . . .  N NUMB   0033H   A   
+XTK_PATH_LENGTH. . . . . . .  N NUMB   0004H   A   
+XTK_SW2. . . . . . . . . . .  N NUMB   0035H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

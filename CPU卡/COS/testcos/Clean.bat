@@ -1,0 +1,17 @@
+del *.bak
+del *.bin
+del *.err
+del *.hex
+del *.lnp
+del *.lst
+del *.m51
+del *.obj
+del *.plg
+del *.prj
+del *.tmp
+del *.csv
+del debug
+del release
+del fix.asm
+del ota.asm
+del *.__i

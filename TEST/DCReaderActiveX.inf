@@ -1,0 +1,44 @@
+[version]
+signature="$CHICAGO$"
+AdvancedINF=2.0
+
+[Add.Code]
+DCReaderActiveX.dll=DCReaderActiveX.dll
+HNSICRW.dll=HNSICRW.dll
+dcrf32.dll=dcrf32.dll
+Trf32.dll=Trf32.dll
+MHHNSICRW.dll=MHHNSICRW.dll
+SSSE32.dll=SSSE32.dll
+
+[DCReaderActiveX.dll]
+     file-win32-x86=thiscab 
+     clsid={598DB085-7B0D-4D52-A713-72BB894A1DE2}
+     FileVersion=1,0,0,16
+     RegisterServer=yes
+     DestDir=11
+
+[HNSICRW.dll]
+     file-win32-x86=thiscab
+     FileVersion=3,0,0,10
+     RegisterServer=no
+     DestDir=11
+
+[dcrf32.dll]
+     file-win32-x86=thiscab
+     RegisterServer=no
+     DestDir=11
+
+[Trf32.dll]
+     file-win32-x86=thiscab
+     RegisterServer=no
+     DestDir=11
+
+[MHHNSICRW.dll]
+     file-win32-x86=thiscab
+     RegisterServer=no
+     DestDir=11
+
+[SSSE32.dll]
+     file-win32-x86=thiscab
+     RegisterServer=no
+     DestDir=11

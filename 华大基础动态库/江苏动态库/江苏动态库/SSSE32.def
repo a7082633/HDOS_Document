@@ -1,0 +1,113 @@
+
+LIBRARY        SiCard
+
+VERSION        1.0
+
+
+EXETYPE WINDOWS
+
+EXPORTS        
+
+		
+	ICC_Reader_Open	
+	ICC_Reader_Close
+	ICC_Reader_PowerOn
+	ICC_Reader_pre_PowerOn
+	ICC_Reader_PowerOff
+	ICC_Reader_GetStatus
+	ICC_Reader_Application
+	ICC_Reader_Libinfo
+	ICC_PosBeep
+	ICC_SetCpupara
+	ICC_DispSound
+	Rcard
+
+
+	ICC_DispInfo
+	ICC_CtlLight
+	ICC_ChangeLight
+
+	ICC_GetInputPass
+	ICC_GetInputPassID
+
+	ICC_PassSetDES
+	ICC_PassSetDevID
+	ICC_PassGetDevID
+	ICC_PassSetKeyLen
+	ICC_PassDes
+	ICC_PassSetFD
+	ICC_GetInputPassACOUNT
+	ICC_PassMAC
+	ICC_PassECB
+	ICC_PassChangeMkey
+	ICC_PassChangeWkey
+	ICC_PassActiveWkey
+
+	PICC_Reader_SetTypeA
+	PICC_Reader_SetTypeB
+	PICC_Reader_Select
+	PICC_Reader_Request
+	PICC_Reader_anticoll
+	PICC_Reader_Authentication
+	PICC_Reader_Authentication_Pass
+	PICC_Reader_Read
+	PICC_Reader_Readval
+	PICC_Reader_Initval
+	PICC_Reader_Increment
+	PICC_Reader_Decrement
+	PICC_Reader_Write
+	PICC_Reader_LoadKey
+	PICC_Reader_PowerOnTypeA
+	PICC_Reader_PowerOnTypeB
+	PICC_Reader_Application
+	PICC_Reader_ID_Request
+	PICC_Reader_ID_Select
+	PICC_Reader_ID_Read
+	Run
+	
+	ICC_Reader_4442_PowerOn
+	ICC_Reader_4442_PowerOff
+	ICC_Reader_4442_Read
+	ICC_Reader_4442_Write
+	ICC_Reader_4442_Verify
+	ICC_Reader_4442_Change
+	ICC_Reader_4442_ReadProtect
+	ICC_Reader_4442_WriteProtect
+	ICC_Reader_4442_ReadCount
+	
+	ICC_Reader_4428_PowerOn
+	ICC_Reader_4428_PowerOff
+	ICC_Reader_4428_Read
+	ICC_Reader_4428_Write
+	ICC_Reader_4428_Verify
+	ICC_Reader_4428_Change
+	ICC_Reader_4428_ReadProtect
+	ICC_Reader_4428_WriteProtect
+	ICC_Reader_4428_ReadCount
+
+
+	ic_init
+	ic_exit
+	srd_4428
+	swr_4428
+	get_status
+	csc_4428
+	wsc_4428
+	chk_card
+	getErrorMsg
+
+	iOpenPort 
+	iClosePort
+	iReadCardFlag
+	iReadCard
+	iWriteCard
+	iAcctLoad
+	iAcctConsume
+	iGetCardStatus
+	iGetDllDependentCity
+	iCardControl
+	iReadCardNo
+
+
+
+

@@ -1,0 +1,45 @@
+1,第一次请求
+--获取交易流水号，认证码
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Header>
+<in:system xmlns:in="http://yinhai.com">
+<userName>HS001</userName><passWord>1234567890</passWord><jylsh>0</jylsh><jyyzm>0</jyyzm><jybh>MessageForward</jybh><fwlsh/><nbffyzm/><fwdysxh/></in:system></soap:Header><soap:Body><ns2:getJylsh xmlns:ns2="http://webservice.common.yinhai.com/"><inputxml>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;input&gt;&lt;/input&gt;</inputxml></ns2:getJylsh></soap:Body></soap:Envelope>
+--返回交易流水号，认证码
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+<soap:Body>
+<ns2:getJylshResponse xmlns:ns2="http://webservice.common.yinhai.com/">
+<return>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;output&gt;&lt;jylsh&gt;151104427277614&lt;/jylsh&gt;&lt;jyyzm&gt;2345&lt;/jyyzm&gt;&lt;/output&gt;</return>
+</ns2:getJylshResponse>
+</soap:Body>
+</soap:Envelope>
+第二次 带上，交易流水号，请求认证码
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<in:system xmlns:in="http://yinhai.com">
+			<userName>HS001</userName>
+			<passWord>1234567890</passWord>
+			<jylsh>151104427277614</jylsh>
+			<jyyzm>2345</jyyzm>
+			<jybh>MessageForward</jybh>
+			<fwlsh/><nbffyzm/><fwdysxh/>
+		</in:system>
+	</soap:Header>
+	<soap:Body>
+		<ns2:callBusiness xmlns:ns2="http://webservice.common.yinhai.com/">
+			<inputxml>&lt;input&gt;&lt;inputmsg&gt;B0A50000000000000000 01 0094 02 353139393030373788649519930000BF0 
+00 1122334455667788 
+0F 
+000000000000001122334455667788
+&lt;/inputmsg&gt;&lt;atr&gt;121221&lt;/atr&gt;&lt;/input&gt;
+			</inputxml>
+		</ns2:callBusiness>
+	</soap:Body>
+</soap:Envelope>
+第二次返回报文
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Body>
+		<ns2:callBusinessResponse xmlns:ns2="http://webservice.common.yinhai.com/">
+			<return>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;result&gt;&lt;code&gt;1&lt;/code&gt;&lt;message&gt;&lt;/message&gt;&lt;output&gt;&lt;outmsg&gt;41000000000000000010ba7cb5d03e93d00ea15d623b7b3edf48000000000000000000000000000000000000000000000000&lt;/outmsg&gt;&lt;/output&gt;&lt;/result&gt;	</return>
+		</ns2:callBusinessResponse>
+	</soap:Body>
+</soap:Envelope>

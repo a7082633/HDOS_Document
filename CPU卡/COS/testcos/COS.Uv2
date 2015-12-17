@@ -1,0 +1,355 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+Target (Debug), 0x0000 // Tools: 'MCS-51'
+Target (Release), 0x0000 // Tools: 'MCS-51'
+
+Group (INC)
+Group (bank_1)
+Group (bank_2)
+Group (common)
+Group (bank_0)
+Group (dynamic)
+
+File 1,5,<.\09ctest\Main.inc><Main.inc> 0x0 
+File 2,2,<.\09ctest\bank1.asm><bank1.asm> 0x0 
+File 3,2,<.\09ctest\bank2.asm><bank2.asm> 0x0 
+File 4,2,<.\09ctest\test_cos.asm><test_cos.asm> 0x0 
+File 4,2,<.\09ctest\ins_table.asm><ins_table.asm> 0x0 
+File 4,2,<.\09ctest\L51_BANK.A51><L51_BANK.A51> 0x0 
+File 5,2,<.\09ctest\bank_0.asm><bank_0.asm> 0x0 
+File 6,2,<.\09ctest\des_flash.asm><des_flash.asm> 0x0 
+
+
+Options 1,0,0  // Target 'Debug'
+ Device (AT89C52)
+ Vendor (Atmel)
+ Cpu (IRAM(0 - 0xFF) IROM(0 - 0x1FFF) CLOCK(24000000))
+ FlashUt ()
+ StupF ()
+ FlashDR ()
+ DevID ()
+ Rgf (AT89X52.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg (ÿAtmel\)
+ OrgReg (ÿAtmel\)
+ TgStat=16
+ OutDir (.\Debug\)
+ OutName (COS)
+ GenApp=1
+ GenLib=0
+ GenHex=0
+ Debug=1
+ Browse=1
+ LstDir (.\)
+ HexSel=0
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 1 <Debug.bat>
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ SVCSID <>
+ MODEL5=0
+ RTOS5=0
+ ROMSZ5=2
+ DHOLD5=0
+ XHOLD5=0
+ T51FL=8272
+ XT51FL=0
+ CBANKS5=1
+ XBANKS5=0
+ RCB51 { 0,0,48,0,0,255,127,0,0 }
+ RXB51 { 0,0,0,0,0,0,0,0,0 }
+ OCM51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCR51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IRO51 { 1,0,0,0,0,0,32,0,0 }
+ IRA51 { 0,0,0,0,0,0,1,0,0 }
+ XRA51 { 0,0,0,0,0,0,0,0,0 }
+ XRA512 { 0,0,0,0,0,0,0,0,0 }
+ IROM512 { 0,0,0,0,0,0,0,0,0 }
+ C51FL=21630224
+ C51VA=0
+ C51MSC ()
+ C51DEF ()
+ C51UDF ()
+ INCC5 ()
+ AX51FL=4
+ AX51MSC ()
+ AX51SET (simulator)
+ AX51RST ()
+ INCA5 (include)
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ BankNo=65535
+ LX51FL=292
+ LX51OVL ()
+ LX51MSC ()
+ LX51DWN ()
+ LX51LFI ()
+ LX51ASN ()
+ LX51RES ()
+ LX51CCL ()
+ LX51UCL ()
+ LX51CSC ()
+ LX51UCS ()
+ LX51COB ()
+ LX51XDB ()
+ LX51PDB ()
+ LX51BIB ()
+ LX51DAB ()
+ LX51IDB ()
+ LX51PRC ()
+ LX51STK ()
+ LX51COS (Prog_Eeprom(0xb000))
+ LX51XDS ()
+ LX51BIS ()
+ LX51DAS ()
+ LX51IDS ()
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p52 -dSimulate)(S8051.DLL)()(TP51.DLL)(-p52)
+  OPTDBG 501,0,()()()()(.\Debug.ini)()()()()() (BIN\MON51.DLL)()()()
+ FLASH1 { 1,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,0,0,0,0 }
+ FLASH2 ()
+ FLASH3 ("" ())
+ FLASH4 ()
+EndOpt
+
+Options 2,0,0  // Target 'Release'
+ Device (AT89C52)
+ Vendor (Atmel)
+ Cpu (IRAM(0 - 0xFF) IROM(0 - 0x1FFF) CLOCK(24000000))
+ FlashUt ()
+ StupF ()
+ FlashDR ()
+ DevID ()
+ Rgf (AT89X52.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg (ÿAtmel\)
+ OrgReg (ÿAtmel\)
+ TgStat=16
+ OutDir (.\Release\)
+ OutName (COS)
+ GenApp=1
+ GenLib=0
+ GenHex=1
+ Debug=0
+ Browse=0
+ LstDir (.\)
+ HexSel=0
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 1 <Genbin.bat>
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ SVCSID <>
+ MODEL5=0
+ RTOS5=0
+ ROMSZ5=2
+ DHOLD5=0
+ XHOLD5=0
+ T51FL=8272
+ XT51FL=0
+ CBANKS5=1
+ XBANKS5=0
+ RCB51 { 0,0,48,0,0,255,127,0,0 }
+ RXB51 { 0,0,0,0,0,0,0,0,0 }
+ OCM51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCR51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IRO51 { 1,0,0,0,0,0,32,0,0 }
+ IRA51 { 0,0,0,0,0,0,1,0,0 }
+ XRA51 { 0,0,0,0,0,0,0,0,0 }
+ XRA512 { 0,0,0,0,0,0,0,0,0 }
+ IROM512 { 0,0,0,0,0,0,0,0,0 }
+ C51FL=21630224
+ C51VA=0
+ C51MSC ()
+ C51DEF ()
+ C51UDF ()
+ INCC5 ()
+ AX51FL=4
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ BankNo=65535
+ LX51FL=292
+ LX51OVL ()
+ LX51MSC ()
+ LX51DWN ()
+ LX51LFI ()
+ LX51ASN ()
+ LX51RES ()
+ LX51CCL ()
+ LX51UCL ()
+ LX51CSC ()
+ LX51UCS ()
+ LX51COB ()
+ LX51XDB ()
+ LX51PDB ()
+ LX51BIB ()
+ LX51DAB ()
+ LX51IDB ()
+ LX51PRC ()
+ LX51STK ()
+ LX51COS (Prog_Eeprom(0xB000))
+ LX51XDS ()
+ LX51BIS ()
+ LX51DAS ()
+ LX51IDS ()
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p52 -dSimulate)(S8051.DLL)()(TP51.DLL)(-p52)
+  OPTDBG 509,0,()()()()(.\Debug.ini)()()()()() ()()()()
+ FLASH1 { 1,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,0,0,0,0 }
+ FLASH2 ()
+ FLASH3 ()
+ FLASH4 ()
+EndOpt
+
+Options 1,2,2  // File 'bank1.asm'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=2
+ AsmAsm=2
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=2
+ AX51FL=170
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+EndOpt
+
+Options 1,3,3  // File 'bank2.asm'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=2
+ AsmAsm=2
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=3
+ AX51FL=170
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+EndOpt
+
+Options 1,5,7  // File 'bank_0.asm'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=2
+ AsmAsm=2
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=1
+ AX51FL=170
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+EndOpt
+
+Options 2,2,2  // File 'bank1.asm'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=2
+ AsmAsm=2
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=2
+ AX51FL=170
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+EndOpt
+
+Options 2,3,3  // File 'bank2.asm'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=2
+ AsmAsm=2
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=3
+ AX51FL=170
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+EndOpt
+
+Options 2,5,7  // File 'bank_0.asm'
+ PropFld { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=2
+ AlwaysBuild=2
+ GenAsm=2
+ AsmAsm=2
+ PublicsOnly=2
+ StopCode=11
+ CustArgs ()
+ LibMods ()
+ BankNo=1
+ AX51FL=170
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+EndOpt
+
