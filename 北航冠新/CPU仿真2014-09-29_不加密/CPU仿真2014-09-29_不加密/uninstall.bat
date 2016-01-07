@@ -1,0 +1,1 @@
+regsvr32 -u BHGX_CardActiveX.dll
