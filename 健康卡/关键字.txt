@@ -1,6 +1,0 @@
-AID 应用标识符 Application Identifier
-an 字母数字型 Alphanumeric
-ans 特殊字母数字型 Alphanumeric Special
-b 二进制 Binary
-BER 基本编码规则 Basic Encoding Rules
-cn 压缩数字 Compressed Numeric
